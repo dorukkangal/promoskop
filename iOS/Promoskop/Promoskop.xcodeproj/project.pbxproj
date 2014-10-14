@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A32872F19EDE9B000E3278D /* Promoskop.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */; };
+		3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93480F19EDC37600AF2665 /* FMDatabase.m */; };
+		3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481119EDC37600AF2665 /* FMDatabaseAdditions.m */; };
+		3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481319EDC37600AF2665 /* FMDatabasePool.m */; };
+		3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481519EDC37600AF2665 /* FMDatabaseQueue.m */; };
+		3A93481D19EDC37600AF2665 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481819EDC37600AF2665 /* FMResultSet.m */; };
+		3A93482019EDC54700AF2665 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A93481F19EDC54700AF2665 /* libsqlite3.dylib */; };
+		3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93482619EDCE6700AF2665 /* DataAccessLayer.m */; };
+		3AC9401B19EDE1D8007DAB52 /* BranchWithProductPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */; };
+		3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
 		9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */; };
 		9BAC14DA19ED8BCE00D53D8C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D919ED8BCE00D53D8C /* ViewController.m */; };
@@ -27,6 +37,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A93480E19EDC37600AF2665 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		3A93480F19EDC37600AF2665 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		3A93481019EDC37600AF2665 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		3A93481119EDC37600AF2665 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		3A93481219EDC37600AF2665 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		3A93481319EDC37600AF2665 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		3A93481419EDC37600AF2665 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		3A93481519EDC37600AF2665 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		3A93481619EDC37600AF2665 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		3A93481719EDC37600AF2665 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		3A93481819EDC37600AF2665 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		3A93481F19EDC54700AF2665 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3A93482519EDCE6700AF2665 /* DataAccessLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessLayer.h; sourceTree = "<group>"; };
+		3A93482619EDCE6700AF2665 /* DataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessLayer.m; sourceTree = "<group>"; };
+		3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Promoskop.sqlite; sourceTree = "<group>"; };
+		3AC9401919EDE1D8007DAB52 /* BranchWithProductPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchWithProductPrice.h; sourceTree = "<group>"; };
+		3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchWithProductPrice.m; sourceTree = "<group>"; };
+		3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductWithPriceDetailTableViewController.h; sourceTree = "<group>"; };
+		3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductWithPriceDetailTableViewController.m; sourceTree = "<group>"; };
 		9BAC14CB19ED8BCE00D53D8C /* Promoskop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Promoskop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAC14CF19ED8BCE00D53D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BAC14D019ED8BCE00D53D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -47,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A93482019EDC54700AF2665 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +90,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A93481E19EDC37C00AF2665 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				3A93480E19EDC37600AF2665 /* FMDatabase.h */,
+				3A93480F19EDC37600AF2665 /* FMDatabase.m */,
+				3A93481019EDC37600AF2665 /* FMDatabaseAdditions.h */,
+				3A93481119EDC37600AF2665 /* FMDatabaseAdditions.m */,
+				3A93481219EDC37600AF2665 /* FMDatabasePool.h */,
+				3A93481319EDC37600AF2665 /* FMDatabasePool.m */,
+				3A93481419EDC37600AF2665 /* FMDatabaseQueue.h */,
+				3A93481519EDC37600AF2665 /* FMDatabaseQueue.m */,
+				3A93481619EDC37600AF2665 /* FMDB.h */,
+				3A93481719EDC37600AF2665 /* FMResultSet.h */,
+				3A93481819EDC37600AF2665 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
 		9BAC14C219ED8BCE00D53D8C = {
 			isa = PBXGroup;
 			children = (
 				9BAC14CD19ED8BCE00D53D8C /* Promoskop */,
 				9BAC14EA19ED8BCE00D53D8C /* PromoskopTests */,
 				9BAC14CC19ED8BCE00D53D8C /* Products */,
+				3A93481F19EDC54700AF2665 /* libsqlite3.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,13 +130,18 @@
 		9BAC14CD19ED8BCE00D53D8C /* Promoskop */ = {
 			isa = PBXGroup;
 			children = (
+				3A93481E19EDC37C00AF2665 /* FMDB */,
+				3A93482519EDCE6700AF2665 /* DataAccessLayer.h */,
+				3A93482619EDCE6700AF2665 /* DataAccessLayer.m */,
+				3AC9401919EDE1D8007DAB52 /* BranchWithProductPrice.h */,
+				3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */,
+				3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */,
+				3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */,
 				9BAC14D219ED8BCE00D53D8C /* AppDelegate.h */,
 				9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */,
 				9BAC14D819ED8BCE00D53D8C /* ViewController.h */,
 				9BAC14D919ED8BCE00D53D8C /* ViewController.m */,
 				9BAC14DB19ED8BCE00D53D8C /* Main.storyboard */,
-				9BAC14DE19ED8BCE00D53D8C /* Images.xcassets */,
-				9BAC14E019ED8BCE00D53D8C /* LaunchScreen.xib */,
 				9BAC14CE19ED8BCE00D53D8C /* Supporting Files */,
 			);
 			path = Promoskop;
@@ -96,6 +150,9 @@
 		9BAC14CE19ED8BCE00D53D8C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */,
+				9BAC14E019ED8BCE00D53D8C /* LaunchScreen.xib */,
+				9BAC14DE19ED8BCE00D53D8C /* Images.xcassets */,
 				9BAC14CF19ED8BCE00D53D8C /* Info.plist */,
 				9BAC14D019ED8BCE00D53D8C /* main.m */,
 			);
@@ -199,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A32872F19EDE9B000E3278D /* Promoskop.sqlite in Resources */,
 				9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */,
 				9BAC14E219ED8BCE00D53D8C /* LaunchScreen.xib in Resources */,
 				9BAC14DF19ED8BCE00D53D8C /* Images.xcassets in Resources */,
@@ -220,8 +278,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
+				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
 				9BAC14DA19ED8BCE00D53D8C /* ViewController.m in Sources */,
+				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
+				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
+				3AC9401B19EDE1D8007DAB52 /* BranchWithProductPrice.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
+				3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */,
+				3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m in Sources */,
+				3A93481D19EDC37600AF2665 /* FMResultSet.m in Sources */,
+				3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +480,7 @@
 				9BAC14F319ED8BCE00D53D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9BAC14F419ED8BCE00D53D8C /* Build configuration list for PBXNativeTarget "PromoskopTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +489,7 @@
 				9BAC14F619ED8BCE00D53D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
