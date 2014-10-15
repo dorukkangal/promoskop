@@ -17,9 +17,10 @@
 		3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93482619EDCE6700AF2665 /* DataAccessLayer.m */; };
 		3AC9401B19EDE1D8007DAB52 /* BranchWithProductPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */; };
 		3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */; };
+		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
 		9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */; };
-		9BAC14DA19ED8BCE00D53D8C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D919ED8BCE00D53D8C /* ViewController.m */; };
+		9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */; };
 		9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BAC14DB19ED8BCE00D53D8C /* Main.storyboard */; };
 		9BAC14DF19ED8BCE00D53D8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BAC14DE19ED8BCE00D53D8C /* Images.xcassets */; };
 		9BAC14E219ED8BCE00D53D8C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAC14E019ED8BCE00D53D8C /* LaunchScreen.xib */; };
@@ -56,13 +57,15 @@
 		3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchWithProductPrice.m; sourceTree = "<group>"; };
 		3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductWithPriceDetailTableViewController.h; sourceTree = "<group>"; };
 		3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductWithPriceDetailTableViewController.m; sourceTree = "<group>"; };
+		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
+		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9BAC14CB19ED8BCE00D53D8C /* Promoskop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Promoskop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAC14CF19ED8BCE00D53D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BAC14D019ED8BCE00D53D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BAC14D219ED8BCE00D53D8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9BAC14D819ED8BCE00D53D8C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9BAC14D919ED8BCE00D53D8C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9BAC14D819ED8BCE00D53D8C /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9BAC14DC19ED8BCE00D53D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9BAC14DE19ED8BCE00D53D8C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9BAC14E119ED8BCE00D53D8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -139,8 +142,10 @@
 				3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */,
 				9BAC14D219ED8BCE00D53D8C /* AppDelegate.h */,
 				9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */,
-				9BAC14D819ED8BCE00D53D8C /* ViewController.h */,
-				9BAC14D919ED8BCE00D53D8C /* ViewController.m */,
+				9BAC14D819ED8BCE00D53D8C /* HomeViewController.h */,
+				9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */,
+				9B33684419EEE3A30049029E /* SearchedProductsViewController.h */,
+				9B33684519EEE3A30049029E /* SearchedProductsViewController.m */,
 				9BAC14DB19ED8BCE00D53D8C /* Main.storyboard */,
 				9BAC14CE19ED8BCE00D53D8C /* Supporting Files */,
 			);
@@ -279,10 +284,11 @@
 			files = (
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
 				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
-				9BAC14DA19ED8BCE00D53D8C /* ViewController.m in Sources */,
+				9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */,
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
 				3AC9401B19EDE1D8007DAB52 /* BranchWithProductPrice.m in Sources */,
+				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
 				3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */,
 				3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m in Sources */,

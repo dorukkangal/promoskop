@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -24,23 +24,91 @@
                                 </state>
                                 <connections>
                                     <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
-                                    <segue destination="an9-2T-Mm9" kind="push" id="j9X-5b-Kzq"/>
+                                    <segue destination="an9-2T-Mm9" kind="show" id="j9X-5b-Kzq"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="hYA-g7-XXI"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hYA-g7-XXI"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="XcN-Nl-MDO"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="cQX-iK-IZS" secondAttribute="width" id="0Rb-wU-c5T"/>
                             <constraint firstItem="Jcf-jb-0W8" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="50P-qF-OSB"/>
+                            <constraint firstAttribute="centerX" secondItem="cQX-iK-IZS" secondAttribute="centerX" id="CfV-11-PW4"/>
                             <constraint firstItem="Jcf-jb-0W8" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Hes-5y-J8I"/>
+                            <constraint firstItem="cQX-iK-IZS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kcP-jr-xmO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oey-8v-vey"/>
                     <connections>
                         <outlet property="btnGo" destination="Jcf-jb-0W8" id="yhC-MY-Fol"/>
+                        <outlet property="searchBar" destination="cQX-iK-IZS" id="pCw-9H-hxv"/>
+                        <segue destination="5wv-42-Vo7" kind="show" identifier="SearchedProductsViewController" id="ika-in-WRd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="153" y="137"/>
+        </scene>
+        <!--Searched Products View Controller-->
+        <scene sceneID="fKr-VO-AmE">
+            <objects>
+                <viewController id="5wv-42-Vo7" customClass="SearchedProductsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PPe-Fj-R2K"/>
+                        <viewControllerLayoutGuide type="bottom" id="8rm-Kz-O87"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="55a-zh-wNr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8i3-AB-k9G">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchedProducts" textLabel="0Db-pO-jZM" style="IBUITableViewCellStyleDefault" id="TZx-xH-rdA">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TZx-xH-rdA" id="NGA-FS-zi5">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Db-pO-jZM">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5wv-42-Vo7" id="Yw9-Vt-qVd"/>
+                                    <outlet property="delegate" destination="5wv-42-Vo7" id="fb5-uF-ycm"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="productsTableView" destination="8i3-AB-k9G" id="wye-yJ-Wuz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="529-yV-Fig" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153" y="857"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ce-ij-C1C">
@@ -97,7 +165,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkB-E2-oXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="139"/>
+            <point key="canvasLocation" x="902" y="139"/>
         </scene>
     </scenes>
 </document>
