@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A32872F19EDE9B000E3278D /* Promoskop.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */; };
+		3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */; };
+		3A32873319EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */; };
+		3A32873519EED2D700E3278D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A32873419EED2D700E3278D /* CoreLocation.framework */; };
 		3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93480F19EDC37600AF2665 /* FMDatabase.m */; };
 		3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481119EDC37600AF2665 /* FMDatabaseAdditions.m */; };
 		3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481319EDC37600AF2665 /* FMDatabasePool.m */; };
@@ -38,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchWithProductPriceTableViewCell.h; sourceTree = "<group>"; };
+		3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchWithProductPriceTableViewCell.m; sourceTree = "<group>"; };
+		3A32873419EED2D700E3278D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3A93480E19EDC37600AF2665 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		3A93480F19EDC37600AF2665 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		3A93481019EDC37600AF2665 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -79,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A32873519EED2D700E3278D /* CoreLocation.framework in Frameworks */,
 				3A93482019EDC54700AF2665 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +124,7 @@
 				9BAC14EA19ED8BCE00D53D8C /* PromoskopTests */,
 				9BAC14CC19ED8BCE00D53D8C /* Products */,
 				3A93481F19EDC54700AF2665 /* libsqlite3.dylib */,
+				3A32873419EED2D700E3278D /* CoreLocation.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +145,8 @@
 				3A93482619EDCE6700AF2665 /* DataAccessLayer.m */,
 				3AC9401919EDE1D8007DAB52 /* BranchWithProductPrice.h */,
 				3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */,
+				3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */,
+				3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */,
 				3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */,
 				3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */,
 				9BAC14D219ED8BCE00D53D8C /* AppDelegate.h */,
@@ -261,7 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A32872F19EDE9B000E3278D /* Promoskop.sqlite in Resources */,
+				3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */,
 				9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */,
 				9BAC14E219ED8BCE00D53D8C /* LaunchScreen.xib in Resources */,
 				9BAC14DF19ED8BCE00D53D8C /* Images.xcassets in Resources */,
@@ -292,6 +301,7 @@
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
 				3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */,
 				3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m in Sources */,
+				3A32873319EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m in Sources */,
 				3A93481D19EDC37600AF2665 /* FMResultSet.m in Sources */,
 				3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */,
 			);

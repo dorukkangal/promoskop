@@ -9,10 +9,15 @@
 #import "ProductWithPriceDetailTableViewController.h"
 #import "DataAccessLayer.h"
 #import "BranchWithProductPrice.h"
+#import "BranchWithProductPriceTableViewCell.h"
+#import <CoreLocation/CoreLocation.h>
 
 
-@interface ProductWithPriceDetailTableViewController ()
-@property (strong, nonatomic) NSArray *someArray;
+@interface ProductWithPriceDetailTableViewController ()<CLLocationManagerDelegate>
+
+@property (strong, nonatomic) NSArray *branchesAndPricesArray;
+@property (strong, nonatomic) CLLocationManager* locationManager;
+
 @end
 
 @implementation ProductWithPriceDetailTableViewController
@@ -27,10 +32,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.someArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:4];
+    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:4];
     
-//    NSLog(@"Some array interior");
-//    NSLog(@"%@", self.someArray);
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+
     
 }
 
@@ -48,23 +55,38 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.someArray.count;
+    return self.branchesAndPricesArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
+    
+    if (indexPath.row == 0) {
+        
+        static NSString *FirstCellIdentifier = @"TopCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstCellIdentifier forIndexPath:indexPath];
+        
+        cell.textLabel.text = @"Product Name" ;
+        cell.detailTextLabel.text = @"Maybe some product detail";
+        cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];
+        return cell;
+
+    } else {
+        
+        static NSString *CellIdentifier = @"ReusableCell";
+        BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        BranchWithProductPrice* bwpp = [self.branchesAndPricesArray objectAtIndex:indexPath.row-1];
+        cell.storeLabel.text = bwpp.storeName ;
+        cell.branchAddressLabel.text = bwpp.address;
+        cell.priceLabel.text = [NSString stringWithFormat:@"%ld TL", (long)bwpp.price];
+        cell.distanceLabel.text = @"Appro. 0 km";
+        return cell;
     }
     
-    BranchWithProductPrice* bwpp = [self.someArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = bwpp.storeName ;
-    cell.detailTextLabel.text = bwpp.address;
     
-    return cell;
+    
 }
 
 
@@ -111,5 +133,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    CLLocation* currentLocation = [locations lastObject];
+    NSLog(@"lat%f - lon%f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+    //[self.locationManager stopUpdatingLocation];
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"failed to get location");
+}
 
 @end
