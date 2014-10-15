@@ -14,6 +14,8 @@
     FMDatabase *_database;
 }
 + (DataAccessLayer *)database;
+- (NSString *)pathForDatabase;
 - (NSArray *)getBranchAndPriceDetailForProductWithId:(NSInteger)productId;
-
+- (void)copyDatabaseIfNeeded;
+- (NSArray *)searchProductWithName:(NSString *)texte;
 @end

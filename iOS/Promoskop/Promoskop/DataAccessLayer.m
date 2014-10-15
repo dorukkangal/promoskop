@@ -30,6 +30,15 @@ static DataAccessLayer *_database;
     return self;
 }
 
+- (void)copyDatabaseIfNeeded{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:[self pathForDatabase]]){
+        NSString *dbPathFromApp =  [[NSBundle mainBundle] pathForResource:@"Promoskop" ofType:@"sqlite"];
+        NSError *error = nil;
+        [fileManager copyItemAtPath:dbPathFromApp toPath:[self pathForDatabase] error:&error];
+    }
+}
+
 - (NSString *)pathForDatabase
 {
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -37,7 +46,7 @@ static DataAccessLayer *_database;
 }
 
 - (NSArray *)getBranchAndPriceDetailForProductWithId:(NSInteger)productId{
-    NSMutableArray *BranchesWithProductPrices = [NSMutableArray array];
+    NSMutableArray *branchesWithProductPrices = [NSMutableArray array];
     if([_database open])
     {
         FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product p left join ProductBranch pb on (p.id = pb.product_id) left join Branch b on (pb.branch_id = b.id) inner join Store s on (b.store_id = s.id) where p.id = ?" ,[NSString stringWithFormat:@"%li",(long)productId]];
@@ -50,11 +59,24 @@ static DataAccessLayer *_database;
             BranchWithProductPrice *bwpp = [[BranchWithProductPrice alloc] initWithPrice:price
                                                                                  address:address                                                                                           lat:lat                                                                                     lon:lon
                                                                                storeName:storeName];
-            [BranchesWithProductPrices addObject:bwpp];
+            [branchesWithProductPrices addObject:bwpp];
         }
     }
     [_database close];
-    return BranchesWithProductPrices;
+    return branchesWithProductPrices;
+}
+
+- (NSArray *)searchProductWithName:(NSString *)texte{
+    NSMutableArray *products = [NSMutableArray array];
+    if([_database open]){
+        FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product WHERE upper(name) like ?",[NSString stringWithFormat:@"%%%@%%",texte]];
+        while ([resultSet next]) {
+            NSDictionary *dictionary = [resultSet resultDictionary];
+            [products addObject:dictionary];
+        }
+    }
+    [_database close];
+    return [products copy];
 }
 
 @end
