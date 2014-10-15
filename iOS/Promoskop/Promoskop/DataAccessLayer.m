@@ -32,8 +32,8 @@ static DataAccessLayer *_database;
 
 - (NSString *)pathForDatabase
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [[paths objectAtIndex:0]stringByAppendingPathComponent:@"Promoskop.sqlite"];
+    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [documentsDir stringByAppendingPathComponent:@"Promoskop.sqlite"];
 }
 
 - (NSArray *)getBranchAndPriceDetailForProductWithId:(NSInteger)productId{
