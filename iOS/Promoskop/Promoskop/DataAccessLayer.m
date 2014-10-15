@@ -69,7 +69,7 @@ static DataAccessLayer *_database;
 - (NSArray *)searchProductWithName:(NSString *)texte{
     NSMutableArray *products = [NSMutableArray array];
     if([_database open]){
-        FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product WHERE upper(name) like ?",[NSString stringWithFormat:@"%%%@%%",texte]];
+        FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product WHERE upper(name) like ?",[[NSString stringWithFormat:@"%%%@%%",texte] uppercaseStringWithLocale:[NSLocale localeWithLocaleIdentifier:@"TR_tr"]] ];
         while ([resultSet next]) {
             NSDictionary *dictionary = [resultSet resultDictionary];
             [products addObject:dictionary];
@@ -77,6 +77,11 @@ static DataAccessLayer *_database;
     }
     [_database close];
     return [products copy];
+}
+
+- (NSInteger)fetchProductIdForGivenBarcode:(NSString *)scannedBarcode{
+#pragma mark unimplemented method  returns static variable 
+    return 8;
 }
 
 @end

@@ -18,4 +18,5 @@
 - (NSArray *)getBranchAndPriceDetailForProductWithId:(NSInteger)productId;
 - (void)copyDatabaseIfNeeded;
 - (NSArray *)searchProductWithName:(NSString *)texte;
+- (NSInteger)fetchProductIdForGivenBarcode:(NSString *)scannedBarcode;
 @end

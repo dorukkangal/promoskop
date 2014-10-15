@@ -7,6 +7,7 @@
 //
 
 #import "SearchedProductsViewController.h"
+#import "ProductWithPriceDetailTableViewController.h"
 
 @interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *productsTableView;
@@ -35,14 +36,22 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
+        NSDictionary *dict = self.foundProducts[indexPath.row];
+        ProductWithPriceDetailTableViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailTableViewController *)segue.destinationViewController;
+        [productWithPriceDetailTableViewController setProductID:[dict[@"id"] integerValue]];
+    }
+    
 }
-*/
+
 
 @end

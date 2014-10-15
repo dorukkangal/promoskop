@@ -10,7 +10,10 @@
 #import "DataAccessLayer.h"
 #import "SearchedProductsViewController.h"
 
+
 @interface HomeViewController ()<UISearchBarDelegate>
+
+
 @property (weak, nonatomic) IBOutlet UIButton *btnGo;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

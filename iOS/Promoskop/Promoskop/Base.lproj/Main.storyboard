@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ddl-Ek-obr">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -16,16 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-jb-0W8">
-                                <rect key="frame" x="259" y="285" width="82" height="30"/>
-                                <state key="normal" title="GO GO GO!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
-                                    <segue destination="an9-2T-Mm9" kind="show" id="j9X-5b-Kzq"/>
-                                </connections>
-                            </button>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <constraints>
@@ -41,6 +32,16 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="XcN-Nl-MDO"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-jb-0W8">
+                                <rect key="frame" x="259" y="285" width="82" height="30"/>
+                                <state key="normal" title="GO GO GO!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
+                                    <segue destination="SYr-cw-rar" kind="show" id="YeA-no-Sly"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -91,6 +92,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="an9-2T-Mm9" kind="show" identifier="ProductWithPriceDetailTableViewController" id="vux-pl-IMm"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -108,6 +112,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="529-yV-Fig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="153" y="857"/>
+        </scene>
+        <!--Barcode Scanner View Controller-->
+        <scene sceneID="mao-Aw-xdJ">
+            <objects>
+                <viewController id="SYr-cw-rar" customClass="BarcodeScannerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="raO-84-dW0"/>
+                        <viewControllerLayoutGuide type="bottom" id="zoO-5e-8wE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5cT-lJ-nTw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXg-ox-qYh">
+                                <rect key="frame" x="50" y="100" width="500" height="400"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold up to a barcode to scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-QU-R5m">
+                                        <rect key="frame" x="122" y="139" width="256" height="121"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="332" id="tIx-No-MD2"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="121" id="vub-a3-Drj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Otb-QU-R5m" secondAttribute="centerX" id="Ez6-IH-ewb"/>
+                                    <constraint firstAttribute="centerY" secondItem="Otb-QU-R5m" secondAttribute="centerY" constant="0.5" id="fb7-an-5fu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zXg-ox-qYh" firstAttribute="top" secondItem="raO-84-dW0" secondAttribute="bottom" constant="80" id="9n3-Jl-TuL"/>
+                            <constraint firstAttribute="centerY" secondItem="zXg-ox-qYh" secondAttribute="centerY" id="Kjj-v4-1pN"/>
+                            <constraint firstAttribute="centerX" secondItem="zXg-ox-qYh" secondAttribute="centerX" id="Trt-Kf-Kta"/>
+                            <constraint firstItem="zXg-ox-qYh" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" constant="50" id="anf-Fs-hLl"/>
+                            <constraint firstAttribute="trailing" secondItem="zXg-ox-qYh" secondAttribute="trailing" constant="50" id="fh0-vf-7mt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scanDescriptionLabel" destination="Otb-QU-R5m" id="1wS-Qk-Lx6"/>
+                        <outlet property="scanRectView" destination="zXg-ox-qYh" id="yVe-PW-7ST"/>
+                        <segue destination="an9-2T-Mm9" kind="show" identifier="ProductWithPriceDetailTableViewController" id="cT3-cb-T0L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XQJ-bJ-osh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ce-ij-C1C">
@@ -221,7 +277,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkB-E2-oXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="139"/>
+            <point key="canvasLocation" x="859" y="857"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cT3-cb-T0L"/>
+    </inferredMetricsTieBreakers>
 </document>

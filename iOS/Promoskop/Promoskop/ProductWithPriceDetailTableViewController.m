@@ -32,7 +32,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:4];
+    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID];
     
     self.locationManager.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];

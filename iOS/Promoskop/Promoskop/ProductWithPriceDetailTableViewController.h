@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductWithPriceDetailTableViewController : UITableViewController 
-
+@property (nonatomic) NSInteger productID;
 @end
