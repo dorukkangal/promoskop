@@ -117,6 +117,61 @@
 			name = FMDB;
 			sourceTree = "<group>";
 		};
+		9B33684719EEF54C0049029E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */,
+				3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */,
+				9BAC14D819ED8BCE00D53D8C /* HomeViewController.h */,
+				9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */,
+				9B33684419EEE3A30049029E /* SearchedProductsViewController.h */,
+				9B33684519EEE3A30049029E /* SearchedProductsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9B33684819EEF55E0049029E /* 3rd Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				3A93481E19EDC37C00AF2665 /* FMDB */,
+			);
+			name = "3rd Party Libraries";
+			sourceTree = "<group>";
+		};
+		9B33684919EEF5710049029E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AC9401919EDE1D8007DAB52 /* BranchWithProductPrice.h */,
+				3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9B33684A19EEF57A0049029E /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		9B33684B19EEF5830049029E /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */,
+				3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		9B33684C19EEF58B0049029E /* Utility class */ = {
+			isa = PBXGroup;
+			children = (
+				3A93482519EDCE6700AF2665 /* DataAccessLayer.h */,
+				3A93482619EDCE6700AF2665 /* DataAccessLayer.m */,
+			);
+			name = "Utility class";
+			sourceTree = "<group>";
+		};
 		9BAC14C219ED8BCE00D53D8C = {
 			isa = PBXGroup;
 			children = (
@@ -140,21 +195,14 @@
 		9BAC14CD19ED8BCE00D53D8C /* Promoskop */ = {
 			isa = PBXGroup;
 			children = (
-				3A93481E19EDC37C00AF2665 /* FMDB */,
-				3A93482519EDCE6700AF2665 /* DataAccessLayer.h */,
-				3A93482619EDCE6700AF2665 /* DataAccessLayer.m */,
-				3AC9401919EDE1D8007DAB52 /* BranchWithProductPrice.h */,
-				3AC9401A19EDE1D8007DAB52 /* BranchWithProductPrice.m */,
-				3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */,
-				3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */,
-				3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.h */,
-				3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailTableViewController.m */,
+				9B33684C19EEF58B0049029E /* Utility class */,
+				9B33684B19EEF5830049029E /* Custom Cells */,
+				9B33684A19EEF57A0049029E /* Custom Views */,
+				9B33684919EEF5710049029E /* Model */,
+				9B33684819EEF55E0049029E /* 3rd Party Libraries */,
+				9B33684719EEF54C0049029E /* ViewControllers */,
 				9BAC14D219ED8BCE00D53D8C /* AppDelegate.h */,
 				9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */,
-				9BAC14D819ED8BCE00D53D8C /* HomeViewController.h */,
-				9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */,
-				9B33684419EEE3A30049029E /* SearchedProductsViewController.h */,
-				9B33684519EEE3A30049029E /* SearchedProductsViewController.m */,
 				9BAC14DB19ED8BCE00D53D8C /* Main.storyboard */,
 				9BAC14CE19ED8BCE00D53D8C /* Supporting Files */,
 			);
