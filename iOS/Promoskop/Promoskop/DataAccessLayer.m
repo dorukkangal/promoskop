@@ -7,7 +7,6 @@
 //
 
 #import "DataAccessLayer.h"
-#import "BranchWithProductPrice.h"
 
 @implementation DataAccessLayer
 
@@ -51,15 +50,8 @@ static DataAccessLayer *_database;
     {
         FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product p left join ProductBranch pb on (p.id = pb.product_id) left join Branch b on (pb.branch_id = b.id) inner join Store s on (b.store_id = s.id) where p.id = ?" ,[NSString stringWithFormat:@"%li",(long)productId]];
         while ([resultSet next]) {
-            NSInteger price = [resultSet  doubleForColumn:@"price"];
-            NSString *address = [resultSet stringForColumn:@"address"];
-            NSInteger lat = [resultSet doubleForColumn:@"latitude"];
-            NSInteger lon = [resultSet doubleForColumn:@"longitude"];
-            NSString *storeName = [resultSet stringForColumn:@"name"];
-            BranchWithProductPrice *bwpp = [[BranchWithProductPrice alloc] initWithPrice:price
-                                                                                 address:address                                                                                           lat:lat                                                                                     lon:lon
-                                                                               storeName:storeName];
-            [branchesWithProductPrices addObject:bwpp];
+            NSDictionary *dictionary = [resultSet resultDictionary];
+            [branchesWithProductPrices addObject:dictionary];
         }
     }
     [_database close];
@@ -80,7 +72,7 @@ static DataAccessLayer *_database;
 }
 
 - (NSInteger)fetchProductIdForGivenBarcode:(NSString *)scannedBarcode{
-#pragma mark unimplemented method  returns static variable 
+#pragma mark unimplemented method  returns static variable
     return 8;
 }
 

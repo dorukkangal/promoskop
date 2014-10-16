@@ -36,5 +36,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>BUNU info.plist e eklememiz gerektigi HICBIR yerde yazmiyor!! </string>
 </dict>
 </plist>
