@@ -8,15 +8,17 @@
 
 #import "ProductWithPriceDetailTableViewController.h"
 #import "DataAccessLayer.h"
-#import "BranchWithProductPrice.h"
 #import "BranchWithProductPriceTableViewCell.h"
-#import <CoreLocation/CoreLocation.h>
+#import "INTULocationManager.h"
 
 
-@interface ProductWithPriceDetailTableViewController ()<CLLocationManagerDelegate>
+@interface ProductWithPriceDetailTableViewController ()
 
-@property (strong, nonatomic) NSArray *branchesAndPricesArray;
-@property (strong, nonatomic) CLLocationManager* locationManager;
+//@property (strong, nonatomic) NSArray *branchesAndPricesArray;
+//@property (strong, nonatomic) NSMutableArray *distancesArray;
+@property (strong, nonatomic) NSMutableArray *sortableBranchesAndPricesArray;
+
+@property (assign, nonatomic) NSInteger locationRequestID;
 
 @end
 
@@ -32,13 +34,84 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID];
+    //    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID];
+    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
     
-    self.locationManager.delegate = self;
-    [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager startUpdatingLocation];
+    
+    for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
+        
+        NSMutableDictionary* mDict = [[self.sortableBranchesAndPricesArray objectAtIndex:i] mutableCopy];
+        [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
+        [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
+    }
+    
+    [self startLocationRequest];
+}
 
+- (void)startLocationRequest{
     
+    __weak __typeof(self) weakSelf = self;
+    
+    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    self.locationRequestID = [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyBlock
+                                                                timeout:10.0
+                                                   delayUntilAuthorized:YES
+      block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status){
+          __typeof(weakSelf) strongSelf = weakSelf;
+          
+          if (status == INTULocationStatusSuccess) {
+              // achievedAccuracy is at least the desired accuracy (potentially better)
+              NSLog(@"Location request successful! Current Location:\n%@", currentLocation);
+              for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
+                  NSMutableDictionary* currentDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
+                  double lat =  [currentDict[@"latitude"] floatValue];
+                  double lon =  [currentDict[@"longitude"] floatValue];
+                  
+                  CLLocation* branchLocation = [[CLLocation alloc] initWithLatitude:lat  longitude:lon];
+                  CLLocationDistance distanceInMeters = [branchLocation distanceFromLocation:currentLocation];
+                  double distanceInKilometers = distanceInMeters / 1000.0;
+                  
+                  [currentDict setObject:[NSNumber numberWithDouble:distanceInKilometers] forKey:@"distance"];
+                  
+                  [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[currentDict copy]];
+              }
+              //Sorting the array according to a key in the inner dictionary
+            NSSortDescriptor* distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+            NSArray* sortDescriptors = [NSArray arrayWithObject:distanceDescriptor];
+              self.sortableBranchesAndPricesArray = [[self.sortableBranchesAndPricesArray sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+          }
+          else if (status == INTULocationStatusTimedOut) {
+              // You may wish to inspect achievedAccuracy here to see if it is acceptable, if you plan to use currentLocation
+              UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Timeout"
+                                                                 message:[NSString stringWithFormat:@"Location request timed out. Current Location:\n%@", currentLocation]
+                                                                delegate:self
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+              [theAlert show];
+          }
+          else {
+              // An error occurred
+              UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                 message:@"Error message."
+                                                                delegate:self
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+              if (status == INTULocationStatusServicesNotDetermined) {
+                  theAlert.message = @"Error: User has not responded to the permissions alert.";
+              } else if (status == INTULocationStatusServicesDenied) {
+                  theAlert.message = @"Error: User has denied this app permissions to access device location.";
+              } else if (status == INTULocationStatusServicesRestricted) {
+                  theAlert.message = @"Error: User is restricted from using location services by a usage policy.";
+              } else if (status == INTULocationStatusServicesDisabled) {
+                  theAlert.message = @"Error: Location services are turned off for all apps on this device.";
+              } else {
+                  theAlert.message = @"An unknown error occurred.\n(Are you using iOS Simulator with location set to 'None'?)";
+              }
+              [theAlert show];
+          }
+          
+          strongSelf.locationRequestID = NSNotFound;
+                                                                  }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +128,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.branchesAndPricesArray.count;
+    return self.sortableBranchesAndPricesArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0){
+        return 70;
+    }
+    return 130;
 }
 
 
@@ -69,19 +149,23 @@
         
         cell.textLabel.text = @"Product Name" ;
         cell.detailTextLabel.text = @"Maybe some product detail";
-        cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];
+        /*cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];*/
         return cell;
-
+        
     } else {
         
         static NSString *CellIdentifier = @"ReusableCell";
         BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
-        BranchWithProductPrice* bwpp = [self.branchesAndPricesArray objectAtIndex:indexPath.row-1];
-        cell.storeLabel.text = bwpp.storeName ;
-        cell.branchAddressLabel.text = bwpp.address;
-        cell.priceLabel.text = [NSString stringWithFormat:@"%ld TL", (long)bwpp.price];
-        cell.distanceLabel.text = @"Appro. 0 km";
+        NSDictionary *resultDict = [self.sortableBranchesAndPricesArray objectAtIndex:indexPath.row-1];
+        cell.storeLabel.text = resultDict[@"name"] ;
+        cell.branchAddressLabel.text = resultDict[@"address"];
+        cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
+        double distance = [resultDict[@"distance"] floatValue];
+//        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+//        [fmt setPositiveFormat:@"0.##"];
+//        cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %@ km", [fmt stringFromNumber:self.distancesArray[indexPath.row-1]] ];
+         cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
         return cell;
     }
     
@@ -91,56 +175,72 @@
 
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }   
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/**
+ Implement the setter for locationRequestID in order to update the UI as needed.
+ */
+- (void)setLocationRequestID:(NSInteger)locationRequestID
+{
+    _locationRequestID = locationRequestID;
+    
+    BOOL isProcessingLocationRequest = (locationRequestID != NSNotFound);
+    
+    //    self.desiredAccuracyControl.enabled = !isProcessingLocationRequest;
+    //    self.timeoutSlider.enabled = !isProcessingLocationRequest;
+    //    self.requestCurrentLocationButton.enabled = !isProcessingLocationRequest;
+    //    self.forceCompleteRequestButton.enabled = isProcessingLocationRequest;
+    //    self.cancelRequestButton.enabled = isProcessingLocationRequest;
+    
+    if (isProcessingLocationRequest) {
+        //        [self.activityIndicator startAnimating];
+        NSLog(@"Location request in progress...");
+    } else {
+        //        [self.activityIndicator stopAnimating];
+        [self.tableView reloadData];
+    }
 }
-*/
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
-    CLLocation* currentLocation = [locations lastObject];
-    NSLog(@"lat%f - lon%f", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
-    //[self.locationManager stopUpdatingLocation];
-}
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    NSLog(@"failed to get location");
-}
 
 @end
