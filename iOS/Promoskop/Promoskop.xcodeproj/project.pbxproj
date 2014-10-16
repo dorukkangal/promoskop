@@ -21,6 +21,7 @@
 		3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1419F0165500743349 /* INTULocationManager.m */; };
 		3ADCFD1919F0165500743349 /* INTULocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1619F0165500743349 /* INTULocationRequest.m */; };
 		3ADCFD1C19F01C0700743349 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADCFD1B19F01C0700743349 /* MapKit.framework */; };
+		3ADCFD1F19F01EF900743349 /* MapForBranchesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1E19F01EF900743349 /* MapForBranchesViewController.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
@@ -72,6 +73,8 @@
 		3ADCFD1619F0165500743349 /* INTULocationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTULocationRequest.m; sourceTree = "<group>"; };
 		3ADCFD1719F0165500743349 /* INTULocationRequestDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationRequestDefines.h; sourceTree = "<group>"; };
 		3ADCFD1B19F01C0700743349 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3ADCFD1D19F01EF900743349 /* MapForBranchesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapForBranchesViewController.h; sourceTree = "<group>"; };
+		3ADCFD1E19F01EF900743349 /* MapForBranchesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapForBranchesViewController.m; sourceTree = "<group>"; };
 		91F85C72BD69284DF4F1B7AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 		93E8C97A62D50B1E726C93CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A93481F19EDC54700AF2665 /* libsqlite3.dylib */,
+				3A32873419EED2D700E3278D /* CoreLocation.framework */,
 				3ADCFD1B19F01C0700743349 /* MapKit.framework */,
 				3002E4F209790BB9FF80AEA6 /* libPods.a */,
 			);
@@ -164,6 +169,8 @@
 				9B33684519EEE3A30049029E /* SearchedProductsViewController.m */,
 				9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */,
 				9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */,
+				3ADCFD1D19F01EF900743349 /* MapForBranchesViewController.h */,
+				3ADCFD1E19F01EF900743349 /* MapForBranchesViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -208,8 +215,6 @@
 				9BAC14CD19ED8BCE00D53D8C /* Promoskop */,
 				9BAC14EA19ED8BCE00D53D8C /* PromoskopTests */,
 				9BAC14CC19ED8BCE00D53D8C /* Products */,
-				3A93481F19EDC54700AF2665 /* libsqlite3.dylib */,
-				3A32873419EED2D700E3278D /* CoreLocation.framework */,
 				F50E9B2A897EDA9C76C4DE78 /* Pods */,
 				93E8C97A62D50B1E726C93CA /* Frameworks */,
 			);
@@ -422,6 +427,7 @@
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
 				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
 				9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */,
+				3ADCFD1F19F01EF900743349 /* MapForBranchesViewController.m in Sources */,
 				3ADCFD1919F0165500743349 /* INTULocationRequest.m in Sources */,
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,

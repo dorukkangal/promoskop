@@ -39,7 +39,7 @@
                                 </state>
                                 <connections>
                                     <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
-                                    <segue destination="SYr-cw-rar" kind="show" id="YeA-no-Sly"/>
+                                    <segue destination="SYr-cw-rar" kind="show" id="SF1-77-JFw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="529-yV-Fig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="857"/>
+            <point key="canvasLocation" x="153" y="1001"/>
         </scene>
         <!--Barcode Scanner View Controller-->
         <scene sceneID="mao-Aw-xdJ">
@@ -179,7 +179,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPd-wU-NgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-676" y="262"/>
+            <point key="canvasLocation" x="-700" y="137"/>
         </scene>
         <!--Product With Price Detail Table View Controller-->
         <scene sceneID="MnR-ZI-tYJ">
@@ -190,7 +190,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopCell" textLabel="VWE-x0-C94" detailTextLabel="8N1-GA-fg7" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="JI6-un-jzH">
+                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TopCell" textLabel="VWE-x0-C94" detailTextLabel="8N1-GA-fg7" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="JI6-un-jzH">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JI6-un-jzH" id="dLW-tW-n6D">
@@ -283,19 +283,19 @@
                     <navigationItem key="navigationItem" id="EuV-ZU-e4V">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="z6q-Bt-RfI">
                             <connections>
-                                <segue destination="ZvM-WK-ULV" kind="show" id="n0R-aj-Cm4"/>
+                                <segue destination="ZvM-WK-ULV" kind="show" identifier="MapForBranchesViewController" id="n0R-aj-Cm4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nkB-E2-oXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="857"/>
+            <point key="canvasLocation" x="1063" y="1001"/>
         </scene>
-        <!--View Controller-->
+        <!--Map For Branches View Controller-->
         <scene sceneID="fg2-bf-m26">
             <objects>
-                <viewController id="ZvM-WK-ULV" sceneMemberID="viewController">
+                <viewController id="ZvM-WK-ULV" customClass="MapForBranchesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9tE-VU-T5S"/>
                         <viewControllerLayoutGuide type="bottom" id="wpJ-KU-vgq"/>
@@ -304,25 +304,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-m9-pbg">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-m9-pbg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rkn-m9-pbg" firstAttribute="trailing" secondItem="9tE-VU-T5S" secondAttribute="trailing" id="9yX-qh-XiT"/>
-                            <constraint firstItem="Rkn-m9-pbg" firstAttribute="top" secondItem="9tE-VU-T5S" secondAttribute="bottom" id="CUv-Jf-sE8"/>
                             <constraint firstItem="Rkn-m9-pbg" firstAttribute="leading" secondItem="wpJ-KU-vgq" secondAttribute="leading" id="DRe-gu-Syx"/>
                             <constraint firstItem="Rkn-m9-pbg" firstAttribute="bottom" secondItem="wpJ-KU-vgq" secondAttribute="top" id="fEr-dh-EA8"/>
+                            <constraint firstItem="Rkn-m9-pbg" firstAttribute="top" secondItem="9tE-VU-T5S" secondAttribute="bottom" constant="44" id="v99-bE-cNd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="Rkn-m9-pbg" id="4L5-CV-Ar7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSO-lI-MZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1830" y="857"/>
+            <point key="canvasLocation" x="1874" y="1001"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cT3-cb-T0L"/>
+        <segue reference="vux-pl-IMm"/>
     </inferredMetricsTieBreakers>
 </document>
