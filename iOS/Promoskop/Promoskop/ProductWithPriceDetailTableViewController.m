@@ -10,6 +10,7 @@
 #import "DataAccessLayer.h"
 #import "BranchWithProductPriceTableViewCell.h"
 #import "INTULocationManager.h"
+#import "MapForBranchesViewController.h"
 
 
 @interface ProductWithPriceDetailTableViewController ()
@@ -19,6 +20,8 @@
 @property (strong, nonatomic) NSMutableArray *sortableBranchesAndPricesArray;
 
 @property (assign, nonatomic) NSInteger locationRequestID;
+
+@property (nonatomic) NSInteger branchIdToMap;
 
 @end
 
@@ -37,10 +40,11 @@
     //    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID];
     self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
     
+    self.branchIdToMap = -1;
     
     for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
         
-        NSMutableDictionary* mDict = [[self.sortableBranchesAndPricesArray objectAtIndex:i] mutableCopy];
+        NSMutableDictionary* mDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
         [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
         [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
     }
@@ -157,7 +161,7 @@
         static NSString *CellIdentifier = @"ReusableCell";
         BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
-        NSDictionary *resultDict = [self.sortableBranchesAndPricesArray objectAtIndex:indexPath.row-1];
+        NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
         cell.storeLabel.text = resultDict[@"name"] ;
         cell.branchAddressLabel.text = resultDict[@"address"];
         cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
@@ -174,49 +178,15 @@
 }
 
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"did select row at indexpath.row: %d",indexPath.row);
+    if (indexPath.row > 0) {
+        self.branchIdToMap = [self.sortableBranchesAndPricesArray[indexPath.row-1][@"branch_id"] integerValue];
+        [self performSegueWithIdentifier: @"MapForBranchesViewController" sender: self];
+    }
+}
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 /**
  Implement the setter for locationRequestID in order to update the UI as needed.
@@ -240,6 +210,18 @@
         //        [self.activityIndicator stopAnimating];
         [self.tableView reloadData];
     }
+}
+
+#pragma mark -
+#pragma mark Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"MapForBranchesViewController"]){
+        MapForBranchesViewController *mfbwc = (MapForBranchesViewController *)segue.destinationViewController;
+        mfbwc.branchesAndPricesArray = [self.sortableBranchesAndPricesArray copy];
+        mfbwc.singleBranchId = self.branchIdToMap;
+    }
+
 }
 
 
