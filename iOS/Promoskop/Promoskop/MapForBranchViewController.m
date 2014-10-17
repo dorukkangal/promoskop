@@ -6,34 +6,27 @@
 //  Copyright (c) 2014 Mustafa Besnili. All rights reserved.
 //
 
-#import "MapForBranchesViewController.h"
+#import "MapForBranchViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface MapForBranchesViewController ()
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@interface MapForBranchViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
-@implementation MapForBranchesViewController
+@implementation MapForBranchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
-    if (self.singleBranchId > -1) {
-        NSLog(@"Single branch id: %d",self.singleBranchId);
-    }
-    else{
 
-        //for (NSDictionary* dict in self.branchesAndPricesArray) {
-            //normally will get all branches colorize the ones with green that have the product
-        //}
-        
-    }
-
+    NSLog(@"Single branch id: %d",self.branchId);
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

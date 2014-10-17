@@ -6,26 +6,29 @@
 //  Copyright (c) 2014 Mustafa Besnili. All rights reserved.
 //
 
-#import "ProductWithPriceDetailTableViewController.h"
+#import "ProductWithPriceDetailViewController.h"
 #import "DataAccessLayer.h"
 #import "BranchWithProductPriceTableViewCell.h"
 #import "INTULocationManager.h"
-#import "MapForBranchesViewController.h"
+#import "MapForBranchViewController.h"
+#import <MapKit/MapKit.h>
 
 
-@interface ProductWithPriceDetailTableViewController ()
+@interface ProductWithPriceDetailViewController ()
 
-//@property (strong, nonatomic) NSArray *branchesAndPricesArray;
-//@property (strong, nonatomic) NSMutableArray *distancesArray;
+
 @property (strong, nonatomic) NSMutableArray *sortableBranchesAndPricesArray;
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) NSInteger locationRequestID;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (nonatomic) BOOL isMapOnScreen;
 
 @property (nonatomic) NSInteger branchIdToMap;
 
 @end
 
-@implementation ProductWithPriceDetailTableViewController
+@implementation ProductWithPriceDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,14 +43,14 @@
     //    self.branchesAndPricesArray = [[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID];
     self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
     
-    self.branchIdToMap = -1;
-    
     for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
         
         NSMutableDictionary* mDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
         [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
         [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
     }
+    
+    self.isMapOnScreen = NO;
     
     [self startLocationRequest];
 }
@@ -183,7 +186,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"did select row at indexpath.row: %d",indexPath.row);
     if (indexPath.row > 0) {
         self.branchIdToMap = [self.sortableBranchesAndPricesArray[indexPath.row-1][@"branch_id"] integerValue];
-        [self performSegueWithIdentifier: @"MapForBranchesViewController" sender: self];
     }
 }
 
@@ -214,12 +216,25 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 #pragma mark -
 #pragma mark Navigation
+- (IBAction)btnMapPressed:(id)sender {
+    
+    if (!self.isMapOnScreen) {
+        UIButton* mapButton = (UIButton*)sender;
+        mapButton.titleLabel.text = @"List";
+        [UIView transitionFromView:self.tableView
+                            toView:self.mapView
+                          duration:1
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        completion:nil];
+    }
+
+
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"MapForBranchesViewController"]){
-        MapForBranchesViewController *mfbwc = (MapForBranchesViewController *)segue.destinationViewController;
-        mfbwc.branchesAndPricesArray = [self.sortableBranchesAndPricesArray copy];
-        mfbwc.singleBranchId = self.branchIdToMap;
+    if([segue.identifier isEqualToString:@"MapForBranch"]){
+        MapForBranchViewController *mfbvc = (MapForBranchViewController *)segue.destinationViewController;
+        mfbvc.branchId = self.branchIdToMap;
     }
 
 }
