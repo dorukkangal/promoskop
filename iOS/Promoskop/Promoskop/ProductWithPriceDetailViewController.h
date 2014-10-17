@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductWithPriceDetailTableViewController : UITableViewController 
+@interface ProductWithPriceDetailViewController : UIViewController
 @property (nonatomic) NSInteger productID;
 @end

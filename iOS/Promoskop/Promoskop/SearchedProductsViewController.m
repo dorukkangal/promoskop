@@ -7,7 +7,7 @@
 //
 
 #import "SearchedProductsViewController.h"
-#import "ProductWithPriceDetailTableViewController.h"
+#import "ProductWithPriceDetailViewController.h"
 
 @interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *productsTableView;
@@ -47,7 +47,7 @@
         UITableViewCell *cell = (UITableViewCell *)sender;
         NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
         NSDictionary *dict = self.foundProducts[indexPath.row];
-        ProductWithPriceDetailTableViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailTableViewController *)segue.destinationViewController;
+        ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
         [productWithPriceDetailTableViewController setProductID:[dict[@"id"] integerValue]];
     }
     

@@ -7,7 +7,7 @@
 //
 
 #import "BarcodeScannerViewController.h"
-#import "ProductWithPriceDetailTableViewController.h"
+#import "ProductWithPriceDetailViewController.h"
 #import "DataAccessLayer.h"
 
 @interface BarcodeScannerViewController ()<ZXCaptureDelegate>
@@ -80,7 +80,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
        
-            ProductWithPriceDetailTableViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailTableViewController *)segue.destinationViewController;
+            ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
             productWithPriceDetailTableViewController.productID = [[DataAccessLayer database]fetchProductIdForGivenBarcode:self.scannedBarcode];
         
 

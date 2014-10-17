@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MapForBranchesViewController : UIViewController
+@interface MapForBranchViewController : UIViewController
 
-@property (strong, nonatomic) NSArray* branchesAndPricesArray;
-@property (nonatomic) NSInteger singleBranchId;
+
+@property (strong,nonatomic) NSDictionary* selectedBranch;
 
 @end
