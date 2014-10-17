@@ -11,6 +11,6 @@
 @interface MapForBranchViewController : UIViewController
 
 
-@property (nonatomic) NSInteger branchId;
+@property (strong,nonatomic) NSDictionary* selectedBranch;
 
 @end

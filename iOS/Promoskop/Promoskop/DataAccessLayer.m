@@ -48,7 +48,7 @@ static DataAccessLayer *_database;
     NSMutableArray *branchesWithProductPrices = [NSMutableArray array];
     if([_database open])
     {
-        FMResultSet *resultSet = [_database executeQuery:@"SELECT * FROM Product p left join ProductBranch pb on (p.id = pb.product_id) left join Branch b on (pb.branch_id = b.id) inner join Store s on (b.store_id = s.id) where p.id = ?" ,[NSString stringWithFormat:@"%li",(long)productId]];
+        FMResultSet *resultSet = [_database executeQuery:@"SELECT p.name as product_name,p.url, pb.product_id,pb.branch_id, pb.price, b.name as branch_name, b.address, b.latitude,b.longitude, b.store_id, s.name as store_name FROM Product p left join ProductBranch pb on (p.id = pb.product_id) left join Branch b on (pb.branch_id = b.id) inner join Store s on (b.store_id = s.id) where p.id = ?" ,[NSString stringWithFormat:@"%li",(long)productId]];
         while ([resultSet next]) {
             NSDictionary *dictionary = [resultSet resultDictionary];
             [branchesWithProductPrices addObject:dictionary];

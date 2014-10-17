@@ -129,7 +129,7 @@
                                 <rect key="frame" x="50" y="144" width="500" height="312"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hold up to a barcode to scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-QU-R5m">
-                                        <rect key="frame" x="122" y="95" width="256" height="121"/>
+                                        <rect key="frame" x="122" y="97" width="256" height="121"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="332" id="tIx-No-MD2"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="121" id="vub-a3-Drj"/>
@@ -197,7 +197,7 @@
                                 <rect key="frame" x="0.0" y="60" width="600" height="526"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-4N-K83">
-                                <rect key="frame" x="0.0" y="61" width="600" height="495"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TopCell" textLabel="lPX-gr-7O9" detailTextLabel="GcB-7u-IuR" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="50R-lE-Vhz">
@@ -282,7 +282,7 @@
                                             <outlet property="distanceLabel" destination="2Qs-xW-6V8" id="eAM-Kw-2Ey"/>
                                             <outlet property="priceLabel" destination="r49-hM-i9Y" id="Jgn-UR-AG4"/>
                                             <outlet property="storeLabel" destination="8hc-vK-3Ce" id="aRg-uf-Ksz"/>
-                                            <segue destination="ZvM-WK-ULV" kind="show" id="sAT-7m-XgI"/>
+                                            <segue destination="ZvM-WK-ULV" kind="show" identifier="MapForBranch" id="sAT-7m-XgI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -311,7 +311,7 @@
                             <constraint firstItem="ciH-4N-K83" firstAttribute="width" secondItem="1WW-hd-pQ8" secondAttribute="width" id="2pe-8h-OZG"/>
                             <constraint firstItem="ciH-4N-K83" firstAttribute="leading" secondItem="1WW-hd-pQ8" secondAttribute="leading" id="Eub-bh-Bgg"/>
                             <constraint firstAttribute="trailing" secondItem="orU-IT-Y74" secondAttribute="trailing" constant="31" id="LW2-2j-a1r"/>
-                            <constraint firstItem="ciH-4N-K83" firstAttribute="top" secondItem="FvO-W8-h4Y" secondAttribute="bottom" constant="41" id="Ng6-7b-Dya"/>
+                            <constraint firstItem="ciH-4N-K83" firstAttribute="top" secondItem="FvO-W8-h4Y" secondAttribute="bottom" constant="40" id="Ng6-7b-Dya"/>
                             <constraint firstItem="9cF-04-UPN" firstAttribute="width" secondItem="1WW-hd-pQ8" secondAttribute="width" id="cs7-7l-7vx"/>
                             <constraint firstItem="orU-IT-Y74" firstAttribute="top" secondItem="FvO-W8-h4Y" secondAttribute="bottom" constant="6" id="hEJ-MD-Bac"/>
                             <constraint firstItem="1EA-QC-QMW" firstAttribute="top" secondItem="9cF-04-UPN" secondAttribute="bottom" constant="-30" id="t4z-Vb-pcY"/>
@@ -342,7 +342,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-m9-pbg">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-m9-pbg">
                                 <rect key="frame" x="15" y="144" width="570" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="qbo-wH-NgQ"/>

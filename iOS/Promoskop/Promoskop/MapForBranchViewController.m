@@ -21,9 +21,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
+    NSLog(@"Branch: %@",self.selectedBranch);
     
 
-    NSLog(@"Single branch id: %d",self.branchId);
+    double lat =  [self.selectedBranch[@"latitude"] floatValue];
+    double lon =  [self.selectedBranch[@"longitude"] floatValue];
+    CLLocationCoordinate2D branchCoordinate = CLLocationCoordinate2DMake(lat, lon);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(branchCoordinate, 16000, 16000);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:NO];
+    
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+
+    point.coordinate = branchCoordinate;
+    point.title = [NSString stringWithFormat:@"%@ TL",self.selectedBranch[@"price"]];
+    point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", self.selectedBranch[@"store_name"], self.selectedBranch[@"address"]];;
+    [self.mapView addAnnotation:point];
     
 }
 
