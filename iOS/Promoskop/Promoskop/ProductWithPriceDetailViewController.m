@@ -229,36 +229,33 @@
     
 }
 
-#pragma mark -
-#pragma mark Navigation
-- (IBAction)btnMapPressed:(id)sender {
-    
+- (IBAction)flip:(id)sender {
     if (!self.isMapOnScreen) {
-
+        
         [UIView transitionFromView:self.tableView
                             toView:self.mapView
                           duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromRight
+                           options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionShowHideTransitionViews
                         completion:^(BOOL finished){
                             self.isMapOnScreen = YES;
-                            UIButton* mapButton = (UIButton*)sender;
-                            mapButton.titleLabel.text = @"List";
+                            UIBarButtonItem* mapButton = (UIBarButtonItem *)sender;
+                            [mapButton setTitle:@"List"];
                         }];
     }
     else{
         [UIView transitionFromView:self.mapView
                             toView:self.tableView
                           duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromRight
+                           options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionShowHideTransitionViews
                         completion:^(BOOL finished){
                             self.isMapOnScreen = NO;
-                            UIButton* mapButton = (UIButton*)sender;
-                            mapButton.titleLabel.text = @"Map";
+                            UIBarButtonItem* mapButton = (UIBarButtonItem*)sender;
+                            [mapButton setTitle:@"Map"];
                         }];
     }
-
-
 }
+#pragma mark -
+#pragma mark Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
