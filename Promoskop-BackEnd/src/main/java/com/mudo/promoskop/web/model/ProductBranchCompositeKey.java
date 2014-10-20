@@ -12,28 +12,52 @@ public class ProductBranchCompositeKey implements Serializable {
 
 	private Branch branch;
 
+	private transient int productId;
+	private transient int branchId;
+
 	public ProductBranchCompositeKey() {
 	}
 
 	public ProductBranchCompositeKey(Product product, Branch branch) {
 		this.product = product;
+		if (product != null)
+			this.productId = product.getId();
+
 		this.branch = branch;
+		if (branch != null)
+			this.branchId = branch.getId();
 	}
 
 	public Product getProduct() {
 		return product;
 	}
 
-	public void setProductId(Product product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-	public Branch getBranchId() {
+	public Branch getBranch() {
 		return branch;
 	}
 
-	public void setBranchId(Branch branch) {
+	public void setBranch(Branch branch) {
 		this.branch = branch;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public int getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(int branchId) {
+		this.branchId = branchId;
 	}
 
 	@Override
@@ -45,7 +69,9 @@ public class ProductBranchCompositeKey implements Serializable {
 		if (!(obj instanceof ProductBranchCompositeKey))
 			return false;
 		ProductBranchCompositeKey compositeKey = (ProductBranchCompositeKey) obj;
-		return true;//(this.product.equals(compositeKey.getProductId()) && this.branchId.equals(compositeKey.getBranchId()));
+		Product product = compositeKey.getProduct();
+		Branch branch = compositeKey.getBranch();
+		return ((product != null && this.productId == product.getId()) && (branch != null && this.branchId == branch.getId()));
 	}
 
 	@Override

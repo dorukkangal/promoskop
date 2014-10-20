@@ -1,5 +1,8 @@
 package com.mudo.promoskop.web.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -29,5 +32,20 @@ public class ProductServiceImpl implements ProductService {
 			LOG.error(e.getMessage(), e);
 			return null;
 		}
+	}
+
+	@Override
+	public List<Product> findBySubString(String containText) {
+		List<Product> productList = new ArrayList<Product>();
+		try {
+			containText = "%".concat(containText).concat("%");
+			LOG.debug("find by substring: " + containText + "from product");
+			productList.addAll(em.createQuery("from Product where name like :containText").setParameter("containText", containText).getResultList());
+		} catch (NoResultException e) {
+			// e.printStackTrace();
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+		}
+		return productList;
 	}
 }
