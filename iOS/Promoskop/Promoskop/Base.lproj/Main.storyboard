@@ -33,13 +33,13 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-jb-0W8">
-                                <rect key="frame" x="259" y="285" width="82" height="30"/>
-                                <state key="normal" title="GO GO GO!">
+                                <rect key="frame" x="252" y="285" width="97" height="30"/>
+                                <state key="normal" title="Scan Barcode">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
-                                    <segue destination="GrC-45-Clv" kind="show" id="qcc-eG-beM"/>
+                                    <segue destination="SYr-cw-rar" kind="show" id="PdP-Tg-0HQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -364,6 +364,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qcc-eG-beM"/>
+        <segue reference="heP-cl-xfh"/>
     </inferredMetricsTieBreakers>
 </document>
