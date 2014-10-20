@@ -37,7 +37,7 @@ public class ProductController {
 
 		List<Product> matchingProductList = AppContext.getProductService().findBySubString(text);
 		try {
-			return JsonPropertyFilter.generateJson(new String[] { "price", "branchName", "address", "latitude", "longtitude", "storeName" }, matchingProductList);
+			return JsonPropertyFilter.generateJson(new String[] { "price", "branch_name", "address", "latitude", "longtitude", "store_name" }, matchingProductList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
