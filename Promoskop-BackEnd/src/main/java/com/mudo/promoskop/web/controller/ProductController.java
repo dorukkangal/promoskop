@@ -18,13 +18,13 @@ import com.mudo.promoskop.web.util.JsonPropertyFilter;
 @RestController
 public class ProductController {
 
-	@RequestMapping(value = "/find/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	String getProductByIdInJSON(@PathVariable(value = "id") int id) {
 
 		Product product = AppContext.getProductService().find(id);
 		try {
-			return JsonPropertyFilter.generateJson(new String[] {}, Arrays.asList(product));
+			return JsonPropertyFilter.generateJson(new String[] {"url"}, Arrays.asList(product));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

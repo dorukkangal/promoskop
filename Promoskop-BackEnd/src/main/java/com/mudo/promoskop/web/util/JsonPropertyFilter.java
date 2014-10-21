@@ -49,6 +49,7 @@ public class JsonPropertyFilter {
 		ResponseBean bean = new ResponseBean();
 		bean.setBarcodeId(product.getId());
 		bean.setProductName(product.getName());
+		bean.setUrl(product.getUrl());
 
 		for (ProductBranch productBranch : product.getProductBranchs()) {
 			bean.setPrice(productBranch.getPrice());

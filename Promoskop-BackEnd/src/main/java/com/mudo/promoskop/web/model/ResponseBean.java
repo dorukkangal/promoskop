@@ -11,7 +11,9 @@ public class ResponseBean implements Serializable {
 	private int barcodeId;
 
 	private String productName;
-	
+
+	private String url;
+
 	private double price;
 
 	private String branchName;
@@ -39,13 +41,13 @@ public class ResponseBean implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
-	public String getBranchName() {
-		return branchName;
+
+	public String getUrl() {
+		return url;
 	}
-	
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public double getPrice() {
@@ -54,6 +56,14 @@ public class ResponseBean implements Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
 	}
 
 	public String getAddress() {
