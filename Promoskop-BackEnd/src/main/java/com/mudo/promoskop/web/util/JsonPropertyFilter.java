@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -28,8 +26,8 @@ public class JsonPropertyFilter {
 	public static String generateJson(String[] ignorableFieldNames, List<Product> products) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper().setVisibility(JsonMethod.FIELD, Visibility.ANY);
 		mapper.getSerializationConfig().addMixInAnnotations(Object.class, JsonPropertyFilter.class);
-		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
-		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+//		mapper.configure(JsonGenerator.Feature.QUOTE_FIELD_NAMES, false);
+//		mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
 
 		FilterProvider filters = new SimpleFilterProvider().addFilter("filterResponseBean", SimpleBeanPropertyFilter.serializeAllExcept(ignorableFieldNames));
