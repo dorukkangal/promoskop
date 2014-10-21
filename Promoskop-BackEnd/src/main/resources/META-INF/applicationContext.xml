@@ -10,7 +10,7 @@
 	<context:component-scan base-package="com.mudo.promoskop.web" />
 	<context:property-placeholder location="classpath*:*.properties" />
 
-	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+	<!-- <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" /> -->
 	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
 	<bean

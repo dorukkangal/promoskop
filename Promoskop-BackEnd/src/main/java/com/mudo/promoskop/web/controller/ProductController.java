@@ -16,9 +16,10 @@ import com.mudo.promoskop.web.util.AppContext;
 import com.mudo.promoskop.web.util.JsonPropertyFilter;
 
 @RestController
+@RequestMapping(value = "/product")
 public class ProductController {
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/find/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody
 	String getProductByIdInJSON(@PathVariable(value = "id") int id) {
 
