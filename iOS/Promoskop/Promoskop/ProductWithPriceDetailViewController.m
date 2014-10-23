@@ -16,6 +16,8 @@
 #import <MapKit/MapKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#define TABLEVIEW_FIRST_CELL_HEIGHT 70
+#define TABLEVIEW_CELL_HEIGHT 130
 
 @interface ProductWithPriceDetailViewController ()<MKMapViewDelegate>
 
@@ -78,8 +80,8 @@
                   [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[currentDict copy]];
               }
               //Sorting the array according to a key in the inner dictionary
-            NSSortDescriptor* distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-            NSArray* sortDescriptors = [NSArray arrayWithObject:distanceDescriptor];
+              NSSortDescriptor* distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+              NSArray* sortDescriptors = [NSArray arrayWithObject:distanceDescriptor];
               self.sortableBranchesAndPricesArray = [[self.sortableBranchesAndPricesArray sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
           }
           else if (status == INTULocationStatusTimedOut) {
@@ -130,14 +132,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (self.sortableBranchesAndPricesArray.count == 0) {
+        return 2;
+    }
     return self.sortableBranchesAndPricesArray.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0){
-        return 70;
+        return TABLEVIEW_FIRST_CELL_HEIGHT;
     }
-    return 130;
+    return TABLEVIEW_CELL_HEIGHT;
 }
 
 
@@ -149,7 +154,7 @@
         static NSString *FirstCellIdentifier = @"TopCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstCellIdentifier forIndexPath:indexPath];
         
-        if (self.sortableBranchesAndPricesArray.count > 0) {
+
             UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
             productNameLabel.text = self.responseDict[@"product_name"];
             UIImageView *productImageView = (UIImageView *) [cell.contentView viewWithTag:100];
@@ -157,7 +162,7 @@
                 [productImageView setImage:image];
             }];
 //            cell.detailTextLabel.text = self.responseDict[@"product_url"];
-        }
+
 
         /*cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];*/
         
@@ -168,15 +173,25 @@
         static NSString *CellIdentifier = @"ReusableCell";
         BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
-        NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
-        cell.storeLabel.text = resultDict[@"store_name"];
-        cell.branchAddressLabel.text = resultDict[@"address"];
-        cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
-        double distance = [resultDict[@"distance"] floatValue];
-//        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-//        [fmt setPositiveFormat:@"0.##"];
-//        cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %@ km", [fmt stringFromNumber:self.distancesArray[indexPath.row-1]] ];
-         cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+        if (self.sortableBranchesAndPricesArray.count > 0) {
+            NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
+            cell.storeLabel.text = resultDict[@"store_name"];
+            cell.branchAddressLabel.text = resultDict[@"address"];
+            cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
+            double distance = [resultDict[@"distance"] floatValue];
+            //        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+            //        [fmt setPositiveFormat:@"0.##"];
+            //        cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %@ km", [fmt stringFromNumber:self.distancesArray[indexPath.row-1]] ];
+            cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+        }
+        else{
+            cell.storeLabel.text = @"";
+            cell.branchAddressLabel.text = @"Product is not being sold in any store.";
+            cell.priceLabel.text = @"";
+            cell.distanceLabel.text = @"";
+            cell.userInteractionEnabled = NO;
+        }
+        
         return cell;
     }
     
