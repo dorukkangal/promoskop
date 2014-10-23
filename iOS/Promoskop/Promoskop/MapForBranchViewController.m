@@ -11,6 +11,8 @@
 
 @interface MapForBranchViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *storeName;
+@property (weak, nonatomic) IBOutlet UILabel *storeAddress;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
@@ -23,8 +25,9 @@
     
 
     NSLog(@"Branch: %@",self.selectedBranch);
+    self.storeName.text = self.selectedBranch[@"store_name"];
+    self.storeAddress.text = self.selectedBranch[@"address"];
     
-
     double lat =  [self.selectedBranch[@"latitude"] floatValue];
     double lon =  [self.selectedBranch[@"longitude"] floatValue];
     CLLocationCoordinate2D branchCoordinate = CLLocationCoordinate2DMake(lat, lon);
@@ -36,8 +39,10 @@
 
     point.coordinate = branchCoordinate;
     point.title = [NSString stringWithFormat:@"%@ TL",self.selectedBranch[@"price"]];
-    point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", self.selectedBranch[@"store_name"], self.selectedBranch[@"address"]];;
+    double distance = [self.selectedBranch[@"distance"] floatValue];
+    point.subtitle = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
     [self.mapView addAnnotation:point];
+    [self.mapView selectAnnotation:[[self.mapView annotations] lastObject] animated:NO];
     
 }
 

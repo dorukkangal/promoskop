@@ -22,12 +22,13 @@
 @interface ProductWithPriceDetailViewController ()<MKMapViewDelegate>
 
 
-@property (strong, nonatomic) NSMutableArray *sortableBranchesAndPricesArray;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (assign, nonatomic) NSInteger locationRequestID;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) NSMutableArray *sortableBranchesAndPricesArray;
+@property (nonatomic, weak ) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) NSInteger locationRequestID;
+@property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic) BOOL isMapOnScreen;
+@property (nonatomic, strong) CLLocation *currentLocation;
 
 @property (strong,nonatomic) NSDictionary* selectedBranch;
 
@@ -66,6 +67,7 @@
           if (status == INTULocationStatusSuccess) {
               // achievedAccuracy is at least the desired accuracy (potentially better)
               NSLog(@"Location request successful! Current Location:\n%@", currentLocation);
+              self.currentLocation = currentLocation;
               for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
                   NSMutableDictionary* currentDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
                   double lat =  [currentDict[@"latitude"] floatValue];
@@ -179,16 +181,16 @@
             cell.branchAddressLabel.text = resultDict[@"address"];
             cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
             double distance = [resultDict[@"distance"] floatValue];
-            //        NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-            //        [fmt setPositiveFormat:@"0.##"];
-            //        cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %@ km", [fmt stringFromNumber:self.distancesArray[indexPath.row-1]] ];
             cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.userInteractionEnabled = YES;
         }
         else{
             cell.storeLabel.text = @"";
             cell.branchAddressLabel.text = @"Product is not being sold in any store.";
             cell.priceLabel.text = @"";
             cell.distanceLabel.text = @"";
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.userInteractionEnabled = NO;
         }
         
@@ -220,28 +222,24 @@
     } else {
         //        [self.activityIndicator stopAnimating];
         [self.tableView reloadData];
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.currentLocation.coordinate, 16000, 16000);
+        
+        [self.mapView setRegion:[self.mapView regionThatFits:region] animated:NO];
+        
+        for (NSDictionary* dict in self.sortableBranchesAndPricesArray) {
+            
+            MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+            double lat =  [dict[@"latitude"] floatValue];
+            double lon =  [dict[@"longitude"] floatValue];
+            point.coordinate = CLLocationCoordinate2DMake(lat, lon);
+            point.title = [NSString stringWithFormat:@"%@ TL",dict[@"price"]];
+            point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", dict[@"store_name"], dict[@"address"]];;
+            [self.mapView addAnnotation:point];
+            
+        }
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 16000, 16000);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:NO];
-
-    for (NSDictionary* dict in self.sortableBranchesAndPricesArray) {
-        
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        double lat =  [dict[@"latitude"] floatValue];
-        double lon =  [dict[@"longitude"] floatValue];
-        point.coordinate = CLLocationCoordinate2DMake(lat, lon);
-        point.title = [NSString stringWithFormat:@"%@ TL",dict[@"price"]];
-        point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", dict[@"store_name"], dict[@"address"]];;
-        [self.mapView addAnnotation:point];
-        
-    }
-
-    
-}
 
 - (IBAction)flip:(id)sender {
     if (!self.isMapOnScreen) {
