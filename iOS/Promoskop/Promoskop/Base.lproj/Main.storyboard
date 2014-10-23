@@ -17,8 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-jb-0W8">
+                                <rect key="frame" x="252" y="285" width="97" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Barkod okut"/>
+                                <connections>
+                                    <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
+                                    <segue destination="SYr-cw-rar" kind="show" id="PdP-Tg-0HQ"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" prompt="Ürün Ara" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
+                                <rect key="frame" x="0.0" y="64" width="600" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="hYA-g7-XXI"/>
                                 </constraints>
@@ -32,16 +41,6 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="XcN-Nl-MDO"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-jb-0W8">
-                                <rect key="frame" x="252" y="285" width="97" height="30"/>
-                                <state key="normal" title="Scan Barcode">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnGoPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kMu-Vo-Wms"/>
-                                    <segue destination="SYr-cw-rar" kind="show" id="PdP-Tg-0HQ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -219,7 +218,7 @@
                                                         <constraint firstAttribute="height" constant="50" id="kRS-Db-FuM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h80-zH-9iT">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="524" translatesAutoresizingMaskIntoConstraints="NO" id="h80-zH-9iT">
                                                     <rect key="frame" x="68" y="10" width="524" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

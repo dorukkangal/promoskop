@@ -26,6 +26,25 @@
     NSLog(@"viewDidLoad");
 
     // Do any additional setup after loading the view.
+    self.capture = [[ZXCapture alloc] init];
+    self.capture.camera = self.capture.back;
+    self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+    self.capture.rotation = 90.0f;
+    
+    self.capture.layer.frame = self.view.bounds;
+    [self.view.layer addSublayer:self.capture.layer];
+    
+    //Giving hints to make it faster
+    [self.capture.hints addPossibleFormat:kBarcodeFormatUPCA];
+    [self.capture.hints addPossibleFormat:kBarcodeFormatUPCE];
+    [self.capture.hints addPossibleFormat:kBarcodeFormatUPCEANExtension];
+    [self.capture.hints addPossibleFormat:kBarcodeFormatEan8];
+    [self.capture.hints addPossibleFormat:kBarcodeFormatEan13];
+    NSLog(@"numberOfPossibleFormats: %zd",self.capture.hints.numberOfPossibleFormats);
+    
+    [self.view bringSubviewToFront:self.scanRectView];
+    [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
+    [self.view bringSubviewToFront:self.scanDescriptionLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,17 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear");
-    self.capture = [[ZXCapture alloc] init];
-    self.capture.camera = self.capture.back;
-    self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
-    self.capture.rotation = 90.0f;
-    
-    self.capture.layer.frame = self.view.bounds;
-    [self.view.layer addSublayer:self.capture.layer];
-    
-    [self.view bringSubviewToFront:self.scanRectView];
-    [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
-    [self.view bringSubviewToFront:self.scanDescriptionLabel];
+
     self.capture.delegate = self;
     self.capture.layer.frame = self.view.bounds;
     
@@ -71,6 +80,7 @@
     // We got a result. Display information about the result onscreen.
     NSString *formatString = [self barcodeFormatToString:result.barcodeFormat];
     NSString *display = [NSString stringWithFormat:@"Scanned!\n\nFormat: %@\n\nContents:\n%@", formatString, result.text];
+    NSLog(@"Scanned!\n\nFormat: %@\n\nContents:\n%@", formatString, result.text);
     [self.scanDescriptionLabel performSelectorOnMainThread:@selector(setText:) withObject:display waitUntilDone:YES];
     self.scannedBarcode = result.text;
     
