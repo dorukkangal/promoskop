@@ -23,17 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.capture = [[ZXCapture alloc] init];
-    self.capture.camera = self.capture.back;
-    self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
-    self.capture.rotation = 90.0f;
-    
-    self.capture.layer.frame = self.view.bounds;
-    [self.view.layer addSublayer:self.capture.layer];
-    
-    [self.view bringSubviewToFront:self.scanRectView];
-    [self.view bringSubviewToFront:self.scanDescriptionLabel];
+    NSLog(@"viewDidLoad");
+
     // Do any additional setup after loading the view.
 }
 
@@ -44,7 +35,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+    self.capture = [[ZXCapture alloc] init];
+    self.capture.camera = self.capture.back;
+    self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
+    self.capture.rotation = 90.0f;
     
+    self.capture.layer.frame = self.view.bounds;
+    [self.view.layer addSublayer:self.capture.layer];
+    
+    [self.view bringSubviewToFront:self.scanRectView];
+    [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
+    [self.view bringSubviewToFront:self.scanDescriptionLabel];
     self.capture.delegate = self;
     self.capture.layer.frame = self.view.bounds;
     
@@ -79,11 +81,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
-       
-            ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-            productWithPriceDetailTableViewController.productID = [[DataAccessLayer database]fetchProductIdForGivenBarcode:self.scannedBarcode];
-        
-
+        ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
+        productWithPriceDetailTableViewController.productID = 11000036;
     }
 }
 

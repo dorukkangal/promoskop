@@ -10,8 +10,11 @@
 #import "DataAccessLayer.h"
 #import "BranchWithProductPriceTableViewCell.h"
 #import "INTULocationManager.h"
+#import <AFNetworking.h>
+#import "Globals.h"
 #import "MapForBranchViewController.h"
 #import <MapKit/MapKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @interface ProductWithPriceDetailViewController ()<MKMapViewDelegate>
@@ -21,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) NSInteger locationRequestID;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
+@property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic) BOOL isMapOnScreen;
 
 @property (strong,nonatomic) NSDictionary* selectedBranch;
@@ -40,16 +43,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:self.productID] mutableCopy];
-//    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
-    
-    for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
-        
-        NSMutableDictionary* mDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
-        [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
-        [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
-    }
-    
+
     self.isMapOnScreen = NO;
     
     self.mapView.delegate = self;
@@ -136,7 +130,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return self.sortableBranchesAndPricesArray.count;
+    return self.sortableBranchesAndPricesArray.count + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -156,8 +150,13 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstCellIdentifier forIndexPath:indexPath];
         
         if (self.sortableBranchesAndPricesArray.count > 0) {
-            cell.textLabel.text = self.sortableBranchesAndPricesArray[0][@"product_name"] ;
-            cell.detailTextLabel.text = self.sortableBranchesAndPricesArray[0][@"Maybe some product detail"];
+            UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
+            productNameLabel.text = self.responseDict[@"product_name"];
+            UIImageView *productImageView = (UIImageView *) [cell.contentView viewWithTag:100];
+            [productImageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [productImageView setImage:image];
+            }];
+//            cell.detailTextLabel.text = self.responseDict[@"product_url"];
         }
 
         /*cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];*/
@@ -266,8 +265,34 @@
         MapForBranchViewController *mfbvc = (MapForBranchViewController *)segue.destinationViewController;
         mfbvc.selectedBranch = self.selectedBranch;
     }
+}
+
+- (void)setProductID:(NSInteger)productID{
+    _productID = productID;
+    AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
+    [operationManager GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%zd",findByID,productID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response Object => %@" , responseObject);
+        self.responseDict = (NSDictionary *)responseObject;
+        [self prepareArray];
+        [self startLocationRequest];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Error : %@", [error description]);
+    }];
 
 }
 
+
+- (void)prepareArray{
+    self.sortableBranchesAndPricesArray = [self.responseDict[@"branches_prices"] mutableCopy];
+    //    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
+    for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
+        
+        NSMutableDictionary* mDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
+        [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
+        [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
+    }
+    
+}
 
 @end

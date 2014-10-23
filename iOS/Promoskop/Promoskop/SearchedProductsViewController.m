@@ -52,6 +52,9 @@
     }
     
 }
-
+- (void)setFoundProducts:(NSArray *)foundProducts{
+    _foundProducts = foundProducts;
+    [self.productsTableView reloadData];
+}
 
 @end
