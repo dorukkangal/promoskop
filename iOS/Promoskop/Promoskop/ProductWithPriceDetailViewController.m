@@ -47,7 +47,7 @@
     self.isMapOnScreen = NO;
     
     self.mapView.delegate = self;
-    [self startLocationRequest];
+    
 }
 
 - (void)startLocationRequest{
