@@ -8,6 +8,7 @@
 
 #import "SearchedProductsViewController.h"
 #import "ProductWithPriceDetailViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *productsTableView;
@@ -32,7 +33,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchedProducts" forIndexPath:indexPath];
     NSDictionary *dict = self.foundProducts[indexPath.row];
-    [cell.textLabel setText:dict[@"name"]];
+    UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:101];
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:100];
+    [textLabel setText:dict[@"name"]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imageView setImage:image];
+    }];
     return cell;
 }
 

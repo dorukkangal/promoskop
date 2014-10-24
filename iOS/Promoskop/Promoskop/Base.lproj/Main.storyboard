@@ -74,22 +74,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8i3-AB-k9G">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8i3-AB-k9G">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchedProducts" textLabel="0Db-pO-jZM" style="IBUITableViewCellStyleDefault" id="TZx-xH-rdA">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchedProducts" rowHeight="60" id="TZx-xH-rdA">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TZx-xH-rdA" id="NGA-FS-zi5">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="550" id="0Db-pO-jZM">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QMX-jd-b49">
+                                                    <rect key="frame" x="10" y="5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="HUj-4Q-Y10"/>
+                                                        <constraint firstAttribute="height" constant="50" id="kG9-nZ-YYi"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="499" translatesAutoresizingMaskIntoConstraints="NO" id="fSR-My-q2U">
+                                                    <rect key="frame" x="68" y="5" width="499" height="46"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fSR-My-q2U" firstAttribute="leading" secondItem="QMX-jd-b49" secondAttribute="trailing" constant="8" id="4IR-7K-qHQ"/>
+                                                <constraint firstItem="QMX-jd-b49" firstAttribute="top" secondItem="NGA-FS-zi5" secondAttribute="top" constant="5" id="DKW-xn-hCn"/>
+                                                <constraint firstAttribute="trailing" secondItem="fSR-My-q2U" secondAttribute="trailing" id="Eun-gV-wb7"/>
+                                                <constraint firstItem="fSR-My-q2U" firstAttribute="top" secondItem="NGA-FS-zi5" secondAttribute="top" constant="5" id="Fhk-F9-hhZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="fSR-My-q2U" secondAttribute="bottom" constant="8" id="Gvn-gD-yMZ"/>
+                                                <constraint firstItem="QMX-jd-b49" firstAttribute="leading" secondItem="NGA-FS-zi5" secondAttribute="leading" constant="10" id="rYf-5O-81P"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="GrC-45-Clv" kind="show" identifier="ProductWithPriceDetailTableViewController" id="heP-cl-xfh"/>
@@ -116,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="529-yV-Fig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="1001"/>
+            <point key="canvasLocation" x="153" y="1000"/>
         </scene>
         <!--Barcode Scanner View Controller-->
         <scene sceneID="mao-Aw-xdJ">
