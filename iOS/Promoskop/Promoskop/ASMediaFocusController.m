@@ -79,8 +79,9 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
             
         case UIInterfaceOrientationLandscapeRight:
             return [self.parentViewController supportedInterfaceOrientations] & UIInterfaceOrientationMaskLandscapeRight;
+        default: return NO;
     }
-    return NO;
+
 }
 
 #pragma mark - Public
@@ -100,7 +101,7 @@ static NSTimeInterval const kDefaultOrientationAnimationDuration = 0.4;
     }
     
     if(([UIDevice currentDevice].orientation == UIDeviceOrientationPortrait)
-       || [self isParentSupportingInterfaceOrientation:[UIDevice currentDevice].orientation])
+       || [self isParentSupportingInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]])
     {
         transform = CGAffineTransformIdentity;
     }
