@@ -26,7 +26,7 @@
     NSLog(@"viewDidLoad");
 
     // Do any additional setup after loading the view.
-    self.capture = [[ZXCapture alloc] init];
+//    self.capture = [[ZXCapture alloc] init];
     self.capture.camera = self.capture.back;
     self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
     self.capture.rotation = 90.0f;
@@ -47,17 +47,31 @@
     [self.view bringSubviewToFront:self.scanDescriptionLabel];
 }
 
+- (ZXCapture *)capture{
+    if(!_capture)
+        _capture = [[ZXCapture alloc]init];
+    return _capture;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)cancel:(id)sender {
+    [self.capture.layer removeFromSuperlayer];
+    [self.capture stop];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear");
-
+    [self.capture start];
     self.capture.delegate = self;
     self.capture.layer.frame = self.view.bounds;
+     [self.view.layer addSublayer:self.capture.layer]; 
+    [self.view bringSubviewToFront:self.scanRectView];
+    [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
+    [self.view bringSubviewToFront:self.scanDescriptionLabel];
     
     CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(320 / self.view.frame.size.width, 480 / self.view.frame.size.height);
     self.capture.scanRect = CGRectApplyAffineTransform(self.scanRectView.frame, captureSizeTransform);
