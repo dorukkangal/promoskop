@@ -10,6 +10,17 @@
 		3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */; };
 		3A32873319EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */; };
 		3A32873519EED2D700E3278D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A32873419EED2D700E3278D /* CoreLocation.framework */; };
+		3A5A7FCA19FAF4F7005F1059 /* ASMediaFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A7FC219FAF4F7005F1059 /* ASMediaFocusController.m */; };
+		3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A7FC419FAF4F7005F1059 /* ASImageScrollView.m */; };
+		3A5A7FCC19FAF4F7005F1059 /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A5A7FC619FAF4F7005F1059 /* ASMediaFocusController.xib */; };
+		3A5A7FCD19FAF4F7005F1059 /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A7FC719FAF4F7005F1059 /* ASMediaFocusManager.m */; };
+		3A5A7FCE19FAF4F7005F1059 /* ASTransparentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A7FC919FAF4F7005F1059 /* ASTransparentView.m */; };
+		3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A5C4FC719FAA8440049A805 /* SMCalloutView.m */; };
+		3A5C4FCD19FADD470049A805 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C4FCB19FADD470049A805 /* placeholder.png */; };
+		3A5C4FCE19FADD470049A805 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A5C4FCC19FADD470049A805 /* placeholder@2x.png */; };
+		3A5C4FDF19FAE3970049A805 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C4FDE19FAE3970049A805 /* Foundation.framework */; };
+		3A5C4FE119FAE3A90049A805 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C4FE019FAE3A90049A805 /* CoreGraphics.framework */; };
+		3A5C4FE319FAE3C00049A805 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5C4FE219FAE3C00049A805 /* UIKit.framework */; };
 		3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93480F19EDC37600AF2665 /* FMDatabase.m */; };
 		3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481119EDC37600AF2665 /* FMDatabaseAdditions.m */; };
 		3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93481319EDC37600AF2665 /* FMDatabasePool.m */; };
@@ -51,6 +62,22 @@
 		3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchWithProductPriceTableViewCell.h; sourceTree = "<group>"; };
 		3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchWithProductPriceTableViewCell.m; sourceTree = "<group>"; };
 		3A32873419EED2D700E3278D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A5A7FC119FAF4F6005F1059 /* ASMediaFocusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusManager.h; sourceTree = "<group>"; };
+		3A5A7FC219FAF4F7005F1059 /* ASMediaFocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusController.m; sourceTree = "<group>"; };
+		3A5A7FC319FAF4F7005F1059 /* ASImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageScrollView.h; sourceTree = "<group>"; };
+		3A5A7FC419FAF4F7005F1059 /* ASImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageScrollView.m; sourceTree = "<group>"; };
+		3A5A7FC519FAF4F7005F1059 /* ASMediaFocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusController.h; sourceTree = "<group>"; };
+		3A5A7FC619FAF4F7005F1059 /* ASMediaFocusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASMediaFocusController.xib; sourceTree = "<group>"; };
+		3A5A7FC719FAF4F7005F1059 /* ASMediaFocusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusManager.m; sourceTree = "<group>"; };
+		3A5A7FC819FAF4F7005F1059 /* ASTransparentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTransparentView.h; sourceTree = "<group>"; };
+		3A5A7FC919FAF4F7005F1059 /* ASTransparentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTransparentView.m; sourceTree = "<group>"; };
+		3A5C4FC619FAA8440049A805 /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
+		3A5C4FC719FAA8440049A805 /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
+		3A5C4FCB19FADD470049A805 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		3A5C4FCC19FADD470049A805 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		3A5C4FDE19FAE3970049A805 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3A5C4FE019FAE3A90049A805 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3A5C4FE219FAE3C00049A805 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A93480E19EDC37600AF2665 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		3A93480F19EDC37600AF2665 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		3A93481019EDC37600AF2665 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -103,6 +130,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5C4FE319FAE3C00049A805 /* UIKit.framework in Frameworks */,
+				3A5C4FE119FAE3A90049A805 /* CoreGraphics.framework in Frameworks */,
+				3A5C4FDF19FAE3970049A805 /* Foundation.framework in Frameworks */,
 				3A32873519EED2D700E3278D /* CoreLocation.framework in Frameworks */,
 				3A93482019EDC54700AF2665 /* libsqlite3.dylib in Frameworks */,
 				3ADCFD1C19F01C0700743349 /* MapKit.framework in Frameworks */,
@@ -120,6 +150,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A5C4FC919FAA8520049A805 /* SMCalloutView */ = {
+			isa = PBXGroup;
+			children = (
+				3A5C4FC619FAA8440049A805 /* SMCalloutView.h */,
+				3A5C4FC719FAA8440049A805 /* SMCalloutView.m */,
+			);
+			name = SMCalloutView;
+			sourceTree = "<group>";
+		};
+		3A5C4FDD19FAE27E0049A805 /* ASMediaFocusManager */ = {
+			isa = PBXGroup;
+			children = (
+				3A5A7FC119FAF4F6005F1059 /* ASMediaFocusManager.h */,
+				3A5A7FC219FAF4F7005F1059 /* ASMediaFocusController.m */,
+				3A5A7FC319FAF4F7005F1059 /* ASImageScrollView.h */,
+				3A5A7FC419FAF4F7005F1059 /* ASImageScrollView.m */,
+				3A5A7FC519FAF4F7005F1059 /* ASMediaFocusController.h */,
+				3A5A7FC619FAF4F7005F1059 /* ASMediaFocusController.xib */,
+				3A5A7FC719FAF4F7005F1059 /* ASMediaFocusManager.m */,
+				3A5A7FC819FAF4F7005F1059 /* ASTransparentView.h */,
+				3A5A7FC919FAF4F7005F1059 /* ASTransparentView.m */,
+			);
+			name = ASMediaFocusManager;
+			sourceTree = "<group>";
+		};
 		3A93481E19EDC37C00AF2665 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +208,9 @@
 		93E8C97A62D50B1E726C93CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A5C4FE219FAE3C00049A805 /* UIKit.framework */,
+				3A5C4FE019FAE3A90049A805 /* CoreGraphics.framework */,
+				3A5C4FDE19FAE3970049A805 /* Foundation.framework */,
 				3A93481F19EDC54700AF2665 /* libsqlite3.dylib */,
 				3A32873419EED2D700E3278D /* CoreLocation.framework */,
 				3ADCFD1B19F01C0700743349 /* MapKit.framework */,
@@ -181,6 +239,8 @@
 		9B33684819EEF55E0049029E /* 3rd Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3A5C4FDD19FAE27E0049A805 /* ASMediaFocusManager */,
+				3A5C4FC919FAA8520049A805 /* SMCalloutView */,
 				3ADCFD1A19F0165C00743349 /* INTULocationManager */,
 				3A93481E19EDC37C00AF2665 /* FMDB */,
 			);
@@ -253,6 +313,8 @@
 		9BAC14CE19ED8BCE00D53D8C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A5C4FCB19FADD470049A805 /* placeholder.png */,
+				3A5C4FCC19FADD470049A805 /* placeholder@2x.png */,
 				3A93482819EDD3FD00AF2665 /* Promoskop.sqlite */,
 				9BAC14E019ED8BCE00D53D8C /* LaunchScreen.xib */,
 				9BAC14DE19ED8BCE00D53D8C /* Images.xcassets */,
@@ -377,7 +439,10 @@
 			files = (
 				3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */,
 				9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */,
+				3A5C4FCE19FADD470049A805 /* placeholder@2x.png in Resources */,
 				9BAC14E219ED8BCE00D53D8C /* LaunchScreen.xib in Resources */,
+				3A5A7FCC19FAF4F7005F1059 /* ASMediaFocusController.xib in Resources */,
+				3A5C4FCD19FADD470049A805 /* placeholder.png in Resources */,
 				9BAC14DF19ED8BCE00D53D8C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,15 +494,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5A7FCA19FAF4F7005F1059 /* ASMediaFocusController.m in Sources */,
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
 				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
 				9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */,
 				3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */,
+				3A5A7FCD19FAF4F7005F1059 /* ASMediaFocusManager.m in Sources */,
 				3ADCFD1919F0165500743349 /* INTULocationRequest.m in Sources */,
+				3A5A7FCE19FAF4F7005F1059 /* ASTransparentView.m in Sources */,
 				9B09543619F710840047079D /* Globals.m in Sources */,
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
+				3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
+				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,
 				3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
 				3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */,

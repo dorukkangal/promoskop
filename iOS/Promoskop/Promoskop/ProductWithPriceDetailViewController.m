@@ -15,11 +15,14 @@
 #import "MapForBranchViewController.h"
 #import <MapKit/MapKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "SMCalloutView.h"
+#import "ASMediaFocusManager.h"
 
 #define TABLEVIEW_FIRST_CELL_HEIGHT 70
 #define TABLEVIEW_CELL_HEIGHT 130
+#define MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE 120
 
-@interface ProductWithPriceDetailViewController ()<MKMapViewDelegate>
+@interface ProductWithPriceDetailViewController ()<MKMapViewDelegate,SMCalloutViewDelegate,ASMediasFocusDelegate>
 
 
 @property (nonatomic, strong) NSMutableArray *sortableBranchesAndPricesArray;
@@ -29,6 +32,10 @@
 @property (nonatomic, strong) NSDictionary *responseDict;
 @property (nonatomic) BOOL isMapOnScreen;
 @property (nonatomic, strong) CLLocation *currentLocation;
+@property (nonatomic, strong) SMCalloutView *calloutView;
+@property (nonatomic, strong) ASMediaFocusManager *mediaFocusManager;
+@property (nonatomic) BOOL statusBarHidden;
+
 
 @property (strong,nonatomic) NSDictionary* selectedBranch;
 
@@ -51,6 +58,14 @@
     
     self.mapView.delegate = self;
     
+    // create our custom callout view
+    self.calloutView = [SMCalloutView platformCalloutView];
+    self.calloutView.delegate = self;
+    
+    self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
+    self.mediaFocusManager.delegate = self;
+    self.statusBarHidden = NO;
+
 }
 
 - (void)startLocationRequest{
@@ -157,16 +172,19 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FirstCellIdentifier forIndexPath:indexPath];
         
 
-            UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
-            productNameLabel.text = self.responseDict[@"product_name"];
-            UIImageView *productImageView = (UIImageView *) [cell.contentView viewWithTag:100];
-            [productImageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                [productImageView setImage:image];
-            }];
-//            cell.detailTextLabel.text = self.responseDict[@"product_url"];
+        UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
+        productNameLabel.text = self.responseDict[@"product_name"];
+        
+        
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//        cell.imageView.bounds = CGRectMake(0,0,75,75);
+//        cell.imageView.frame = CGRectMake(0,0,75,75);
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
 
 
-        /*cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.animalspot.net/wp-content/uploads/2013/02/Rabbit.jpg"]]];*/
+        // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
+        [self.mediaFocusManager installOnView:cell.imageView];
+
         
         return cell;
         
@@ -200,6 +218,102 @@
     
     
 }
+
+#pragma mark -
+#pragma mark MapView Delegate Methods
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    } else {
+        
+        // create a proper annotation view, be lazy and don't use the reuse identifier
+        MKPinAnnotationView *view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"reuseId"];
+        
+        // if we're using SMCalloutView, we don't want MKMapView to create its own callout!
+        view.canShowCallout = NO;
+        
+        
+        return view;
+    }
+
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
+    
+    // apply the MKAnnotationView's basic properties
+//    self.calloutView.title = annotationView.annotation.title;
+//    self.calloutView.subtitle = annotationView.annotation.subtitle;
+    
+    
+    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE, MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE)];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE, 21)];
+    title.text = annotationView.annotation.title;
+    [contentView addSubview:title];
+    
+    UILabel *subtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 17, MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE, 100)];
+    subtitle.text = annotationView.annotation.subtitle;
+    subtitle.numberOfLines = 0;
+    subtitle.font = [subtitle.font fontWithSize:13];
+    [contentView addSubview:subtitle];
+    
+    
+    self.calloutView.contentView = contentView;
+    
+    
+    
+    // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
+    self.calloutView.calloutOffset = annotationView.calloutOffset;
+    
+    
+    // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+        self.calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+    
+    if (![annotationView.annotation isKindOfClass:[MKUserLocation class]]) {
+        // This does all the magic.
+        [self.calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
+    }
+
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
+    
+    [self.calloutView dismissCalloutAnimated:YES];
+}
+
+//
+// SMCalloutView delegate methods
+//
+
+- (NSTimeInterval)calloutView:(SMCalloutView *)calloutView delayForRepositionWithSize:(CGSize)offset {
+    
+    // When the callout is being asked to present in a way where it or its target will be partially offscreen, it asks us
+    // if we'd like to reposition our surface first so the callout is completely visible. Here we scroll the map into view,
+    // but it takes some math because we have to deal in lon/lat instead of the given offset in pixels.
+    
+    CLLocationCoordinate2D coordinate = self.mapView.centerCoordinate;
+    
+    // where's the center coordinate in terms of our view?
+    CGPoint center = [self.mapView convertCoordinate:coordinate toPointToView:self.view];
+    
+    // move it by the requested offset
+    center.x -= offset.width;
+    center.y -= offset.height;
+    
+    // and translate it back into map coordinates
+    coordinate = [self.mapView convertPoint:center toCoordinateFromView:self.view];
+    
+    // move the map!
+    [self.mapView setCenterCoordinate:coordinate animated:YES];
+    
+    // tell the callout to wait for a while while we scroll (we assume the scroll delay for MKMapView matches UIScrollView)
+    return kSMCalloutViewRepositionDelayForUIScrollView;
+}
+
 
 /**
  Implement the setter for locationRequestID in order to update the UI as needed.
@@ -266,6 +380,80 @@
                         }];
     }
 }
+
+
+#pragma mark - ASMediaFocusDelegate
+// Returns an image view that represents the media view. This image from this view is used in the focusing animation view. It is usually a small image.
+- (UIImageView *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageViewForView:(UIView *)view
+{
+    return (UIImageView *)view;
+}
+
+// Returns the final focused frame for this media view. This frame is usually a full screen frame.
+
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view
+{
+//    CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
+//    CGRect viewBounds = self.view.bounds;
+//    return CGRectMake(viewBounds.origin.x, viewBounds.origin.y+navHeight, viewBounds.size.width, viewBounds.size.height - navHeight);
+    
+    return self.view.bounds;
+}
+
+// Returns the view controller in which the focus controller is going to be added.
+// This can be any view controller, full screen or not.
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return self;
+}
+
+// Returns an URL where the image is stored. This URL is used to create an image at full screen. The URL may be local (file://) or distant (http://).
+- (NSURL *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaURLForView:(UIView *)view
+{
+    return [NSURL URLWithString:self.responseDict[@"product_url"]];
+}
+
+// Returns the title for this media view. Return nil if you don't want any title to appear.
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager titleForView:(UIView *)view
+{
+    return nil;
+}
+
+- (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager
+{
+    [self toggleStatusBarHiddenWithAppearanceUpdate:NO];
+    [self toggleNavigationBarHiddenAnimated:YES];
+}
+
+- (void)mediaFocusManagerWillDisappear:(ASMediaFocusManager *)mediaFocusManager
+{
+    [self toggleNavigationBarHiddenAnimated:YES];
+    [self toggleStatusBarHiddenWithAppearanceUpdate:YES];
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.statusBarHidden;
+}
+
+- (void)toggleStatusBarHiddenWithAppearanceUpdate:(BOOL)updateAppearance
+{
+    self.statusBarHidden = !self.statusBarHidden;
+    
+    if (updateAppearance) {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
+        }];
+    }
+}
+
+- (void)toggleNavigationBarHiddenAnimated:(BOOL)animated
+{
+    [self.navigationController
+     setNavigationBarHidden:!self.navigationController.navigationBarHidden
+     animated:animated];
+}
+
 #pragma mark -
 #pragma mark Navigation
 
