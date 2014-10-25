@@ -53,14 +53,12 @@
             NSString *str =[[searchedText  uppercaseStringWithLocale:[NSLocale localeWithLocaleIdentifier:@"TR_tr"]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSString *requestString = [baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,str]];
             [operationManager GET:requestString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"Response Object => %@" , responseObject);
                 NSArray *responseDict = (NSArray *)responseObject;
                 NSArray *products = responseDict;
                 [searchedProductsViewController setFoundProducts:products];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"Error : %@", [error description]);
             }];
-            NSLog(@"Buraya geldi");
         }
     }
 }

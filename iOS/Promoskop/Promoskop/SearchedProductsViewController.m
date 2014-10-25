@@ -9,6 +9,7 @@
 #import "SearchedProductsViewController.h"
 #import "ProductWithPriceDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
 
 @interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *productsTableView;
@@ -18,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MBProgressHUD *hud =   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Fetching Data";
+    hud.mode = MBProgressHUDModeIndeterminate;
     NSLog(@"FoundProducts => %@",self.foundProducts);
 }
 
@@ -60,7 +64,20 @@
 }
 - (void)setFoundProducts:(NSArray *)foundProducts{
     _foundProducts = foundProducts;
+    [UIView animateWithDuration:.5f animations:^{
+        self.productsTableView.hidden = NO;
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
+        });
+    } completion:^(BOOL finished) {
+      self.productsTableView.hidden = NO;
+    }];
+    
+    
     [self.productsTableView reloadData];
+
 }
 
 @end

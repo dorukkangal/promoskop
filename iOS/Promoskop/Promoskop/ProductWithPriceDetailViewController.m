@@ -16,6 +16,7 @@
 #import <MapKit/MapKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SMCalloutView.h"
+#import <MBProgressHUD.h>
 #import "ASMediaFocusManager.h"
 
 #define TABLEVIEW_FIRST_CELL_HEIGHT 70
@@ -51,7 +52,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    MBProgressHUD *hud =   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Fetching Data";
+    hud.mode = MBProgressHUDModeIndeterminate;
     
 
     self.isMapOnScreen = NO;
@@ -357,7 +360,7 @@
 
 - (IBAction)flip:(id)sender {
     if (!self.isMapOnScreen) {
-        
+        self.mapView.hidden = NO;
         [UIView transitionFromView:self.tableView
                             toView:self.mapView
                           duration:1
@@ -369,6 +372,7 @@
                         }];
     }
     else{
+        self.mapView.hidden = YES;
         [UIView transitionFromView:self.mapView
                             toView:self.tableView
                           duration:1
@@ -476,6 +480,18 @@
         self.responseDict = (NSDictionary *)responseObject;
         [self prepareArray];
         [self startLocationRequest];
+        [UIView animateWithDuration:.5f animations:^{
+            self.tableView.hidden = NO;
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                  
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            });
+        } completion:^(BOOL finished) {
+
+        }];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Error : %@", [error description]);
