@@ -1,24 +1,18 @@
-package com.mudo.promoskop.web.model;
+package com.mudo.promoskop.web.response;
 
 import java.io.Serializable;
 
 import org.codehaus.jackson.map.annotate.JsonFilter;
 
-@SuppressWarnings("serial")
 @JsonFilter("filterResponseBean")
-public class ResponseBean implements Serializable {
-
-	private int barcodeId;
-
-	private String productName;
-
-	private String url;
+public class BranchResponse implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private double price;
 
 	private String branchName;
 
-	private String address;
+	private String branchAddress;
 
 	private double latitude;
 
@@ -26,29 +20,7 @@ public class ResponseBean implements Serializable {
 
 	private String storeName;
 
-	public int getBarcodeId() {
-		return barcodeId;
-	}
-
-	public void setBarcodeId(int barcodeId) {
-		this.barcodeId = barcodeId;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
+	private String storeLogo;
 
 	public double getPrice() {
 		return price;
@@ -66,12 +38,12 @@ public class ResponseBean implements Serializable {
 		this.branchName = branchName;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getBranchAddress() {
+		return branchAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setBranchAddress(String branchAddress) {
+		this.branchAddress = branchAddress;
 	}
 
 	public double getLatitude() {
@@ -96,5 +68,13 @@ public class ResponseBean implements Serializable {
 
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
+	}
+
+	public String getStoreLogo() {
+		return storeLogo;
+	}
+
+	public void setStoreLogo(String storeLogo) {
+		this.storeLogo = storeLogo;
 	}
 }

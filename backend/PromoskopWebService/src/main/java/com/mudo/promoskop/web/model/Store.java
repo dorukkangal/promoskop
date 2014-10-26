@@ -19,6 +19,8 @@ public class Store implements Serializable {
 	@Column(unique = true)
 	private String name;
 
+	private String logo;
+
 	public int getId() {
 		return id;
 	}
@@ -33,5 +35,13 @@ public class Store implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 }
