@@ -165,8 +165,9 @@
                                     <constraint firstAttribute="height" constant="150" id="hi7-Ob-hnq"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scanner" translatesAutoresizingMaskIntoConstraints="NO" id="wRL-jQ-AGh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wRL-jQ-AGh">
                                 <rect key="frame" x="0.0" y="298" width="600" height="5"/>
+                                <color key="backgroundColor" red="0.71372549019999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="ktE-6M-kqG"/>
                                 </constraints>
@@ -457,9 +458,6 @@
             <point key="canvasLocation" x="1031" y="137"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="scanner" width="67" height="2"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bIR-2y-Zbb"/>
     </inferredMetricsTieBreakers>

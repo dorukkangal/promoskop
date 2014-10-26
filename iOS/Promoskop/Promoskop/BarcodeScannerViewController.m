@@ -72,6 +72,20 @@
     [self.view bringSubviewToFront:self.imageView];
     [self.view bringSubviewToFront:self.scanDescriptionLabel];
     [self.view bringSubviewToFront:self.upperImageView];
+    CALayer *layer = [CALayer layer];
+    CGRect bounds = self.scannerImageView.bounds;
+    bounds.size.height = 10;
+    layer.bounds = bounds;
+    layer.position = CGPointMake(bounds.size.width / 2, bounds.size.height / 2 - 2);
+    layer.backgroundColor = [UIColor colorWithRed:182 / 255.0f  green:0.f blue:.0f alpha:.3f].CGColor;
+    layer.zPosition = -5;
+    [self.scannerImageView.layer addSublayer:layer];
+    
+//    self.scannerImageView.layer.shadowColor = [UIColor colorWithRed:182 / 255.0f  green:0.f blue:.0f alpha:1.f].CGColor;
+//    self.scannerImageView.layer.shadowOffset = CGSizeMake(0, -2);
+//    self.scannerImageView.layer.shadowOpacity = .7f;
+//    self.scannerImageView.layer.shadowRadius = 1.0;
+//    self.scannerImageView.clipsToBounds = NO;
     [self.view bringSubviewToFront:self.scannerImageView];
     
 //    CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(320 / self.view.frame.size.width, 480 / self.view.frame.size.height);
