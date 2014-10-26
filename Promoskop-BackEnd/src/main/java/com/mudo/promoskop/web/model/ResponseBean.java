@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import org.codehaus.jackson.map.annotate.JsonFilter;
 
+@SuppressWarnings("serial")
 @JsonFilter("filterResponseBean")
 public class ResponseBean implements Serializable {
-	private static final long serialVersionUID = 1L;
 
 	private int barcodeId;
 
