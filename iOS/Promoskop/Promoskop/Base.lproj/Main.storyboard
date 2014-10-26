@@ -166,10 +166,10 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wRL-jQ-AGh">
-                                <rect key="frame" x="0.0" y="298" width="600" height="5"/>
+                                <rect key="frame" x="0.0" y="299" width="600" height="2"/>
                                 <color key="backgroundColor" red="0.71372549019999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="ktE-6M-kqG"/>
+                                    <constraint firstAttribute="height" constant="2" id="ktE-6M-kqG"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -179,22 +179,14 @@
                             <constraint firstAttribute="centerY" secondItem="Otb-QU-R5m" secondAttribute="centerY" id="EIj-3R-0j1"/>
                             <constraint firstAttribute="trailing" secondItem="6VN-OP-Irx" secondAttribute="trailing" id="MAc-Gy-oM7"/>
                             <constraint firstItem="zoO-5e-8wE" firstAttribute="top" secondItem="Qzh-3S-mtj" secondAttribute="bottom" id="NT3-cn-Hyk"/>
-                            <constraint firstAttribute="centerY" secondItem="wRL-jQ-AGh" secondAttribute="centerY" id="RL9-Cw-h8e"/>
                             <constraint firstAttribute="centerY" secondItem="wRL-jQ-AGh" secondAttribute="centerY" id="SeY-ZV-r0m"/>
                             <constraint firstAttribute="centerX" secondItem="Otb-QU-R5m" secondAttribute="centerX" id="XhY-Ha-jx5"/>
                             <constraint firstItem="6VN-OP-Irx" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="aWu-42-tbD"/>
                             <constraint firstAttribute="trailing" secondItem="Qzh-3S-mtj" secondAttribute="trailing" id="eZ9-0h-79F"/>
                             <constraint firstItem="wRL-jQ-AGh" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="f6n-8y-80l"/>
                             <constraint firstItem="Qzh-3S-mtj" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="l1t-9N-Oiz"/>
-                            <constraint firstAttribute="centerX" secondItem="wRL-jQ-AGh" secondAttribute="centerX" id="uf4-vx-vUL"/>
                             <constraint firstItem="6VN-OP-Irx" firstAttribute="top" secondItem="raO-84-dW0" secondAttribute="bottom" constant="-64" id="w94-cf-TSY"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="RL9-Cw-h8e"/>
-                                <exclude reference="uf4-vx-vUL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Barcode Scanner" id="jjx-tm-BDz">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="T3h-9i-JmQ">

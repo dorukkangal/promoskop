@@ -76,7 +76,7 @@
     CGRect bounds = self.scannerImageView.bounds;
     bounds.size.height = 10;
     layer.bounds = bounds;
-    layer.position = CGPointMake(bounds.size.width / 2, bounds.size.height / 2 - 2);
+    layer.position = CGPointMake(bounds.size.width / 2, bounds.size.height / 2 - 4);
     layer.backgroundColor = [UIColor colorWithRed:182 / 255.0f  green:0.f blue:.0f alpha:.3f].CGColor;
     layer.zPosition = -5;
     [self.scannerImageView.layer addSublayer:layer];
@@ -112,9 +112,7 @@
     NSLog(@"Scanned!\n\nFormat: %@\n\nContents:\n%@", formatString, result.text);
     [self.scanDescriptionLabel performSelectorOnMainThread:@selector(setText:) withObject:display waitUntilDone:YES];
     self.scannedBarcode = result.text;
-    
     [self performSegueWithIdentifier:@"ProductWithPriceDetailTableViewController" sender:nil];
-    
 }
 
 
