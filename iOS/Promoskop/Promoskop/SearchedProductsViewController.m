@@ -74,10 +74,7 @@
     } completion:^(BOOL finished) {
       self.productsTableView.hidden = NO;
     }];
-    
-    
     [self.productsTableView reloadData];
-
 }
 
 @end

@@ -133,7 +133,7 @@
             </objects>
             <point key="canvasLocation" x="153" y="1000"/>
         </scene>
-        <!--Barcode Scanner View Controller-->
+        <!--Barcode Scanner-->
         <scene sceneID="mao-Aw-xdJ">
             <objects>
                 <viewController id="SYr-cw-rar" customClass="BarcodeScannerViewController" sceneMemberID="viewController">
@@ -145,45 +145,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1b-eJ-hEw">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="DiZ-yk-bkF">
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="jqW-4Y-b3d"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXg-ox-qYh">
-                                <rect key="frame" x="50" y="100" width="500" height="400"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold up to a barcode to scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-QU-R5m">
-                                        <rect key="frame" x="122" y="139" width="256" height="121"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="332" id="tIx-No-MD2"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="121" id="vub-a3-Drj"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold up to a barcode to scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-QU-R5m">
+                                <rect key="frame" x="172" y="289" width="256" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qzh-3S-mtj">
+                                <rect key="frame" x="0.0" y="450" width="600" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="Otb-QU-R5m" secondAttribute="centerX" id="Ez6-IH-ewb"/>
-                                    <constraint firstAttribute="centerY" secondItem="Otb-QU-R5m" secondAttribute="centerY" constant="0.5" id="fb7-an-5fu"/>
+                                    <constraint firstAttribute="height" constant="150" id="55Z-uH-eKF"/>
                                 </constraints>
-                            </view>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6VN-OP-Irx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="hi7-Ob-hnq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scanner" translatesAutoresizingMaskIntoConstraints="NO" id="wRL-jQ-AGh">
+                                <rect key="frame" x="0.0" y="298" width="600" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="ktE-6M-kqG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zXg-ox-qYh" firstAttribute="top" secondItem="raO-84-dW0" secondAttribute="bottom" constant="36" id="9n3-Jl-TuL"/>
-                            <constraint firstAttribute="centerY" secondItem="zXg-ox-qYh" secondAttribute="centerY" id="Kjj-v4-1pN"/>
-                            <constraint firstAttribute="centerX" secondItem="zXg-ox-qYh" secondAttribute="centerX" id="Trt-Kf-Kta"/>
-                            <constraint firstItem="zXg-ox-qYh" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" constant="50" id="anf-Fs-hLl"/>
-                            <constraint firstAttribute="trailing" secondItem="zXg-ox-qYh" secondAttribute="trailing" constant="50" id="fh0-vf-7mt"/>
+                            <constraint firstAttribute="trailing" secondItem="wRL-jQ-AGh" secondAttribute="trailing" id="7hn-IK-tuu"/>
+                            <constraint firstAttribute="centerY" secondItem="Otb-QU-R5m" secondAttribute="centerY" id="EIj-3R-0j1"/>
+                            <constraint firstAttribute="trailing" secondItem="6VN-OP-Irx" secondAttribute="trailing" id="MAc-Gy-oM7"/>
+                            <constraint firstItem="zoO-5e-8wE" firstAttribute="top" secondItem="Qzh-3S-mtj" secondAttribute="bottom" id="NT3-cn-Hyk"/>
+                            <constraint firstAttribute="centerY" secondItem="wRL-jQ-AGh" secondAttribute="centerY" id="RL9-Cw-h8e"/>
+                            <constraint firstAttribute="centerY" secondItem="wRL-jQ-AGh" secondAttribute="centerY" id="SeY-ZV-r0m"/>
+                            <constraint firstAttribute="centerX" secondItem="Otb-QU-R5m" secondAttribute="centerX" id="XhY-Ha-jx5"/>
+                            <constraint firstItem="6VN-OP-Irx" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="aWu-42-tbD"/>
+                            <constraint firstAttribute="trailing" secondItem="Qzh-3S-mtj" secondAttribute="trailing" id="eZ9-0h-79F"/>
+                            <constraint firstItem="wRL-jQ-AGh" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="f6n-8y-80l"/>
+                            <constraint firstItem="Qzh-3S-mtj" firstAttribute="leading" secondItem="5cT-lJ-nTw" secondAttribute="leading" id="l1t-9N-Oiz"/>
+                            <constraint firstAttribute="centerX" secondItem="wRL-jQ-AGh" secondAttribute="centerX" id="uf4-vx-vUL"/>
+                            <constraint firstItem="6VN-OP-Irx" firstAttribute="top" secondItem="raO-84-dW0" secondAttribute="bottom" constant="-64" id="w94-cf-TSY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RL9-Cw-h8e"/>
+                                <exclude reference="uf4-vx-vUL"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="jjx-tm-BDz">
+                    <navigationItem key="navigationItem" title="Barcode Scanner" id="jjx-tm-BDz">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="T3h-9i-JmQ">
                             <connections>
                                 <action selector="cancel:" destination="SYr-cw-rar" id="dhF-AS-8zs"/>
@@ -191,8 +203,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="Qzh-3S-mtj" id="vbm-GN-a2c"/>
                         <outlet property="scanDescriptionLabel" destination="Otb-QU-R5m" id="1wS-Qk-Lx6"/>
-                        <outlet property="scanRectView" destination="zXg-ox-qYh" id="yVe-PW-7ST"/>
+                        <outlet property="scannerImageView" destination="wRL-jQ-AGh" id="4on-DX-6Te"/>
+                        <outlet property="upperImageView" destination="6VN-OP-Irx" id="apo-JY-l96"/>
                         <segue destination="GrC-45-Clv" kind="show" identifier="ProductWithPriceDetailTableViewController" id="bIR-2y-Zbb"/>
                     </connections>
                 </viewController>
@@ -443,6 +457,9 @@
             <point key="canvasLocation" x="1031" y="137"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="scanner" width="67" height="2"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bIR-2y-Zbb"/>
     </inferredMetricsTieBreakers>

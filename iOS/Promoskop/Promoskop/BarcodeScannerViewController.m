@@ -12,9 +12,12 @@
 
 @interface BarcodeScannerViewController ()<ZXCaptureDelegate>
 @property (nonatomic, strong) ZXCapture *capture;
-@property (weak, nonatomic) IBOutlet UIView *scanRectView;
 @property (weak, nonatomic) IBOutlet UILabel *scanDescriptionLabel;
 @property (nonatomic,strong) NSString *scannedBarcode;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *upperImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *scannerImageView;
+
 
 
 @end
@@ -26,10 +29,8 @@
     NSLog(@"viewDidLoad");
     
     
-
-
     // Do any additional setup after loading the view.
-//    self.capture = [[ZXCapture alloc] init];
+    self.capture = [[ZXCapture alloc] init];
     self.capture.camera = self.capture.back;
     self.capture.focusMode = AVCaptureFocusModeContinuousAutoFocus;
     self.capture.rotation = 90.0f;
@@ -45,16 +46,11 @@
     [self.capture.hints addPossibleFormat:kBarcodeFormatEan13];
     NSLog(@"numberOfPossibleFormats: %zd",self.capture.hints.numberOfPossibleFormats);
     
-    [self.view bringSubviewToFront:self.scanRectView];
     [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
     [self.view bringSubviewToFront:self.scanDescriptionLabel];
 }
 
-- (ZXCapture *)capture{
-    if(!_capture)
-        _capture = [[ZXCapture alloc]init];
-    return _capture;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -71,13 +67,15 @@
     [self.capture start];
     self.capture.delegate = self;
     self.capture.layer.frame = self.view.bounds;
-     [self.view.layer addSublayer:self.capture.layer]; 
-    [self.view bringSubviewToFront:self.scanRectView];
+    [self.view.layer addSublayer:self.capture.layer];
     [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
+    [self.view bringSubviewToFront:self.imageView];
     [self.view bringSubviewToFront:self.scanDescriptionLabel];
+    [self.view bringSubviewToFront:self.upperImageView];
+    [self.view bringSubviewToFront:self.scannerImageView];
     
-    CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(320 / self.view.frame.size.width, 480 / self.view.frame.size.height);
-    self.capture.scanRect = CGRectApplyAffineTransform(self.scanRectView.frame, captureSizeTransform);
+//    CGAffineTransform captureSizeTransform = CGAffineTransformMakeScale(320 / self.view.frame.size.width, 480 / self.view.frame.size.height);
+//    self.capture.scanRect = CGRectApplyAffineTransform(self.scanRectView.frame, captureSizeTransform);
 }
 
 /*
@@ -167,5 +165,6 @@
             return @"Unknown";
     }
 }
+
 
 @end
