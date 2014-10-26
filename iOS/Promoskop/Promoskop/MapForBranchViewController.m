@@ -25,8 +25,8 @@
     
 
     NSLog(@"Branch: %@",self.selectedBranch);
-    self.storeName.text = self.selectedBranch[@"store_name"];
-    self.storeAddress.text = self.selectedBranch[@"address"];
+    self.storeName.text = [NSString stringWithFormat:@"%@-%@",self.selectedBranch[@"store_name"],self.selectedBranch[@"branch_name"]] ;
+    self.storeAddress.text = self.selectedBranch[@"branch_address"];
     
     double lat =  [self.selectedBranch[@"latitude"] floatValue];
     double lon =  [self.selectedBranch[@"longitude"] floatValue];

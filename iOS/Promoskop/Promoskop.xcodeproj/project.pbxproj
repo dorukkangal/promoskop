@@ -36,6 +36,7 @@
 		9B09543619F710840047079D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B09543519F710840047079D /* Globals.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
+		9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
 		9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */; };
 		9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D919ED8BCE00D53D8C /* HomeViewController.m */; };
@@ -110,6 +111,8 @@
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
+		9B8EDBAC19FD8E7B0006A427 /* BranchDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchDetailTableViewController.h; sourceTree = "<group>"; };
+		9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchDetailTableViewController.m; sourceTree = "<group>"; };
 		9BAC14CB19ED8BCE00D53D8C /* Promoskop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Promoskop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAC14CF19ED8BCE00D53D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BAC14D019ED8BCE00D53D8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 				9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */,
 				3ADCFD1D19F01EF900743349 /* MapForBranchViewController.h */,
 				3ADCFD1E19F01EF900743349 /* MapForBranchViewController.m */,
+				9B8EDBAC19FD8E7B0006A427 /* BranchDetailTableViewController.h */,
+				9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */,
 				3A5A7FCD19FAF4F7005F1059 /* ASMediaFocusManager.m in Sources */,
 				3ADCFD1919F0165500743349 /* INTULocationRequest.m in Sources */,
+				9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */,
 				3A5A7FCE19FAF4F7005F1059 /* ASTransparentView.m in Sources */,
 				9B09543619F710840047079D /* Globals.m in Sources */,
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,

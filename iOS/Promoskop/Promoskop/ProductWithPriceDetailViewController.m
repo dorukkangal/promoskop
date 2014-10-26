@@ -8,6 +8,7 @@
 
 #import "ProductWithPriceDetailViewController.h"
 #import "DataAccessLayer.h"
+#import "BranchDetailTableViewController.h"
 #import "BranchWithProductPriceTableViewCell.h"
 #import "INTULocationManager.h"
 #import <AFNetworking.h>
@@ -199,7 +200,7 @@
         if (self.sortableBranchesAndPricesArray.count > 0) {
             NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
             cell.storeLabel.text = resultDict[@"store_name"];
-            cell.branchAddressLabel.text = resultDict[@"address"];
+            cell.branchAddressLabel.text = resultDict[@"branch_address"];
             cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
             double distance = [resultDict[@"distance"] floatValue];
             cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
@@ -463,12 +464,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if([segue.identifier isEqualToString:@"MapForBranch"]){
+    if([segue.identifier isEqualToString:@"BranchDetailTableViewController"]){
         NSInteger row = [self.tableView indexPathForCell:sender].row;
         NSLog(@"did select row at indexpath.row: %ld",(long)row);
         self.selectedBranch = self.sortableBranchesAndPricesArray[row-1];
-        MapForBranchViewController *mfbvc = (MapForBranchViewController *)segue.destinationViewController;
-        mfbvc.selectedBranch = self.selectedBranch;
+        BranchDetailTableViewController *branchDetailTableViewController = (BranchDetailTableViewController *)segue.destinationViewController;
+        branchDetailTableViewController.branchDetails = self.selectedBranch;
+//        
+//        MapForBranchViewController *mfbvc = (MapForBranchViewController *)segue.destinationViewController;
+//        mfbvc.selectedBranch = self.selectedBranch;
     }
 }
 
@@ -501,7 +505,7 @@
 
 
 - (void)prepareArray{
-    self.sortableBranchesAndPricesArray = [self.responseDict[@"branches_prices"] mutableCopy];
+    self.sortableBranchesAndPricesArray = [self.responseDict[@"branches"] mutableCopy];
     //    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
     for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
         

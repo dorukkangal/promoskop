@@ -39,8 +39,8 @@
     NSDictionary *dict = self.foundProducts[indexPath.row];
     UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:101];
     UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:100];
-    [textLabel setText:dict[@"name"]];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [textLabel setText:dict[@"product_name"]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:dict[@"product_url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         [imageView setImage:image];
     }];
     return cell;
@@ -58,7 +58,7 @@
         NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
         NSDictionary *dict = self.foundProducts[indexPath.row];
         ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        [productWithPriceDetailTableViewController setProductID:[dict[@"id"] integerValue]];
+        [productWithPriceDetailTableViewController setProductID:[dict[@"barcode_id"] integerValue]];
     }
     
 }
