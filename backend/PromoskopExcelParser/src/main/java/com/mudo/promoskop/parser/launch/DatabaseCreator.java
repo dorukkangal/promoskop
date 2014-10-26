@@ -3,9 +3,9 @@ package com.mudo.promoskop.parser.launch;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mudo.promoskop.parser.model.Product;
 import com.mudo.promoskop.parser.service.HibernateService;
 import com.mudo.promoskop.parser.util.ExcelParser;
-import com.mudo.promoskop.web.model.Product;
 
 public class DatabaseCreator {
 

@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.mudo.promoskop.parser.model.Product;
 import com.mudo.promoskop.parser.util.HibernateUtil;
-import com.mudo.promoskop.web.model.Product;
 
 public class HibernateService {
 
