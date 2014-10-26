@@ -67,6 +67,7 @@
     [self.capture start];
     self.capture.delegate = self;
     self.capture.layer.frame = self.view.bounds;
+
     [self.view.layer addSublayer:self.capture.layer];
     [self.scanDescriptionLabel setText:@"Hold up to a barcode to scan"];
     [self.view bringSubviewToFront:self.imageView];
@@ -80,6 +81,8 @@
     layer.backgroundColor = [UIColor colorWithRed:182 / 255.0f  green:0.f blue:.0f alpha:.3f].CGColor;
     layer.zPosition = -5;
     [self.scannerImageView.layer addSublayer:layer];
+    
+    self.capture.scanRect = CGRectMake(0, CGRectGetMaxY(self.upperImageView.frame), self.view.frame.size.width,  CGRectGetMinY(self.imageView.frame) -CGRectGetMaxY(self.upperImageView.frame) );
     
 //    self.scannerImageView.layer.shadowColor = [UIColor colorWithRed:182 / 255.0f  green:0.f blue:.0f alpha:1.f].CGColor;
 //    self.scannerImageView.layer.shadowOffset = CGSizeMake(0, -2);
