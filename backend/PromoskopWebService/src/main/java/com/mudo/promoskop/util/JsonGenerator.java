@@ -66,7 +66,7 @@ public class JsonGenerator {
 				branchResponse.setBranchName(branch.getName());
 				branchResponse.setBranchAddress(branch.getAddress());
 				branchResponse.setLatitude(branch.getLatitude());
-				branchResponse.setLongtitude(branch.getLongtitude());
+				branchResponse.setLongitude(branch.getLongitude());
 
 				Store store = branch.getStore();
 				if (store != null) {
