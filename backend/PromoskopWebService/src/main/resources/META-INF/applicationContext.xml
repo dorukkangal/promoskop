@@ -7,7 +7,7 @@
 	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.mudo.promoskop.web" />
+	<context:component-scan base-package="com.mudo.promoskop" />
 	<context:property-placeholder location="classpath*:*.properties" />
 	<mvc:annotation-driven />
 
@@ -30,10 +30,10 @@
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${database.driverClassName}" />
-		<property name="url" value="${database.url}" />
-		<property name="username" value="${database.username}" />
-		<property name="password" value="${database.password}" />
+		<property name="driverClassName" value="${hibernate.connection.driverClass}" />
+		<property name="url" value="${hibernate.connection.url}" />
+		<property name="username" value="${hibernate.connection.username}" />
+		<property name="password" value="${hibernate.connection.password}" />
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -44,7 +44,7 @@
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="false" />
 				<property name="showSql" value="true" />
-				<property name="databasePlatform" value="${database.dialect}" />
+				<property name="databasePlatform" value="${hibernate.dialect}" />
 			</bean>
 		</property>
 	</bean>
@@ -54,6 +54,6 @@
 	</bean>
 
 	<!-- Services -->
-	<bean id="contextApplicationContextProvider" class="com.mudo.promoskop.web.util.AppContext" />
-	<bean id="productService" class="com.mudo.promoskop.web.service.ProductServiceImpl" />
+	<bean id="contextApplicationContextProvider" class="com.mudo.promoskop.util.AppContext" />
+	<bean id="productService" class="com.mudo.promoskop.service.ProductServiceImpl" />
 </beans>

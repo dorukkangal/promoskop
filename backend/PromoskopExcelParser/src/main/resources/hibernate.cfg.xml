@@ -5,16 +5,19 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/promoskop</property>
-		<property name="connection.username">root</property>
-		<property name="connection.password">password</property>
+		<!-- <property name="dialect">${hibernate.dialect}</property> -->
+		<!-- <property name="connection.driver_class">${hibernate.driverClassName}</property> -->
+		<!-- <property name="connection.url">${hibernate.url}</property> -->
+		<!-- <property name="connection.username">${hibernate.username}</property> -->
+		<!-- <property name="connection.password">${hibernate.password}</property> -->
+
 		<property name="show_sql">false</property>
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="com.mudo.promoskop.parser.model.Branch" />
-		<mapping class="com.mudo.promoskop.parser.model.Product" />
-		<mapping class="com.mudo.promoskop.parser.model.Store" />
+		<mapping class="com.mudo.promoskop.model.Branch" />
+		<mapping class="com.mudo.promoskop.model.Product" />
+		<mapping class="com.mudo.promoskop.model.ProductBranch" />
+		<mapping class="com.mudo.promoskop.model.ProductBranchCompositeKey" />
+		<mapping class="com.mudo.promoskop.model.Store" />
 	</session-factory>
 </hibernate-configuration>
