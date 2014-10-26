@@ -28,7 +28,7 @@ public class Branch implements Serializable {
 
 	private double latitude;
 
-	private double longtitude;
+	private double longitude;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
 	@JoinColumn(name = "store_id")
@@ -69,12 +69,12 @@ public class Branch implements Serializable {
 		this.latitude = latitude;
 	}
 
-	public double getLongtitude() {
-		return longtitude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLongtitude(double longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public Store getStore() {
