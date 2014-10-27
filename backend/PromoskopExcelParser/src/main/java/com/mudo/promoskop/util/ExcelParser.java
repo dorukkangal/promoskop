@@ -32,6 +32,10 @@ public class ExcelParser {
 
 					String productName = getProductName(row);
 					product.setName(productName);
+
+					String productUrl = getProductUrl(row);
+					product.setUrl(productUrl);
+
 					productList.add(product);
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
@@ -55,6 +59,16 @@ public class ExcelParser {
 	private String getProductName(Row row) {
 		try {
 			Cell cell = row.getCell(1);
+			return getStringCellValue(cell);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private String getProductUrl(Row row) {
+		try {
+			Cell cell = row.getCell(2);
 			return getStringCellValue(cell);
 		} catch (Exception e) {
 			e.printStackTrace();
