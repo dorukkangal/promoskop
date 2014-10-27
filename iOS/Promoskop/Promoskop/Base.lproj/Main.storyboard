@@ -33,12 +33,40 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="XcN-Nl-MDO"/>
                                 </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bce-AY-Vkq">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="lnv-zp-A91" style="IBUITableViewCellStyleDefault" id="Snz-Lw-aZO">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Snz-Lw-aZO" id="dFU-Gx-Gjz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lnv-zp-A91">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="e4L-l7-YPB"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="3ng-Xa-Own"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="cQX-iK-IZS" secondAttribute="width" id="0Rb-wU-c5T"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="bce-AY-Vkq" secondAttribute="bottom" id="9nt-Ak-yNm"/>
                             <constraint firstAttribute="centerX" secondItem="cQX-iK-IZS" secondAttribute="centerX" id="CfV-11-PW4"/>
+                            <constraint firstAttribute="trailing" secondItem="bce-AY-Vkq" secondAttribute="trailing" id="FYa-1l-SQK"/>
+                            <constraint firstItem="bce-AY-Vkq" firstAttribute="top" secondItem="cQX-iK-IZS" secondAttribute="bottom" id="UY2-7V-AAU"/>
                             <constraint firstItem="cQX-iK-IZS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="kcP-jr-xmO"/>
+                            <constraint firstItem="bce-AY-Vkq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="o4e-ft-kwy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Gha-tm-LIV">
@@ -50,6 +78,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="cQX-iK-IZS" id="pCw-9H-hxv"/>
+                        <outlet property="tableView" destination="bce-AY-Vkq" id="t9r-d6-B4O"/>
                         <segue destination="5wv-42-Vo7" kind="show" identifier="SearchedProductsViewController" id="ika-in-WRd"/>
                     </connections>
                 </viewController>

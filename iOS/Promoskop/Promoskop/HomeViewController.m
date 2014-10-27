@@ -10,13 +10,15 @@
 #import <AFNetworking.h>
 #import "Globals.h"
 #import "SearchedProductsViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
-@interface HomeViewController ()<UISearchBarDelegate>
+@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *productsArray;
 @end
 
 @implementation HomeViewController
@@ -39,6 +41,18 @@
 
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
+    NSDictionary *dic = self.productsArray[indexPath.row];
+    [cell.imageView sd_setImageWithURL:dic[@"product_url"]];
+    [cell.textLabel setText:dic[@"product_name"]];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.productsArray.count;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"SearchedProductsViewController"]){
         if([sender isKindOfClass:[UISearchBar class]]){
@@ -56,5 +70,24 @@
             }];
         }
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if(searchText.length >= 2 ){
+        AFHTTPRequestOperationManager *operationManagaer = [AFHTTPRequestOperationManager manager];
+        [operationManagaer GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,searchText]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            self.productsArray = (NSArray *)responseObject;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error Description %@", [error description]);
+        }];
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
 }
 @end
