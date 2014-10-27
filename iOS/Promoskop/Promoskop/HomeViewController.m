@@ -15,7 +15,6 @@
 @interface HomeViewController ()<UISearchBarDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UIButton *btnGo;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
@@ -31,10 +30,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)btnGoPressed:(id)sender {
-    //Pass to the other view
 }
 
 

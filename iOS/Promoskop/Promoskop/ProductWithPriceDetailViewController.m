@@ -32,7 +32,6 @@
 @property (nonatomic, assign) NSInteger locationRequestID;
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSDictionary *responseDict;
-@property (nonatomic) BOOL isMapOnScreen;
 @property (nonatomic, strong) CLLocation *currentLocation;
 @property (nonatomic, strong) SMCalloutView *calloutView;
 @property (nonatomic, strong) ASMediaFocusManager *mediaFocusManager;
@@ -57,8 +56,6 @@
     hud.labelText = @"Fetching Data";
     hud.mode = MBProgressHUDModeIndeterminate;
     
-
-    self.isMapOnScreen = NO;
     
     self.mapView.delegate = self;
     
@@ -179,15 +176,13 @@
         UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
         productNameLabel.text = self.responseDict[@"product_name"];
         
-        
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
-//        cell.imageView.bounds = CGRectMake(0,0,75,75);
-//        cell.imageView.frame = CGRectMake(0,0,75,75);
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:100];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//        imageView.contentMode = UIViewContentModeScaleAspectFit;
 
 
         // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
-        [self.mediaFocusManager installOnView:cell.imageView];
+        [self.mediaFocusManager installOnView:imageView];
 
         
         return cell;
@@ -351,7 +346,7 @@
             double lon =  [dict[@"longitude"] floatValue];
             point.coordinate = CLLocationCoordinate2DMake(lat, lon);
             point.title = [NSString stringWithFormat:@"%@ TL",dict[@"price"]];
-            point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", dict[@"store_name"], dict[@"address"]];;
+            point.subtitle = [NSString stringWithFormat:@"%@ : %@ ", dict[@"store_name"], dict[@"branch_address"]];;
             [self.mapView addAnnotation:point];
             
         }
@@ -359,32 +354,20 @@
 }
 
 
-- (IBAction)flip:(id)sender {
-    if (!self.isMapOnScreen) {
-        self.mapView.hidden = NO;
-        [UIView transitionFromView:self.tableView
-                            toView:self.mapView
-                          duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionShowHideTransitionViews
-                        completion:^(BOOL finished){
-                            self.isMapOnScreen = YES;
-                            UIBarButtonItem* mapButton = (UIBarButtonItem *)sender;
-                            [mapButton setTitle:@"List"];
-                        }];
+- (IBAction)listMapSegmentChanged:(UISegmentedControl *)sender {
+    
+    if(sender.selectedSegmentIndex == 0) {
+        [self.tableView setHidden:NO];
+        [self.mapView setHidden:YES];
     }
-    else{
-        self.mapView.hidden = YES;
-        [UIView transitionFromView:self.mapView
-                            toView:self.tableView
-                          duration:1
-                           options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionShowHideTransitionViews
-                        completion:^(BOOL finished){
-                            self.isMapOnScreen = NO;
-                            UIBarButtonItem* mapButton = (UIBarButtonItem*)sender;
-                            [mapButton setTitle:@"Map"];
-                        }];
+    else if (sender.selectedSegmentIndex == 1){
+        [self.tableView setHidden:YES];
+        [self.mapView setHidden:NO];
     }
+    
 }
+
+
 
 
 #pragma mark - ASMediaFocusDelegate
