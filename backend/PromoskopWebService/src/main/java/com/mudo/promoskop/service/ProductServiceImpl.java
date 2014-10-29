@@ -1,28 +1,30 @@
 package com.mudo.promoskop.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mudo.promoskop.model.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
-	protected static Log LOG = LogFactory.getLog(ProductService.class);
+	protected static Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
 	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	protected EntityManager em;
 
-	public Product find(int id) {
+	@Override
+	public Product findById(int id) {
 		try {
 			LOG.debug("find by id " + id + "from product");
 			return em.find(Product.class, id);
@@ -36,16 +38,14 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> findBySubString(String containText) {
-		List<Product> productList = new ArrayList<Product>();
-		try {
-			containText = "%".concat(containText).concat("%");
-			LOG.debug("find by substring: " + containText + "from product");
-			productList.addAll(em.createQuery("from Product where name like :containText").setParameter("containText", containText).getResultList());
-		} catch (NoResultException e) {
-			// e.printStackTrace();
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-		}
-		return productList;
+		containText = "%".concat(containText).concat("%");
+		LOG.debug("find by substring: ".concat(containText).concat("from Product"));
+
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
+		Root<Product> root = criteria.from(Product.class);
+		criteria.where(builder.like(root.get("name").as(String.class), containText));
+		List<Product> results = em.createQuery(criteria).getResultList();
+		return results;
 	}
 }

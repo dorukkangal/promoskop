@@ -1,13 +1,10 @@
 package com.mudo.promoskop.util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonMethod;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.PropertyNamingStrategy;
@@ -34,14 +31,26 @@ public class JsonGenerator {
 		filters = new SimpleFilterProvider();
 	}
 
-	public static String generateJson(String[] ignorableFieldNames, List<Product> products) throws JsonGenerationException, JsonMappingException, IOException {
-		ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
-		return writer.writeValueAsString(initResponseBeans(products));
+	public static String generateJson(String[] ignorableFieldNames, List<Product> products) {
+		try {
+			ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
+			return writer.writeValueAsString(initResponseBeans(products));
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO hata mesaji donmeli
+			return null;
+		}
 	}
 
-	public static String generateJson(String[] ignorableFieldNames, Product products) throws JsonGenerationException, JsonMappingException, IOException {
-		ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
-		return writer.writeValueAsString(initResponseBean(products));
+	public static String generateJson(String[] ignorableFieldNames, Product products) {
+		try {
+			ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
+			return writer.writeValueAsString(initResponseBean(products));
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO hata mesaji donmeli
+			return null;
+		}
 	}
 
 	private static List<ProductResponse> initResponseBeans(List<Product> products) {
