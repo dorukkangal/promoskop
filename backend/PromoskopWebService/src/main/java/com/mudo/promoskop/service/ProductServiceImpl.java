@@ -2,42 +2,37 @@ package com.mudo.promoskop.service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.NoResultException;
 
-import org.hibernate.annotations.QueryHints;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mudo.promoskop.dao.ProductDao;
 import com.mudo.promoskop.model.Product;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	protected static Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
-	@PersistenceContext
-	private EntityManager em;
+	@Autowired
+	private ProductDao productDao;
 
 	@Override
 	public Product findById(int id) {
-		LOG.debug("find by id " + id + "from product");
-		return em.find(Product.class, id);
+		try {
+			return productDao.findById(id);
+		} catch (NoResultException e) {
+			// TODO 404
+			return null;
+		}
 	}
 
 	@Override
 	public List<Product> findBySubString(String containText) {
-		containText = "%".concat(containText).concat("%");
-		LOG.debug("find by substring: ".concat(containText).concat("from Product"));
-
-		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
-		Root<Product> root = criteria.from(Product.class);
-		criteria.where(builder.like(root.get("name").as(String.class), containText));
-		List<Product> results = em.createQuery(criteria).setHint(QueryHints.CACHEABLE, true).getResultList();
-		return results;
+		try {
+			return productDao.findBySubString(containText);
+		} catch (NoResultException e) {
+			// TODO 404
+			return null;
+		}
 	}
 }
