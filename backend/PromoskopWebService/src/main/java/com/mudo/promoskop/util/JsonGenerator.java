@@ -1,5 +1,6 @@
 package com.mudo.promoskop.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,8 @@ public class JsonGenerator {
 		try {
 			ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
 			return writer.writeValueAsString(initResponseBeans(products));
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-			// TODO hata mesaji donmeli
 			return null;
 		}
 	}
@@ -46,9 +46,8 @@ public class JsonGenerator {
 		try {
 			ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
 			return writer.writeValueAsString(initResponseBean(products));
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-			// TODO hata mesaji donmeli
 			return null;
 		}
 	}
