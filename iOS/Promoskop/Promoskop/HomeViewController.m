@@ -11,6 +11,7 @@
 #import "Globals.h"
 #import "SearchedProductsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "ProductWithPriceDetailViewController.h"
 
 
 @interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -25,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -70,6 +71,12 @@
             }];
         }
     }
+    else if([segue.identifier isEqualToString:@"ProductWithPriceDetailViewController"]){
+        UITableViewCell *senderCell = (UITableViewCell *)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:senderCell];
+        ProductWithPriceDetailViewController *productWithPriceDetailViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
+        [productWithPriceDetailViewController setProductID:[self.productsArray[indexPath.row][@"barcode_id"]integerValue]];
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -90,4 +97,5 @@
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     [self.searchBar resignFirstResponder];
 }
+
 @end

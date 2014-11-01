@@ -50,6 +50,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GrC-45-Clv" kind="show" identifier="ProductWithPriceDetailViewController" id="a2G-7O-34u"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -683,6 +686,6 @@
         <image name="barcode_scanner-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="heP-cl-xfh"/>
+        <segue reference="bIR-2y-Zbb"/>
     </inferredMetricsTieBreakers>
 </document>
