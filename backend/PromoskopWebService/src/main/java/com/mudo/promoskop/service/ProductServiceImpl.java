@@ -3,12 +3,12 @@ package com.mudo.promoskop.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.hibernate.annotations.QueryHints;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,19 +20,12 @@ public class ProductServiceImpl implements ProductService {
 	protected static Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
 	@PersistenceContext
-	protected EntityManager em;
+	private EntityManager em;
 
 	@Override
 	public Product findById(int id) {
-		try {
-			LOG.debug("find by id " + id + "from product");
-			return em.find(Product.class, id);
-		} catch (NoResultException e) {
-			return null;
-		} catch (Exception e) {
-			LOG.error(e.getMessage(), e);
-			return null;
-		}
+		LOG.debug("find by id " + id + "from product");
+		return em.find(Product.class, id);
 	}
 
 	@Override
@@ -44,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
 		Root<Product> root = criteria.from(Product.class);
 		criteria.where(builder.like(root.get("name").as(String.class), containText));
-		List<Product> results = em.createQuery(criteria).getResultList();
+		List<Product> results = em.createQuery(criteria).setHint(QueryHints.CACHEABLE, true).getResultList();
 		return results;
 	}
 }

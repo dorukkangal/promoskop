@@ -6,12 +6,23 @@
 	<persistence-unit name="persistenceUnit"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
 			<property name="hibernate.dialect" value="${hibernate.dialect}" />
 			<property name="hibernate.hbm2ddl.auto" value="none" />
 			<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
 			<property name="hibernate.connection.charSet" value="UTF-8" />
 			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Caching properties -->
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
+			<property name="net.sf.ehcache.configurationResourceName"
+				value="/ehcache.xml" />
+			<property name="hibernate.generate_statistics" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>
