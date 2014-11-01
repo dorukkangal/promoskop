@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -20,7 +19,7 @@ import com.mudo.promoskop.model.Product;
 public class ProductServiceImpl implements ProductService {
 	protected static Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
-	@PersistenceContext(type = PersistenceContextType.EXTENDED)
+	@PersistenceContext
 	protected EntityManager em;
 
 	@Override
