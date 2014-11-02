@@ -1,5 +1,5 @@
 //
-//  LeftMenuViewController.h
+//  ShoppingListViewController.h
 //  Promoskop
 //
 //  Created by Mustafa Besnili on 02/11/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
-
-
+@interface ShoppingListViewController : UIViewController
 
 @end

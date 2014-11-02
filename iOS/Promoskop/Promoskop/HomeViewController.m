@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import <AFNetworking.h>
+#import "BasicCell.h"
 #import "Globals.h"
 #import "SearchedProductsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -53,7 +54,7 @@
         [self.revealButtonItem setTarget:self.revealViewController];
         [self.revealButtonItem setAction:@selector(revealToggle:)];
         [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        [revealViewController.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
 }
 
@@ -81,17 +82,13 @@
 
 #pragma mark UITableViewDataSource vs UITableViewDelegate methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
+    BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
     NSDictionary *dic = self.productsArray[indexPath.row];
-    
-    UIImageView *leftImageView = (UIImageView *)[cell.contentView viewWithTag:100];
-    [leftImageView setContentMode:UIViewContentModeScaleAspectFit];
-    [leftImageView sd_setImageWithURL:dic[@"product_url"]];
-    
-    UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
-    productNameLabel.preferredMaxLayoutWidth = self.view.frame.size.width - CGRectGetMaxX(leftImageView.frame)- 15;
-    [productNameLabel setText:dic[@"product_name"]];
-    
+
+    [cell.leftImageView setContentMode:UIViewContentModeScaleAspectFit];
+    [cell.leftImageView sd_setImageWithURL:dic[@"product_url"]];
+    cell.descriptionLabel.preferredMaxLayoutWidth = self.view.frame.size.width - CGRectGetMinX(cell.descriptionLabel.frame) - 15;
+    [cell.descriptionLabel setText:dic[@"product_name"]];
     return cell;
 }
 
@@ -136,11 +133,11 @@
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position{
     if(position == FrontViewPositionRight){
         NSLog(@"Position FronViewPositionLeftSideMost");
-        self.view.userInteractionEnabled = NO;
+        self.searchBar.userInteractionEnabled = NO;
     }
     else if(position == FrontViewPositionLeft){
         NSLog(@"Position FrontViewPositionLeft");
-        self.view.userInteractionEnabled = YES;
+        self.searchBar.userInteractionEnabled = YES;
     }
 }
 
