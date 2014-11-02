@@ -45,8 +45,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
     NSDictionary *dic = self.productsArray[indexPath.row];
-    [cell.imageView sd_setImageWithURL:dic[@"product_url"]];
-    [cell.textLabel setText:dic[@"product_name"]];
+    
+    UIImageView *leftImageView = (UIImageView *)[cell.contentView viewWithTag:100];
+    [leftImageView setContentMode:UIViewContentModeScaleAspectFit];
+    [leftImageView sd_setImageWithURL:dic[@"product_url"]];
+    
+    UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
+    [productNameLabel setText:dic[@"product_name"]];
+    
     return cell;
 }
 
