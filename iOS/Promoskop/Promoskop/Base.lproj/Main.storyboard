@@ -325,37 +325,49 @@
                             <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9cF-04-UPN">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </mapView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-4N-K83">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ciH-4N-K83">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TopCell" rowHeight="70" id="50R-lE-Vhz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TopCell" rowHeight="122" id="50R-lE-Vhz">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50R-lE-Vhz" id="ehS-GT-aQp">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product name Product name Product name Product name Product name Product name Product name Product name Product name " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="524" translatesAutoresizingMaskIntoConstraints="NO" id="h80-zH-9iT">
-                                                    <rect key="frame" x="76" y="10" width="516" height="50"/>
+                                                    <rect key="frame" x="76" y="10" width="516" height="53"/>
                                                     <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="13"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puO-KH-Gb9">
-                                                    <rect key="frame" x="15" y="10" width="53" height="52"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vux-va-1fp">
+                                                    <rect key="frame" x="393" y="70" width="199" height="45"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="Jv3-tL-kPb"/>
+                                                        <constraint firstAttribute="width" constant="199" id="Kif-LL-AvL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Alisveris Listeme Ekle"/>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puO-KH-Gb9">
+                                                    <rect key="frame" x="15" y="10" width="53" height="53"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="53" id="Afw-AE-1xf"/>
+                                                        <constraint firstAttribute="height" constant="53" id="YlP-g7-Ibe"/>
                                                         <constraint firstAttribute="width" constant="53" id="rmB-fV-Xoi"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Vux-va-1fp" secondAttribute="trailing" constant="8" id="5fA-Ma-K63"/>
                                                 <constraint firstItem="h80-zH-9iT" firstAttribute="leading" secondItem="puO-KH-Gb9" secondAttribute="trailing" constant="8" id="GUE-Ia-1Ai"/>
-                                                <constraint firstAttribute="bottom" secondItem="h80-zH-9iT" secondAttribute="bottom" constant="9" id="I9L-aY-dLY"/>
                                                 <constraint firstItem="puO-KH-Gb9" firstAttribute="leading" secondItem="ehS-GT-aQp" secondAttribute="leading" constant="15" id="IO6-b1-sNh"/>
-                                                <constraint firstAttribute="bottom" secondItem="puO-KH-Gb9" secondAttribute="bottom" constant="7" id="Kdt-Hn-PBu"/>
                                                 <constraint firstItem="h80-zH-9iT" firstAttribute="top" secondItem="ehS-GT-aQp" secondAttribute="top" constant="10" id="aHl-gO-rr4"/>
                                                 <constraint firstAttribute="trailing" secondItem="h80-zH-9iT" secondAttribute="trailing" constant="8" id="ayb-qA-vYN"/>
                                                 <constraint firstItem="puO-KH-Gb9" firstAttribute="top" secondItem="ehS-GT-aQp" secondAttribute="top" constant="10" id="bd7-2y-G0u"/>
+                                                <constraint firstItem="Vux-va-1fp" firstAttribute="top" secondItem="h80-zH-9iT" secondAttribute="bottom" constant="7" id="eE5-Sb-DfA"/>
+                                                <constraint firstItem="puO-KH-Gb9" firstAttribute="height" secondItem="h80-zH-9iT" secondAttribute="height" id="ovh-yE-eft"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -464,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aml-jg-b5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="985"/>
+            <point key="canvasLocation" x="1001" y="978"/>
         </scene>
         <!--Map For Branch View Controller-->
         <scene sceneID="fg2-bf-m26">
@@ -750,6 +762,6 @@
         <image name="menu" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a2G-7O-34u"/>
+        <segue reference="heP-cl-xfh"/>
     </inferredMetricsTieBreakers>
 </document>
