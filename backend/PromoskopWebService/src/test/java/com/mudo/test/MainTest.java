@@ -32,6 +32,7 @@ public class MainTest {
 		json = JsonGenerator.generateJson(new String[] {}, product);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
+		elapsedTime.refreshTime();
 
 		product = productService.findById(productId);
 		json = JsonGenerator.generateJson(new String[] {}, product);
@@ -50,6 +51,7 @@ public class MainTest {
 		json = JsonGenerator.generateJson(new String[] { "branches" }, productList);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
+		elapsedTime.refreshTime();
 
 		productList = productService.findBySubString(text);
 		json = JsonGenerator.generateJson(new String[] { "branches" }, productList);
