@@ -36,8 +36,11 @@
 		9B09543619F710840047079D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B09543519F710840047079D /* Globals.m */; };
 		9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */; };
 		9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */; };
+		9B0A0F6B1A0669D100BD97A8 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */; };
+		9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
+		9B4919991A067BF40039C67C /* ShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4919981A067BF40039C67C /* ShoppingListViewController.m */; };
 		9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
 		9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */; };
@@ -113,10 +116,16 @@
 		9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColor.m"; sourceTree = "<group>"; };
 		9B0A0F661A06573900BD97A8 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
 		9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		9B0A0F691A0669D100BD97A8 /* BasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCell.h; sourceTree = "<group>"; };
+		9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCell.m; sourceTree = "<group>"; };
+		9B0A0F6C1A06704600BD97A8 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
+		9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
+		9B4919971A067BF40039C67C /* ShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListViewController.h; sourceTree = "<group>"; };
+		9B4919981A067BF40039C67C /* ShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListViewController.m; sourceTree = "<group>"; };
 		9B8EDBAC19FD8E7B0006A427 /* BranchDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchDetailTableViewController.h; sourceTree = "<group>"; };
 		9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchDetailTableViewController.m; sourceTree = "<group>"; };
 		9BAC14CB19ED8BCE00D53D8C /* Promoskop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Promoskop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +242,8 @@
 			children = (
 				9B0A0F631A06540600BD97A8 /* UIColor+AppColor.h */,
 				9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */,
+				9B0A0F6C1A06704600BD97A8 /* UIImage+Utility.h */,
+				9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -254,6 +265,8 @@
 				9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */,
 				9B0A0F661A06573900BD97A8 /* LeftMenuViewController.h */,
 				9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */,
+				9B4919971A067BF40039C67C /* ShoppingListViewController.h */,
+				9B4919981A067BF40039C67C /* ShoppingListViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -281,6 +294,8 @@
 			children = (
 				3A32873119EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.h */,
 				3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */,
+				9B0A0F691A0669D100BD97A8 /* BasicCell.h */,
+				9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -531,8 +546,10 @@
 				3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
 				9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */,
+				9B4919991A067BF40039C67C /* ShoppingListViewController.m in Sources */,
 				9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */,
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
+				9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */,
 				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,
 				3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
@@ -541,6 +558,7 @@
 				3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.m in Sources */,
 				3A32873319EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m in Sources */,
 				3A93481D19EDC37600AF2665 /* FMResultSet.m in Sources */,
+				9B0A0F6B1A0669D100BD97A8 /* BasicCell.m in Sources */,
 				3A93481A19EDC37600AF2665 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
