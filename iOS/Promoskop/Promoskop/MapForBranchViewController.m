@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *storeName;
 @property (weak, nonatomic) IBOutlet UILabel *storeAddress;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property(strong,nonatomic) MKPointAnnotation *point;
 
 @end
 
@@ -35,13 +36,14 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(branchCoordinate, 16000, 16000);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:NO];
     
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-
-    point.coordinate = branchCoordinate;
-    point.title = [NSString stringWithFormat:@"%@ TL",self.selectedBranch[@"price"]];
+    
+    self.point = [[MKPointAnnotation alloc] init];
+    
+    self.point.coordinate = branchCoordinate;
+    self.point.title = [NSString stringWithFormat:@"%@ TL",self.selectedBranch[@"price"]];
     double distance = [self.selectedBranch[@"distance"] floatValue];
-    point.subtitle = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
-    [self.mapView addAnnotation:point];
+    self.point.subtitle = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+    [self.mapView addAnnotation:self.point];
     [self.mapView selectAnnotation:[[self.mapView annotations] lastObject] animated:NO];
     
 }
@@ -50,6 +52,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)directionsToHerePressed:(id)sender {
+    
+    MKPlacemark* placemark = [[MKPlacemark alloc] initWithCoordinate:self.point.coordinate addressDictionary:nil];
+    
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    mapItem.name = [NSString stringWithFormat:@"%@-%@",self.selectedBranch[@"store_name"],self.selectedBranch[@"branch_name"]] ;
+    [mapItem openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking}];
+    
 }
 
 /*
