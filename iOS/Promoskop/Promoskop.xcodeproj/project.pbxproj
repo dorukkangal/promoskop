@@ -35,6 +35,7 @@
 		3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1E19F01EF900743349 /* MapForBranchViewController.m */; };
 		9B09543619F710840047079D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B09543519F710840047079D /* Globals.m */; };
 		9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */; };
+		9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
 		9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */; };
@@ -110,6 +111,8 @@
 		9B09543519F710840047079D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		9B0A0F631A06540600BD97A8 /* UIColor+AppColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColor.h"; sourceTree = "<group>"; };
 		9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColor.m"; sourceTree = "<group>"; };
+		9B0A0F661A06573900BD97A8 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				3ADCFD1E19F01EF900743349 /* MapForBranchViewController.m */,
 				9B8EDBAC19FD8E7B0006A427 /* BranchDetailTableViewController.h */,
 				9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */,
+				9B0A0F661A06573900BD97A8 /* LeftMenuViewController.h */,
+				9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
 				3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
+				9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */,
 				9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */,
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
 				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,

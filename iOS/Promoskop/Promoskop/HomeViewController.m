@@ -12,40 +12,74 @@
 #import "SearchedProductsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ProductWithPriceDetailViewController.h"
+#import <SWRevealViewController.h>
 
 
-@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *productsArray;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 @end
 
+
 @implementation HomeViewController
+#pragma mark view life cycle methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    // Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self setupUI];
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
 }
 
+#pragma mark UI utility methods
 
+- (void)setupUI{
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    [self setupRevealMenu];
+}
+
+- (void)setupRevealMenu{
+    SWRevealViewController *revealViewController = self.revealViewController;
+    revealViewController.delegate = self;
+    if(revealViewController){
+        [self.revealButtonItem setTarget:self.revealViewController];
+        [self.revealButtonItem setAction:@selector(revealToggle:)];
+        [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        [revealViewController.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+    }
+}
+
+#pragma mark UISearchBar delegate methods
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSLog(@"[HomeViewController] => searchBarSearchButtonClicked");
     [self performSegueWithIdentifier:@"SearchedProductsViewController" sender:searchBar];
 
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if(searchText.length >= 2 ){
+        AFHTTPRequestOperationManager *operationManagaer = [AFHTTPRequestOperationManager manager];
+        [operationManagaer GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,searchText]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"%@", responseObject);
+            self.productsArray = (NSArray *)responseObject;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error Description %@", [error description]);
+        }];
+    }
+}
+
+#pragma mark UITableViewDataSource vs UITableViewDelegate methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
     NSDictionary *dic = self.productsArray[indexPath.row];
@@ -65,6 +99,12 @@
     return self.productsArray.count;
 }
 
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
+}
+
+
+#pragma mark Navigation segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"SearchedProductsViewController"]){
         if([sender isKindOfClass:[UISearchBar class]]){
@@ -90,23 +130,19 @@
     }
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if(searchText.length >= 2 ){
-        AFHTTPRequestOperationManager *operationManagaer = [AFHTTPRequestOperationManager manager];
-        [operationManagaer GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,searchText]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@", responseObject);
-            self.productsArray = (NSArray *)responseObject;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error Description %@", [error description]);
-        }];
+#pragma mark SWRevealViewController delegate
+
+
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position{
+    if(position == FrontViewPositionRight){
+        NSLog(@"Position FronViewPositionLeftSideMost");
+        self.view.userInteractionEnabled = NO;
+    }
+    else if(position == FrontViewPositionLeft){
+        NSLog(@"Position FrontViewPositionLeft");
+        self.view.userInteractionEnabled = YES;
     }
 }
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    [self.searchBar resignFirstResponder];
-}
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ddl-Ek-obr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1yn-Sw-jgh">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -91,6 +91,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Gha-tm-LIV">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="QUq-dU-zup"/>
                         <barButtonItem key="rightBarButtonItem" image="barcode_scanner-50" id="e2h-wq-khT">
                             <connections>
                                 <segue destination="7fT-FG-xTv" kind="presentation" id="kz1-GN-na3"/>
@@ -98,6 +99,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="revealButtonItem" destination="QUq-dU-zup" id="gMB-4i-Nmx"/>
                         <outlet property="searchBar" destination="cQX-iK-IZS" id="pCw-9H-hxv"/>
                         <outlet property="tableView" destination="bce-AY-Vkq" id="t9r-d6-B4O"/>
                         <segue destination="5wv-42-Vo7" kind="show" identifier="SearchedProductsViewController" id="ika-in-WRd"/>
@@ -105,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="135"/>
+            <point key="canvasLocation" x="57" y="125"/>
         </scene>
         <!--Searched Products View Controller-->
         <scene sceneID="fKr-VO-AmE">
@@ -252,6 +254,46 @@
             </objects>
             <point key="canvasLocation" x="1843" y="137"/>
         </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="fv6-OF-hcm">
+            <objects>
+                <viewController id="1yn-Sw-jgh" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c5p-85-A9y"/>
+                        <viewControllerLayoutGuide type="bottom" id="G12-QQ-M87"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DG7-6v-TeM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="4C7-3v-Ud2" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="pgf-I3-7gl"/>
+                        <segue destination="ddl-Ek-obr" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="h5l-IB-OuU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YyV-EU-kmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1693" y="-121"/>
+        </scene>
+        <!--Left Menu View Controller-->
+        <scene sceneID="YOq-FC-IHS">
+            <objects>
+                <viewController id="4C7-3v-Ud2" customClass="LeftMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r2u-Oc-DdE"/>
+                        <viewControllerLayoutGuide type="bottom" id="nYE-yK-Us3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fGK-gA-ukc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nJk-qv-l1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-811" y="-641"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ce-ij-C1C">
             <objects>
@@ -266,7 +308,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPd-wU-NgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-700" y="137"/>
+            <point key="canvasLocation" x="-764" y="125"/>
         </scene>
         <!--Product With Price Detail View Controller-->
         <scene sceneID="ruK-JH-lcu">
@@ -702,6 +744,7 @@
     </scenes>
     <resources>
         <image name="barcode_scanner-50" width="25" height="25"/>
+        <image name="menu" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a2G-7O-34u"/>
