@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mudo.promoskop.dao.ProductDao;
+import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
-import com.mudo.promoskop.util.exception.ResourceNotFoundException;
 
 @Service
 @Transactional
@@ -28,8 +28,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> findBySubString(String containText) {
 		List<Product> l = productDao.findBySubString(containText);
-		if (l.isEmpty())
-			throw new ResourceNotFoundException();
+		// if (l.isEmpty())
+		// throw new
+		// ResourceNotFoundException(ResourceNotFoundException.ERROR_404);
 		return l;
 	}
 }
