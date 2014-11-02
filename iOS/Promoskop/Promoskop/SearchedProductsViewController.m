@@ -77,4 +77,7 @@
     [self.productsTableView reloadData];
 }
 
+- (IBAction)backButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

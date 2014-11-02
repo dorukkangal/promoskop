@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Arama-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="HomeViewController" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Ürün Ara" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Ürün Ara" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-iK-IZS">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="hYA-g7-XXI"/>
@@ -92,9 +92,12 @@
                             <constraint firstItem="bce-AY-Vkq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="o4e-ft-kwy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="Gha-tm-LIV">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="QUq-dU-zup"/>
+                    <navigationItem key="navigationItem" title="Arama" id="Gha-tm-LIV">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="QUq-dU-zup">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="barcode_scanner-50" id="e2h-wq-khT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="7fT-FG-xTv" kind="presentation" id="kz1-GN-na3"/>
                             </connections>
@@ -111,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="57" y="125"/>
         </scene>
-        <!--Searched Products View Controller-->
+        <!--Aranılan Ürünler-->
         <scene sceneID="fKr-VO-AmE">
             <objects>
                 <viewController id="5wv-42-Vo7" customClass="SearchedProductsViewController" sceneMemberID="viewController">
@@ -174,6 +177,14 @@
                             <constraint firstItem="8i3-AB-k9G" firstAttribute="top" secondItem="55a-zh-wNr" secondAttribute="top" id="xFn-ya-mva"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Aranılan Ürünler" id="nsO-9f-PPA">
+                        <barButtonItem key="leftBarButtonItem" image="left-25" id="F2t-to-nq2">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="5wv-42-Vo7" id="Zfh-Yy-e4s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="productsTableView" destination="8i3-AB-k9G" id="wye-yJ-Wuz"/>
                     </connections>
@@ -239,6 +250,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Barcode Scanner" id="jjx-tm-BDz">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="T3h-9i-JmQ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancel:" destination="SYr-cw-rar" id="dhF-AS-8zs"/>
                             </connections>
@@ -351,7 +363,7 @@
             </objects>
             <point key="canvasLocation" x="-764" y="-601"/>
         </scene>
-        <!--Shopping List View Controller-->
+        <!--Alışveriş Listesi-->
         <scene sceneID="hXJ-I3-mz9">
             <objects>
                 <viewController id="0Pw-wL-BbY" customClass="ShoppingListViewController" sceneMemberID="viewController">
@@ -364,16 +376,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gj7-jz-eI2"/>
+                    <navigationItem key="navigationItem" title="Alışveriş Listesi" id="gj7-jz-eI2">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="ENI-aw-geN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="revealButtonItem" destination="ENI-aw-geN" id="TG7-kQ-icH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPi-MT-Lvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1068" y="-900"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="0Ce-ij-C1C">
             <objects>
-                <navigationController id="ddl-Ek-obr" sceneMemberID="viewController">
+                <navigationController id="ddl-Ek-obr" customClass="CustomNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZyY-UC-5dy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -520,6 +539,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="G6k-yh-zmW">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="left-25" id="iXr-bs-g9h">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="GrC-45-Clv" id="5Y0-uU-Sew"/>
+                            </connections>
+                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="MRy-Ag-hFd">
                             <rect key="frame" x="243" y="7" width="114" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -527,6 +552,7 @@
                                 <segment title="List"/>
                                 <segment title="Map"/>
                             </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="listMapSegmentChanged:" destination="GrC-45-Clv" eventType="valueChanged" id="UFf-Vj-ZsI"/>
                             </connections>
@@ -542,7 +568,7 @@
             </objects>
             <point key="canvasLocation" x="785" y="912"/>
         </scene>
-        <!--Map For Branch View Controller-->
+        <!--Yol tarifi-->
         <scene sceneID="fg2-bf-m26">
             <objects>
                 <viewController id="ZvM-WK-ULV" customClass="MapForBranchViewController" sceneMemberID="viewController">
@@ -625,6 +651,14 @@
                             <constraint firstItem="wpJ-KU-vgq" firstAttribute="top" secondItem="aXE-0J-Feg" secondAttribute="bottom" constant="8" id="uTx-sm-Msn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Yol tarifi" id="Z7G-VH-SYg">
+                        <barButtonItem key="leftBarButtonItem" image="left-25" id="Q5V-1a-Wr9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="ZvM-WK-ULV" id="9Kt-u9-e3B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Rkn-m9-pbg" id="hvo-4M-xvu"/>
                         <outlet property="storeAddress" destination="ret-Ln-ZbV" id="1c8-RR-yEN"/>
@@ -635,7 +669,7 @@
             </objects>
             <point key="canvasLocation" x="2296" y="912"/>
         </scene>
-        <!--Branch Detail Table View Controller-->
+        <!--Market-->
         <scene sceneID="Csa-gh-wa9">
             <objects>
                 <tableViewController id="ACp-WA-bDi" customClass="BranchDetailTableViewController" sceneMemberID="viewController">
@@ -790,6 +824,14 @@
                             <outlet property="delegate" destination="ACp-WA-bDi" id="AU1-7W-FKZ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Market" id="Baq-dV-eD5">
+                        <barButtonItem key="leftBarButtonItem" image="left-25" id="sgq-mA-eCo">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="ACp-WA-bDi" id="z7m-zc-8JN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="3oD-Ia-Ldx" id="a7N-B0-w5d"/>
                         <outlet property="branchImageView" destination="97f-ew-xya" id="gEr-yW-mtN"/>
@@ -802,10 +844,10 @@
             </objects>
             <point key="canvasLocation" x="1551" y="912"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="LyG-BZ-IIZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7fT-FG-xTv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7fT-FG-xTv" customClass="CustomNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jyp-gh-D0W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -820,10 +862,10 @@
             </objects>
             <point key="canvasLocation" x="751" y="137"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Navigation Controller-->
         <scene sceneID="2DD-km-AMz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P8m-WF-uhg" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P8m-WF-uhg" customClass="CustomNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ekc-q8-Kup">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -841,10 +883,11 @@
     </scenes>
     <resources>
         <image name="barcode_scanner-50" width="25" height="25"/>
+        <image name="left-25" width="25" height="25"/>
         <image name="menu" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ndv-2k-XUR"/>
-        <segue reference="a2G-7O-34u"/>
+        <segue reference="heP-cl-xfh"/>
     </inferredMetricsTieBreakers>
 </document>

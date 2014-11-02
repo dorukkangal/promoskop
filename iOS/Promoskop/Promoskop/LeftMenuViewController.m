@@ -20,7 +20,10 @@ static NSString * const BasicCellIdentifier = @"BasicCell";
 
 
 @implementation LeftMenuViewController
+
 - (void)viewDidLoad{
+
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,5 +51,9 @@ static NSString * const BasicCellIdentifier = @"BasicCell";
     else if(indexPath.row == 1){
         [self performSegueWithIdentifier:@"ShoppingListViewController" sender:nil];
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+
 }
 @end
