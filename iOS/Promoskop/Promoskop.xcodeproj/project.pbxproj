@@ -34,6 +34,7 @@
 		3ADCFD1C19F01C0700743349 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADCFD1B19F01C0700743349 /* MapKit.framework */; };
 		3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1E19F01EF900743349 /* MapForBranchViewController.m */; };
 		9B09543619F710840047079D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B09543519F710840047079D /* Globals.m */; };
+		9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
 		9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */; };
@@ -107,6 +108,8 @@
 		91F85C72BD69284DF4F1B7AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9B09543419F710840047079D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		9B09543519F710840047079D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		9B0A0F631A06540600BD97A8 /* UIColor+AppColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColor.h"; sourceTree = "<group>"; };
+		9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColor.m"; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
@@ -222,6 +225,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9B0A0F621A0653E000BD97A8 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9B0A0F631A06540600BD97A8 /* UIColor+AppColor.h */,
+				9B0A0F641A06540600BD97A8 /* UIColor+AppColor.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		9B33684719EEF54C0049029E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +314,7 @@
 		9BAC14CD19ED8BCE00D53D8C /* Promoskop */ = {
 			isa = PBXGroup;
 			children = (
+				9B0A0F621A0653E000BD97A8 /* Category */,
 				9B33684C19EEF58B0049029E /* Utility class */,
 				9B33684B19EEF5830049029E /* Custom Cells */,
 				9B33684A19EEF57A0049029E /* Custom Views */,
@@ -512,6 +525,7 @@
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
 				3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
+				9B0A0F651A06540600BD97A8 /* UIColor+AppColor.m in Sources */,
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
 				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,
 				3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */,

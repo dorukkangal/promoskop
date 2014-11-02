@@ -35,6 +35,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSLog(@"[HomeViewController] => searchBarSearchButtonClicked");
@@ -51,6 +55,7 @@
     [leftImageView sd_setImageWithURL:dic[@"product_url"]];
     
     UILabel *productNameLabel = (UILabel *)[cell.contentView viewWithTag:101];
+    productNameLabel.preferredMaxLayoutWidth = self.view.frame.size.width - CGRectGetMaxX(leftImageView.frame)- 15;
     [productNameLabel setText:dic[@"product_name"]];
     
     return cell;
