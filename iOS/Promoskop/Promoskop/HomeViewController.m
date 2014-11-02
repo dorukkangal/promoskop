@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import <AFNetworking.h>
 #import "BasicCell.h"
+#import <Colours.h>
 #import "Globals.h"
 #import "SearchedProductsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -31,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setupUI];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -44,6 +44,7 @@
 
 - (void)setupUI{
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    [self.searchBar setBarTintColor:[UIColor blueberryColor]];
     [self setupRevealMenu];
 }
 
@@ -77,6 +78,10 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error Description %@", [error description]);
         }];
+    }
+    else if(searchText.length == 0){
+        self.productsArray = [NSArray array];
+        [self.tableView reloadData];
     }
 }
 
@@ -132,11 +137,9 @@
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position{
     if(position == FrontViewPositionRight){
-        NSLog(@"Position FronViewPositionLeftSideMost");
         self.searchBar.userInteractionEnabled = NO;
     }
     else if(position == FrontViewPositionLeft){
-        NSLog(@"Position FrontViewPositionLeft");
         self.searchBar.userInteractionEnabled = YES;
     }
 }

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DataAccessLayer.h"
+#import <Colours.h>
 
 @interface AppDelegate ()
 
@@ -18,7 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[DataAccessLayer database]copyDatabaseIfNeeded];
+//    [[DataAccessLayer database]copyDatabaseIfNeeded];
+    [[UINavigationBar appearance]setBarTintColor:[UIColor blueberryColor]];
+    [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
     return YES;
 }
 

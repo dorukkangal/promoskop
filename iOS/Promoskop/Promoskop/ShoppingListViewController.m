@@ -7,7 +7,20 @@
 //
 
 #import "ShoppingListViewController.h"
+#import <SWRevealViewController.h>
+
+@interface ShoppingListViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
+
+@end
 
 @implementation ShoppingListViewController
 
+- (void)viewDidLoad{
+    [self setupUI];
+}
+
+- (void)setupUI{
+    [self.revealButtonItem setAction:@selector(revealToggle:)];
+}
 @end
