@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.PropertyNamingStrategy;
 import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
 
+import com.mudo.promoskop.exception.InternalServerErrorException;
 import com.mudo.promoskop.model.Branch;
 import com.mudo.promoskop.model.Product;
 import com.mudo.promoskop.model.ProductBranch;
@@ -38,17 +39,27 @@ public class JsonGenerator {
 			return writer.writeValueAsString(initResponseBeans(products));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
+			return generateErrorJson(new InternalServerErrorException());
 		}
 	}
 
-	public static String generateJson(String[] ignorableFieldNames, Product products) {
+	public static String generateJson(String[] ignorableFieldNames, Product product) {
 		try {
 			ObjectWriter writer = getFilteredWriter(ignorableFieldNames);
-			return writer.writeValueAsString(initResponseBean(products));
+			return writer.writeValueAsString(initResponseBean(product));
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
+			return generateErrorJson(new InternalServerErrorException());
+		}
+	}
+
+	public static String generateErrorJson(Exception ex) {
+		try {
+			ObjectWriter writer = getFilteredWriter(new String[] { "detail_message", "cause", "stack_trace", "suppressed_exceptions", "localized_message", "suppressed" });
+			return writer.writeValueAsString(ex);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return generateErrorJson(new InternalServerErrorException());
 		}
 	}
 
