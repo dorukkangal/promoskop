@@ -28,9 +28,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> findBySubString(String containText) {
 		List<Product> l = productDao.findBySubString(containText);
-		// if (l.isEmpty())
-		// throw new
-		// ResourceNotFoundException(ResourceNotFoundException.ERROR_404);
+//		if (l.isEmpty())
+//			throw new ResourceNotFoundException();
 		return l;
 	}
 }
