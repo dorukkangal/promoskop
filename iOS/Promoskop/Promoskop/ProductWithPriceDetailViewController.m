@@ -19,6 +19,7 @@
 #import "SMCalloutView.h"
 #import <MBProgressHUD.h>
 #import "ASMediaFocusManager.h"
+#import "ShoppingCartManager.h"
 
 #define TABLEVIEW_FIRST_CELL_HEIGHT 122
 #define TABLEVIEW_CELL_HEIGHT 130
@@ -36,6 +37,8 @@
 @property (nonatomic, strong) SMCalloutView *calloutView;
 @property (nonatomic, strong) ASMediaFocusManager *mediaFocusManager;
 @property (nonatomic) BOOL statusBarHidden;
+@property (nonatomic) BOOL isProductInShoppingCart;
+@property (nonatomic, strong) UIButton *btnAddRemoveShoppingCart;
 
 
 @property (strong,nonatomic) NSDictionary* selectedBranch;
@@ -66,8 +69,27 @@
     
     self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
     self.mediaFocusManager.delegate = self;
+    
     self.statusBarHidden = NO;
+    
+    if ([ShoppingCartManager isProductInShoppingCart:self.productID]) {
+        self.isProductInShoppingCart = YES;
+    }
+    else{
+        self.isProductInShoppingCart = NO;
+    }
 
+}
+
+- (void)setBtnAddRemoveShoppingCart{
+    
+    if(self.isProductInShoppingCart){
+        [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listemden Cikar" forState:UIControlStateNormal];
+    }
+    else{
+        [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listeme Ekle" forState:UIControlStateNormal];
+    }
+    
 }
 
 - (void)startLocationRequest{
@@ -181,6 +203,8 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
 //        imageView.contentMode = UIViewContentModeScaleAspectFit;
 
+        self.btnAddRemoveShoppingCart = (UIButton*)[cell.contentView viewWithTag:102];
+        [self setBtnAddRemoveShoppingCart];
 
         // Tells which views need to be focusable. You can put your image views in an array and give it to the focus manager.
         [self.mediaFocusManager installOnView:imageView];
@@ -368,6 +392,22 @@
     
 }
 
+- (IBAction)addRemoveFromShoppingCartPressed:(id)sender {
+    
+    if (self.isProductInShoppingCart) {
+        [ShoppingCartManager removeProductFromShoppingCart:self.productID];
+    }
+    else{
+        NSDictionary* product = @{@"product_id":[NSNumber numberWithInt:self.productID],
+                                  @"product_name":self.responseDict[@"product_name"],
+                                  @"product_url":self.responseDict[@"product_url"]};
+        [ShoppingCartManager addProductToShoppingCart:product];
+    }
+    
+    self.isProductInShoppingCart = !self.isProductInShoppingCart;
+    [self setBtnAddRemoveShoppingCart];
+    
+}
 
 
 
