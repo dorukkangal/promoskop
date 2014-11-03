@@ -376,7 +376,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7RF-jk-7fH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" id="aZa-H9-Cei" customClass="BasicCell">
@@ -422,14 +422,49 @@
                                     <outlet property="delegate" destination="0Pw-wL-BbY" id="8vH-II-EEf"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CL-6q-4OR">
+                                <rect key="frame" x="0.0" y="540" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="V8T-mE-2cq"/>
+                                </constraints>
+                                <state key="normal" title="HESAPLA">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-2N-lNM">
+                                <rect key="frame" x="300" y="540" width="300" height="60"/>
+                                <color key="backgroundColor" red="0.73333333333333328" green="0.070588235294117646" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Znm-Lh-m2W"/>
+                                </constraints>
+                                <state key="normal" title="SEPETI BOSALT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uOU-2N-lNM" firstAttribute="top" secondItem="7RF-jk-7fH" secondAttribute="bottom" id="1Az-nr-bgo"/>
+                            <constraint firstItem="tu6-6v-5wB" firstAttribute="top" secondItem="0CL-6q-4OR" secondAttribute="bottom" id="2E3-Rz-KGN"/>
                             <constraint firstItem="tu6-6v-5wB" firstAttribute="top" secondItem="7RF-jk-7fH" secondAttribute="bottom" id="Dfi-Cf-T6K"/>
+                            <constraint firstItem="0CL-6q-4OR" firstAttribute="width" secondItem="uOU-2N-lNM" secondAttribute="width" id="FJ2-UJ-Dee"/>
                             <constraint firstItem="7RF-jk-7fH" firstAttribute="top" secondItem="8M1-YZ-IT5" secondAttribute="top" id="G3w-Fh-dvy"/>
+                            <constraint firstAttribute="trailing" secondItem="uOU-2N-lNM" secondAttribute="trailing" id="HqX-j8-a82"/>
+                            <constraint firstItem="0CL-6q-4OR" firstAttribute="leading" secondItem="8M1-YZ-IT5" secondAttribute="leading" id="O7G-dO-EyJ"/>
+                            <constraint firstItem="uOU-2N-lNM" firstAttribute="leading" secondItem="0CL-6q-4OR" secondAttribute="trailing" id="Pm0-aA-arP"/>
+                            <constraint firstItem="0CL-6q-4OR" firstAttribute="top" secondItem="7RF-jk-7fH" secondAttribute="bottom" id="Xdv-U8-UfV"/>
+                            <constraint firstItem="tu6-6v-5wB" firstAttribute="top" secondItem="uOU-2N-lNM" secondAttribute="bottom" id="dfU-a6-5rR"/>
                             <constraint firstAttribute="trailing" secondItem="7RF-jk-7fH" secondAttribute="trailing" id="dxJ-u2-OWb"/>
+                            <constraint firstItem="uOU-2N-lNM" firstAttribute="leading" secondItem="0CL-6q-4OR" secondAttribute="trailing" id="fFd-Dd-bgx"/>
                             <constraint firstItem="7RF-jk-7fH" firstAttribute="leading" secondItem="8M1-YZ-IT5" secondAttribute="leading" id="px5-JX-9GH"/>
+                            <constraint firstItem="0CL-6q-4OR" firstAttribute="top" secondItem="7RF-jk-7fH" secondAttribute="bottom" id="vli-93-tH7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dfi-Cf-T6K"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Alışveriş Listesi" id="gj7-jz-eI2">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="ENI-aw-geN">
