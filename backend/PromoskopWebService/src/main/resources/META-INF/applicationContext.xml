@@ -27,14 +27,22 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${hibernate.connection.driverClass}" />
-		<property name="url" value="${hibernate.connection.url}" />
-		<property name="username" value="${hibernate.connection.username}" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${hibernate.connection.driverClass}" />
+		<property name="jdbcUrl" value="${hibernate.connection.url}" />
+		<property name="user" value="${hibernate.connection.username}" />
 		<property name="password" value="${hibernate.connection.password}" />
-		<property name="validationQuery" value="SELECT 1" />
-		<property name="testOnBorrow" value="true" />
+
+		<property name="minPoolSize" value="${hibernate.c3p0.min_size}" />
+		<property name="maxPoolSize" value="${hibernate.c3p0.max_size}" />
+		<property name="acquireIncrement" value="${hibernate.c3p0.acquire_increment}" />
+		<property name="maxStatements" value="${hibernate.c3p0.max_statements}" />
+		<property name="maxIdleTime" value="${hibernate.c3p0.timeout}" />
+		<property name="testConnectionOnCheckout" value="${hibernate.c3p0.testConnectionOnCheckout}" />
+		<property name="preferredTestQuery" value="${hibernate.c3p0.preferredTestQuery}" />
+		<property name="idleConnectionTestPeriod" value="${hibernate.c3p0.idle_test_period}" />
 	</bean>
+
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
