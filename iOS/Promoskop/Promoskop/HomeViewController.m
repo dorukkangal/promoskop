@@ -17,7 +17,7 @@
 #import <SWRevealViewController.h>
 
 
-@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate>
+@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -45,6 +45,7 @@
 - (void)setupUI{
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self.searchBar setBarTintColor:[UIColor blueberryColor]];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupRevealMenu];
 }
 
@@ -54,8 +55,9 @@
     if(revealViewController){
         [self.revealButtonItem setTarget:self.revealViewController];
         [self.revealButtonItem setAction:@selector(revealToggle:)];
-        [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+        [self.navigationController.navigationBar addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//        [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
 }
 
@@ -144,5 +146,12 @@
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
+}
 
 @end

@@ -9,7 +9,13 @@
 #import "CustomNavigationController.h"
 
 @implementation CustomNavigationController
+
+- (void) awakeFromNib{
+
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
+
 @end
