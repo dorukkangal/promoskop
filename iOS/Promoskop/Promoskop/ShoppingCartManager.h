@@ -10,9 +10,14 @@
 
 @interface ShoppingCartManager : NSObject
 
-+ (void) addProductToShoppingCart:(NSDictionary*)product;
-+ (void) removeProductFromShoppingCart:(NSInteger)productId;
-+ (BOOL) isProductInShoppingCart:(NSInteger)productId;
 
+#warning It's here so that cey learns smthing, eueuheuehe:-)
+// That's called an NSArray property backed by NSMutableArray,
+@property (nonatomic, strong, readonly) NSArray *productsArrayCurrentInShoppingBasket;
+
+- (void) addProductToShoppingCart:(NSDictionary*)product;
+- (void) removeProductFromShoppingCart:(NSInteger)productId;
+- (BOOL) isProductInShoppingCart:(NSInteger)productId;
++ (ShoppingCartManager *)manager;
 
 @end

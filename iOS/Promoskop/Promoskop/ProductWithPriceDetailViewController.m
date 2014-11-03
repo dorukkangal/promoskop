@@ -72,7 +72,7 @@
     
     self.statusBarHidden = NO;
     
-    if ([ShoppingCartManager isProductInShoppingCart:self.productID]) {
+    if ([[ShoppingCartManager manager]isProductInShoppingCart:self.productID]) {
         self.isProductInShoppingCart = YES;
     }
     else{
@@ -395,13 +395,13 @@
 - (IBAction)addRemoveFromShoppingCartPressed:(id)sender {
     
     if (self.isProductInShoppingCart) {
-        [ShoppingCartManager removeProductFromShoppingCart:self.productID];
+        [[ShoppingCartManager  manager]removeProductFromShoppingCart:self.productID];
     }
     else{
-        NSDictionary* product = @{@"product_id":[NSNumber numberWithInt:self.productID],
+        NSDictionary* product = @{@"product_id":[NSNumber numberWithInteger:self.productID],
                                   @"product_name":self.responseDict[@"product_name"],
                                   @"product_url":self.responseDict[@"product_url"]};
-        [ShoppingCartManager addProductToShoppingCart:product];
+        [[ShoppingCartManager  manager]addProductToShoppingCart:product];
     }
     
     self.isProductInShoppingCart = !self.isProductInShoppingCart;

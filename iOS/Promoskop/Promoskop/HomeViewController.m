@@ -15,6 +15,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ProductWithPriceDetailViewController.h"
 #import <SWRevealViewController.h>
+#import "ShoppingCartManager.h"
 
 
 @interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate>
@@ -33,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
