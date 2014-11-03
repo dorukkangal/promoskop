@@ -40,4 +40,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket.count;
 }
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        NSDictionary *deletedProduct = [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket[indexPath.row];
+        [[ShoppingCartManager manager]removeProductFromShoppingCart:[deletedProduct[@"product_id"] integerValue]];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 @end

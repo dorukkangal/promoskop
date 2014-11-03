@@ -22,7 +22,7 @@
 - (id)init{
     self = [super init];
     if(self){
-        self.productsMutableArrayCurrentlyInShoppingCart = [NSMutableArray array];
+        self.productsMutableArrayCurrentlyInShoppingCart = [self getShoppingCart];
     }
     return self;
 }
@@ -45,22 +45,10 @@
     return [documentsDirectory stringByAppendingPathComponent:@"shoppingcart.plist"];
 }
 
-//+ (NSArray*)getShoppingCart{
-//    
-//    NSString *path = [self getShoppingCartPath];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    
-//    if ([fileManager fileExistsAtPath: path])
-//    {
-//        return [[NSArray alloc] initWithContentsOfFile:path];
-//    }
-//    else
-//    {
-//        // If the file doesn’t exist, create an empty dictionary
-//        NSArray *cart = [[NSMutableArray alloc] init];
-//        return cart;
-//    }
-//}
+- (NSMutableArray *)getShoppingCart{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:self.pathForShoppingCart] ? [[NSMutableArray alloc] initWithContentsOfFile:self.pathForShoppingCart] : [NSMutableArray  array];
+}
 
 - (void) addProductToShoppingCart:(NSDictionary*)product{
 
