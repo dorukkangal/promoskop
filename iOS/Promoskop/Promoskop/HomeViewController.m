@@ -38,6 +38,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
+    [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.revealViewController.view removeGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 #pragma mark UI utility methods
@@ -55,7 +60,7 @@
     if(revealViewController){
         [self.revealButtonItem setTarget:self.revealViewController];
         [self.revealButtonItem setAction:@selector(revealToggle:)];
-        [self.navigationController.navigationBar addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 //        [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 //        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
