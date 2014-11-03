@@ -39,9 +39,6 @@
 - (NSString *)pathForShoppingCart{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSLog(@"Shopping cart folder: %@", documentsDirectory);
-    
     return [documentsDirectory stringByAppendingPathComponent:@"shoppingcart.plist"];
 }
 
@@ -51,36 +48,24 @@
 }
 
 - (void) addProductToShoppingCart:(NSDictionary*)product{
-
     [self.productsMutableArrayCurrentlyInShoppingCart addObject:product];
-//    NSMutableArray* cart = [[self getShoppingCart] mutableCopy];
-//    [cart addObject:product];
-//    [cart writeToFile:[self getShoppingCartPath] atomically:YES];
 }
 
 - (void) removeProductFromShoppingCart:(NSInteger)productId{
-    
-//    NSMutableArray* cart = [[self getShoppingCart] mutableCopy];
-    
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
         if ([product[@"product_id"] integerValue] == productId) {
             [self.productsMutableArrayCurrentlyInShoppingCart removeObject:product];
             break;
         }
     }
-//    [cart writeToFile:[self getShoppingCartPath] atomically:YES];
 }
 
 - (BOOL) isProductInShoppingCart:(NSInteger)productId{
-    
-//    NSMutableArray* cart = [[self getShoppingCart] mutableCopy];
-    
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
         if ([product[@"product_id"] integerValue] == productId) {
             return YES;
         }
     }
-    
     return NO;
 }
 
