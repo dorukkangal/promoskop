@@ -57,5 +57,7 @@
 
 	<!-- Services -->
 	<bean id="contextApplicationContextProvider" class="com.mudo.promoskop.util.AppContext" />
+	<bean id="jsonService" class="com.mudo.promoskop.service.JsonServiceImpl" />
 	<bean id="productService" class="com.mudo.promoskop.service.ProductServiceImpl" />
+	<bean id="productResponseService" class="com.mudo.promoskop.service.ProductResponseServiceImpl" />
 </beans>
