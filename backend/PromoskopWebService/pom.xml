@@ -15,7 +15,7 @@
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 
 		<spring.version>4.0.5.RELEASE</spring.version>
-		<hibernate.version>4.1.0.Final</hibernate.version>
+		<hibernate.version>4.3.7.Final</hibernate.version>
 		<c3p0.version>0.9.5-pre8</c3p0.version>
 		<mysql.version>5.1.33</mysql.version>
 		<slf4j.version>1.7.7</slf4j.version>
@@ -66,8 +66,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
 		</dependency>
 
 		<!-- Connection Pooling -->
