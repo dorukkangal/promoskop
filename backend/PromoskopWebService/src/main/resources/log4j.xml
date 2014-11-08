@@ -6,11 +6,11 @@
 			<param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
 		</layout>
 	</appender>
-	<appender name="FILE" class="org.apache.log4j.rolling.RollingFileAppender">
-		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-			<param name="FileNamePattern" value="${log.dir}/promoskop.%d{yyyy-MM-dd}.log" />
-		</rollingPolicy>
-
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${log.dir}/promoskop.log" />
+		<param name="append" value="true" />
+		<param name="maxFileSize" value="1MB" />
+		<param name="maxBackupIndex" value="5" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%t] %d{HH:mm:ss,SSS} %-5p %l - %m%n" />
 		</layout>
