@@ -30,7 +30,7 @@
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="pqQ-9d-p1D">
                                     <size key="itemSize" width="150" height="150"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="320" height="44"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
@@ -87,9 +87,24 @@
                                             <outlet property="productImageView" destination="Yti-jO-Vrw" id="qj1-j8-agI"/>
                                             <outlet property="productNameLabel" destination="uTG-fz-Ko4" id="UIG-sO-dEu"/>
                                             <outlet property="shoppingBasketButton" destination="Ieq-Se-5Qd" id="w2p-hq-Tad"/>
+                                            <segue destination="GrC-45-Clv" kind="show" identifier="ProductWithPriceDetailViewController" id="vAI-TA-8KI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularProductReusableViewCell" id="dXg-q2-nlK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bf5-IV-VI7">
+                                            <rect key="frame" x="8" y="6" width="32" height="32"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUl-hU-dmT">
+                                            <rect key="frame" x="48" y="11" width="180" height="21"/>
+                                            <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
+                                            <color key="textColor" red="0.79607843137254897" green="0.45490196078431372" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="apL-xx-acb"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="EMF-3l-9AY"/>
@@ -1120,6 +1135,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ndv-2k-XUR"/>
-        <segue reference="heP-cl-xfh"/>
+        <segue reference="vAI-TA-8KI"/>
     </inferredMetricsTieBreakers>
 </document>

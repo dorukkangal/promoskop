@@ -504,7 +504,6 @@
     _productID = productID;
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
     [operationManager GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%zd",findByID,productID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response Object => %@" , responseObject);
         self.responseDict = (NSDictionary *)responseObject;
         [self prepareArray];
         [self startLocationRequest];

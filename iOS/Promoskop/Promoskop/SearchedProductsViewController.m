@@ -8,7 +8,9 @@
 
 #import "SearchedProductsViewController.h"
 #import "ProductWithPriceDetailViewController.h"
+#import "Globals.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AFNetworking.h>
 #import <MBProgressHUD.h>
 
 @interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
@@ -21,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    self.productsTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 //    MBProgressHUD *hud =   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    hud.labelText = @"Fetching Data";
 //    hud.mode = MBProgressHUDModeIndeterminate;
@@ -46,6 +49,29 @@
     return cell;
 }
 
+-(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSLog(@"Search Text : %@", [searchBar.text stringByReplacingCharactersInRange:range withString:text]);
+    NSString *searchText =[searchBar.text stringByReplacingCharactersInRange:range withString:text];
+    if(searchText.length >=  2){
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager GET:[baseURL stringByAppendingFormat:@"%@%@",findBySubString,searchText] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.foundProducts = (NSArray *)responseObject;
+            self.productsTableView.hidden = NO;
+            [self.productsTableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"[SearchedProductsViewController]Error : %@",[error description]);
+        }];
+    }
+    else {
+        self.foundProducts = [NSArray array];
+        [self.productsTableView reloadData];
+    }
+    return YES;
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
+}
 
 #pragma mark - Navigation
 

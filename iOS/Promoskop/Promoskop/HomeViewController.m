@@ -22,6 +22,7 @@
 
 
 static NSString * const popularProductCollectionViewCell = @"PopularProductCollectionViewCell";
+static NSString * const popularProductReusableViewCell = @"PopularProductReusableViewCell";
 
 @interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -105,7 +106,28 @@ static NSString * const popularProductCollectionViewCell = @"PopularProductColle
     [cell.productImageView sd_setImageWithURL:[NSURL URLWithString:product[@"product_url"]]];
     [cell.productNameLabel setText:product[@"product_name"]];
     [cell.productNameLabel setPreferredMaxLayoutWidth:134.f];
+    if([[ShoppingCartManager manager]isProductInShoppingCart:[product[@"barcode_id"] integerValue]])
+       [cell.shoppingBasketButton setSelected:YES];
+    else
+        [cell.shoppingBasketButton setSelected:NO];
     return cell;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    UICollectionReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:popularProductReusableViewCell forIndexPath:indexPath];
+
+    if(kind == UICollectionElementKindSectionHeader && indexPath.section == 0){
+        UIImageView *imageView = (UIImageView *)[reusableView viewWithTag:200];
+        [imageView setImage:[UIImage imageNamed:@"popular_products"]];
+        UILabel *label = (UILabel *)[reusableView viewWithTag:201];
+        [label setText:@"Popüler Ürünler"];
+    }
+    return reusableView;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
