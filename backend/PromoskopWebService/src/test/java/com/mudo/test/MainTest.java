@@ -1,41 +1,35 @@
 package com.mudo.test;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.mudo.promoskop.model.Product;
-import com.mudo.promoskop.service.ProductService;
-import com.mudo.promoskop.util.JsonGenerator;
+import com.mudo.promoskop.service.JsonService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/applicationContext.xml" })
 public class MainTest {
 
 	@Autowired
-	ProductService productService;
+	JsonService jsonService;
 
 	private Time elapsedTime;
 
 	@Test
 	public void testFindById() {
 		elapsedTime = new Time("findById");
-		Product product;
 		int productId = 11000036;
-		String json;
+		ResponseEntity<String> json;
 
-		product = productService.findById(productId);
-		json = JsonGenerator.generateJson(new String[] {}, product);
+		json = jsonService.generateJsonForProduct(JsonService.PRODUCT_BY_ID_FILTER, productId);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 		elapsedTime.refreshTime();
 
-		product = productService.findById(productId);
-		json = JsonGenerator.generateJson(new String[] {}, product);
+		json = jsonService.generateJsonForProduct(JsonService.PRODUCT_BY_ID_FILTER, productId);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 	}
@@ -43,18 +37,15 @@ public class MainTest {
 	@Test
 	public void testFindBySubString() {
 		elapsedTime = new Time("findBySubString");
-		List<Product> productList;
-		String text = "YU";
-		String json;
+		String containText = "YU";
+		ResponseEntity<String> json;
 
-		productList = productService.findBySubString(text);
-		json = JsonGenerator.generateJson(new String[] { "branches" }, productList);
+		json = jsonService.generateJsonForProducts(JsonService.PRODUCT_BY_NAME_FILTER, containText);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 		elapsedTime.refreshTime();
 
-		productList = productService.findBySubString(text);
-		json = JsonGenerator.generateJson(new String[] { "branches" }, productList);
+		json = jsonService.generateJsonForProducts(JsonService.PRODUCT_BY_NAME_FILTER, containText);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 	}

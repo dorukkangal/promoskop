@@ -1,0 +1,70 @@
+package com.mudo.promoskop.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mudo.promoskop.model.Branch;
+import com.mudo.promoskop.model.Product;
+import com.mudo.promoskop.model.ProductBranch;
+import com.mudo.promoskop.model.Store;
+import com.mudo.promoskop.response.BranchResponse;
+import com.mudo.promoskop.response.ProductResponse;
+
+@Service
+@Transactional
+public class ProductResponseServiceImpl implements ProductResponseService {
+
+	@Autowired
+	private ProductService productService;
+
+	@Override
+	public ProductResponse findById(int id) {
+		Product p = productService.findById(id);
+		return convertResponseBean(p);
+	}
+
+	@Override
+	public List<ProductResponse> findBySubString(String containText) {
+		List<Product> matchingProducts = productService.findBySubString(containText);
+		return convertResponseBeans(matchingProducts);
+	}
+
+	private List<ProductResponse> convertResponseBeans(List<Product> products) {
+		List<ProductResponse> responses = new ArrayList<ProductResponse>();
+		for (Product product : products)
+			responses.add(convertResponseBean(product));
+		return responses;
+	}
+
+	private ProductResponse convertResponseBean(Product product) {
+		ProductResponse productResponse = new ProductResponse();
+		productResponse.setBarcodeId(product.getId());
+		productResponse.setProductName(product.getName());
+		productResponse.setProductUrl(product.getUrl());
+
+		for (ProductBranch productBranch : product.getProductBranchs()) {
+			BranchResponse branchResponse = new BranchResponse();
+			branchResponse.setPrice(productBranch.getPrice());
+
+			Branch branch = productBranch.getBranch();
+			if (branch != null) {
+				branchResponse.setBranchName(branch.getName());
+				branchResponse.setBranchAddress(branch.getAddress());
+				branchResponse.setLatitude(branch.getLatitude());
+				branchResponse.setLongitude(branch.getLongitude());
+
+				Store store = branch.getStore();
+				if (store != null) {
+					branchResponse.setStoreName(store.getName());
+					branchResponse.setStoreLogo(store.getLogo());
+				}
+			}
+			productResponse.getBranches().add(branchResponse);
+		}
+		return productResponse;
+	}
+}
