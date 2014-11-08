@@ -40,7 +40,7 @@ static NSString * const BasicCellIdentifier = @"BasicCell";
 
 - (NSArray *)cellDescriptionArray{
     if(!_cellDescriptionArray)
-        _cellDescriptionArray = [NSArray arrayWithObjects:@{@"image_name" : @"home", @"description" : @"Arama"},@{@"image_name" : @"shopping_cart", @"description" : @"Alışveriş Listesi" }, nil];
+        _cellDescriptionArray = [NSArray arrayWithObjects:@{@"image_name" : @"home", @"description" : @"Arama"},@{@"image_name" : @"shopping_cart", @"description" : @"Alışveriş Listesi" }, @{@"image_name" : @"feedback", @"description" : @"Öneri Kutusu"}, nil];
     return _cellDescriptionArray;
 }
 
@@ -50,6 +50,9 @@ static NSString * const BasicCellIdentifier = @"BasicCell";
     }
     else if(indexPath.row == 1){
         [self performSegueWithIdentifier:@"ShoppingListViewController" sender:nil];
+    }
+    else if(indexPath.row == 2){
+        [self performSegueWithIdentifier:@"FeedbackViewController" sender:nil];
     }
 }
 
