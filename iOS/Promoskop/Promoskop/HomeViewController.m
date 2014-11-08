@@ -11,20 +11,24 @@
 #import "BasicCell.h"
 #import <Colours.h>
 #import "Globals.h"
+#import "PopularProductCollectionViewCell.h"
 #import "SearchedProductsViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ProductWithPriceDetailViewController.h"
 #import <SWRevealViewController.h>
+#import <AFNetworking.h>
+#import <MBProgressHUD.h>
 #import "ShoppingCartManager.h"
 
 
-@interface HomeViewController ()<UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate>
+static NSString * const popularProductCollectionViewCell = @"PopularProductCollectionViewCell";
 
+@interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *productsArray;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @end
 
 
@@ -33,11 +37,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self requestPopularProducts];
+
+//    MBProgressHUD *progressHud = [[MBProgressHUD alloc]init];
+//    [progressHud setMode:MBProgressHUDModeIndeterminate];
+//    [progressHud setLabelText:@"Ürünler getiriliyor"];
+//    [progressHud show:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"Ürünler getiriliyor";
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
+
     [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
@@ -47,8 +63,18 @@
 
 #pragma mark UI utility methods
 
+- (void)requestPopularProducts{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[NSString stringWithFormat:@"%@%@YUM",baseURL,findBySubString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.productsArray = (NSArray *)responseObject;
+        [self.collectionView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HomeViewController]Error :%@",[error description]);
+    }];
+}
+
 - (void)setupUI{
-    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self.searchBar setBarTintColor:[UIColor blueberryColor]];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self setupRevealMenu];
@@ -61,81 +87,49 @@
         [self.revealButtonItem setTarget:self.revealViewController];
         [self.revealButtonItem setAction:@selector(revealToggle:)];
         [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//        [revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     }
 }
 
 #pragma mark UISearchBar delegate methods
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"[HomeViewController] => searchBarSearchButtonClicked");
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
     [self performSegueWithIdentifier:@"SearchedProductsViewController" sender:searchBar];
-
+    return NO;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if(searchText.length >= 2 ){
-        AFHTTPRequestOperationManager *operationManagaer = [AFHTTPRequestOperationManager manager];
-        [operationManagaer GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,searchText]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@", responseObject);
-            self.productsArray = (NSArray *)responseObject;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"Error Description %@", [error description]);
-        }];
-    }
-    else if(searchText.length == 0){
-        self.productsArray = [NSArray array];
-        [self.tableView reloadData];
-    }
-}
+#pragma mark UICollectionViewDataSource vs UICollectionViewDelegate methods
 
-#pragma mark UITableViewDataSource vs UITableViewDelegate methods
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
-    NSDictionary *dic = self.productsArray[indexPath.row];
-
-    [cell.leftImageView setContentMode:UIViewContentModeScaleAspectFit];
-    [cell.leftImageView sd_setImageWithURL:dic[@"product_url"]];
-    cell.descriptionLabel.preferredMaxLayoutWidth = self.view.frame.size.width - CGRectGetMinX(cell.descriptionLabel.frame) - 15;
-    [cell.descriptionLabel setText:dic[@"product_name"]];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    PopularProductCollectionViewCell *cell = (PopularProductCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:popularProductCollectionViewCell forIndexPath:indexPath];
+    NSDictionary *product = self.productsArray[indexPath.item];
+    [cell.productImageView sd_setImageWithURL:[NSURL URLWithString:product[@"product_url"]]];
+    [cell.productNameLabel setText:product[@"product_name"]];
+    [cell.productNameLabel setPreferredMaxLayoutWidth:134.f];
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.productsArray.count;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    if(IS_IPHONE_4_OR_LESS || IS_IPHONE_5)
+        return UIEdgeInsetsMake(10, 5, 10, 5);
+    else
+        return UIEdgeInsetsMake(10, 20, 10, 20);
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     [self.searchBar resignFirstResponder];
 }
 
-
 #pragma mark Navigation segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"SearchedProductsViewController"]){
-        if([sender isKindOfClass:[UISearchBar class]]){
-            NSString *searchedText = [(UISearchBar *)sender text];
-            SearchedProductsViewController *searchedProductsViewController = (SearchedProductsViewController *)segue.destinationViewController;
-            AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
-            NSString *str =[[searchedText  uppercaseStringWithLocale:[NSLocale localeWithLocaleIdentifier:@"TR_tr"]]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSString *requestString = [baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findBySubString,str]];
-            [operationManager GET:requestString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSArray *responseDict = (NSArray *)responseObject;
-                NSArray *products = responseDict;
-                [searchedProductsViewController setFoundProducts:products];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"Error : %@", [error description]);
-            }];
-        }
-    }
-    else if([segue.identifier isEqualToString:@"ProductWithPriceDetailViewController"]){
-        UITableViewCell *senderCell = (UITableViewCell *)sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:senderCell];
+    if([segue.identifier isEqualToString:@"ProductWithPriceDetailViewController"]){
+        PopularProductCollectionViewCell *popularProductCollectionViewCell = (PopularProductCollectionViewCell *)sender;
+        NSIndexPath *itemIndexPath = [self.collectionView indexPathForCell:popularProductCollectionViewCell];
         ProductWithPriceDetailViewController *productWithPriceDetailViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        [productWithPriceDetailViewController setProductID:[self.productsArray[indexPath.row][@"barcode_id"]integerValue]];
+        [productWithPriceDetailViewController setProductID:[self.productsArray[itemIndexPath.item][@"barcode_id"] integerValue]];
     }
 }
 

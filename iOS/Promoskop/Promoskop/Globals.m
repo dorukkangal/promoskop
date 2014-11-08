@@ -14,4 +14,7 @@
 NSString *baseURL = @"http://promoskop.elasticbeanstalk.com/product/";
 NSString *findBySubString = @"findBySubString?text=";
 NSString *findByID = @"";
+NSString *getPopularProducts = @"getPopularProducts?count=";
+
+
 @end

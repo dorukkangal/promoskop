@@ -11,23 +11,23 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 
-@interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SearchedProductsViewController ()<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *productsTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @end
 
 @implementation SearchedProductsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MBProgressHUD *hud =   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Fetching Data";
-    hud.mode = MBProgressHUDModeIndeterminate;
-    NSLog(@"FoundProducts => %@",self.foundProducts);
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    MBProgressHUD *hud =   [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.labelText = @"Fetching Data";
+//    hud.mode = MBProgressHUDModeIndeterminate;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated{
+    [self.searchBar becomeFirstResponder];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -51,8 +51,6 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
         UITableViewCell *cell = (UITableViewCell *)sender;
         NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
@@ -60,7 +58,6 @@
         ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
         [productWithPriceDetailTableViewController setProductID:[dict[@"barcode_id"] integerValue]];
     }
-    
 }
 - (void)setFoundProducts:(NSArray *)foundProducts{
     _foundProducts = foundProducts;
@@ -77,7 +74,7 @@
     [self.productsTableView reloadData];
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 @end

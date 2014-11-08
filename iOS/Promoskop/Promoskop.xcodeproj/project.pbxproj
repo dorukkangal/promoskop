@@ -39,10 +39,14 @@
 		9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F671A06573900BD97A8 /* LeftMenuViewController.m */; };
 		9B0A0F6B1A0669D100BD97A8 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */; };
 		9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */; };
+		9B30E19D1A09905300B53EAF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B30E19C1A09905300B53EAF /* FeedbackViewController.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
+		9B33BF801A0EA699003BF64C /* PopularProductCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33BF7F1A0EA699003BF64C /* PopularProductCollectionViewCell.m */; };
+		9B4830161A0C3B1700462976 /* UITextFieldWithPadding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4830151A0C3B1700462976 /* UITextFieldWithPadding.m */; };
 		9B4919991A067BF40039C67C /* ShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4919981A067BF40039C67C /* ShoppingListViewController.m */; };
 		9B49199E1A06AED90039C67C /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B49199D1A06AED90039C67C /* CustomNavigationController.m */; };
+		9B53CCA61A0EC93D00208D2C /* PushSegueWithoutAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53CCA51A0EC93D00208D2C /* PushSegueWithoutAnimation.m */; };
 		9B8EDBAE19FD8E7B0006A427 /* BranchDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */; };
 		9BAC14D119ED8BCE00D53D8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D019ED8BCE00D53D8C /* main.m */; };
 		9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC14D319ED8BCE00D53D8C /* AppDelegate.m */; };
@@ -124,14 +128,22 @@
 		9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCell.m; sourceTree = "<group>"; };
 		9B0A0F6C1A06704600BD97A8 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
+		9B30E19B1A09905300B53EAF /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		9B30E19C1A09905300B53EAF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
 		9B33684519EEE3A30049029E /* SearchedProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedProductsViewController.m; sourceTree = "<group>"; };
 		9B336B1419EF0DCD0049029E /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
+		9B33BF7E1A0EA699003BF64C /* PopularProductCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularProductCollectionViewCell.h; sourceTree = "<group>"; };
+		9B33BF7F1A0EA699003BF64C /* PopularProductCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularProductCollectionViewCell.m; sourceTree = "<group>"; };
+		9B4830141A0C3B1700462976 /* UITextFieldWithPadding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldWithPadding.h; sourceTree = "<group>"; };
+		9B4830151A0C3B1700462976 /* UITextFieldWithPadding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldWithPadding.m; sourceTree = "<group>"; };
 		9B4919971A067BF40039C67C /* ShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListViewController.h; sourceTree = "<group>"; };
 		9B4919981A067BF40039C67C /* ShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListViewController.m; sourceTree = "<group>"; };
 		9B49199C1A06AED90039C67C /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
 		9B49199D1A06AED90039C67C /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
+		9B53CCA41A0EC93D00208D2C /* PushSegueWithoutAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSegueWithoutAnimation.h; sourceTree = "<group>"; };
+		9B53CCA51A0EC93D00208D2C /* PushSegueWithoutAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSegueWithoutAnimation.m; sourceTree = "<group>"; };
 		9B8EDBAC19FD8E7B0006A427 /* BranchDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchDetailTableViewController.h; sourceTree = "<group>"; };
 		9B8EDBAD19FD8E7B0006A427 /* BranchDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchDetailTableViewController.m; sourceTree = "<group>"; };
 		9BAC14CB19ED8BCE00D53D8C /* Promoskop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Promoskop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +287,8 @@
 				9B4919981A067BF40039C67C /* ShoppingListViewController.m */,
 				9B49199C1A06AED90039C67C /* CustomNavigationController.h */,
 				9B49199D1A06AED90039C67C /* CustomNavigationController.m */,
+				9B30E19B1A09905300B53EAF /* FeedbackViewController.h */,
+				9B30E19C1A09905300B53EAF /* FeedbackViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -293,6 +307,8 @@
 		9B33684A19EEF57A0049029E /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				9B4830141A0C3B1700462976 /* UITextFieldWithPadding.h */,
+				9B4830151A0C3B1700462976 /* UITextFieldWithPadding.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -304,6 +320,8 @@
 				3A32873219EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m */,
 				9B0A0F691A0669D100BD97A8 /* BasicCell.h */,
 				9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */,
+				9B33BF7E1A0EA699003BF64C /* PopularProductCollectionViewCell.h */,
+				9B33BF7F1A0EA699003BF64C /* PopularProductCollectionViewCell.m */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -319,6 +337,15 @@
 				3A5C387A1A06EB7600BB208E /* ShoppingCartManager.m */,
 			);
 			name = "Utility class";
+			sourceTree = "<group>";
+		};
+		9B53CCA31A0EC92300208D2C /* Custom Segue */ = {
+			isa = PBXGroup;
+			children = (
+				9B53CCA41A0EC93D00208D2C /* PushSegueWithoutAnimation.h */,
+				9B53CCA51A0EC93D00208D2C /* PushSegueWithoutAnimation.m */,
+			);
+			name = "Custom Segue";
 			sourceTree = "<group>";
 		};
 		9BAC14C219ED8BCE00D53D8C = {
@@ -344,6 +371,7 @@
 		9BAC14CD19ED8BCE00D53D8C /* Promoskop */ = {
 			isa = PBXGroup;
 			children = (
+				9B53CCA31A0EC92300208D2C /* Custom Segue */,
 				9B0A0F621A0653E000BD97A8 /* Category */,
 				9B33684C19EEF58B0049029E /* Utility class */,
 				9B33684B19EEF5830049029E /* Custom Cells */,
@@ -546,6 +574,7 @@
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
 				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
 				9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */,
+				9B33BF801A0EA699003BF64C /* PopularProductCollectionViewCell.m in Sources */,
 				3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */,
 				9B49199E1A06AED90039C67C /* CustomNavigationController.m in Sources */,
 				3A5A7FCD19FAF4F7005F1059 /* ASMediaFocusManager.m in Sources */,
@@ -555,6 +584,7 @@
 				9B09543619F710840047079D /* Globals.m in Sources */,
 				3A5C387B1A06EB7600BB208E /* ShoppingCartManager.m in Sources */,
 				3A93481C19EDC37600AF2665 /* FMDatabaseQueue.m in Sources */,
+				9B4830161A0C3B1700462976 /* UITextFieldWithPadding.m in Sources */,
 				3A5C4FC819FAA8440049A805 /* SMCalloutView.m in Sources */,
 				3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */,
 				9B0A0F681A06573900BD97A8 /* LeftMenuViewController.m in Sources */,
@@ -563,9 +593,11 @@
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
 				9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */,
 				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,
+				9B53CCA61A0EC93D00208D2C /* PushSegueWithoutAnimation.m in Sources */,
 				3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,
 				3A93481919EDC37600AF2665 /* FMDatabase.m in Sources */,
+				9B30E19D1A09905300B53EAF /* FeedbackViewController.m in Sources */,
 				9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */,
 				3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.m in Sources */,
 				3A32873319EEBEDD00E3278D /* BranchWithProductPriceTableViewCell.m in Sources */,
