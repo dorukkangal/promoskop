@@ -25,10 +25,10 @@ public class BranchResponseServiceImpl implements BranchResponseService {
 	private ProductBranchService productBranchService;
 
 	@Override
-	public List<BranchResponse> findProductBranchWithMinPrice(int[] barcodeIds, double minLatitude, double maxLatitude, double minLongitude, double maxLongitude) {
+	public List<BranchResponse> findProductBranchWithMinPrice(int[] barcodeIds, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude) {
 		List<BranchResponse> allResponses = new ArrayList<BranchResponse>();
 		for (int barcode : barcodeIds) {
-			List<ProductBranch> productBranches = productBranchService.findProductBranchWithMinPrice(barcode, minLatitude, maxLatitude, minLongitude, maxLongitude);
+			List<ProductBranch> productBranches = productBranchService.findProductBranchWithMinPrice(barcode, minLatitude, minLongitude, maxLatitude, maxLongitude);
 			List<BranchResponse> barcodeResponses = convertResponseBeans(productBranches);
 			allResponses = unifyResponseList(allResponses, barcodeResponses);
 		}

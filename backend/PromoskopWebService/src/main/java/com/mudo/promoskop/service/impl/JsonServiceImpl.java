@@ -17,6 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.javadocmd.simplelatlng.LatLng;
+import com.javadocmd.simplelatlng.LatLngTool;
+import com.javadocmd.simplelatlng.util.LengthUnit;
 import com.mudo.promoskop.exception.InternalServerErrorException;
 import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.response.BranchResponse;
@@ -24,7 +27,6 @@ import com.mudo.promoskop.response.ProductResponse;
 import com.mudo.promoskop.service.BranchResponseService;
 import com.mudo.promoskop.service.JsonService;
 import com.mudo.promoskop.service.ProductResponseService;
-import com.mudo.promoskop.util.DistanceUtil;
 import com.mudo.promoskop.util.JsonFilter;
 
 @Service
@@ -99,10 +101,14 @@ public class JsonServiceImpl implements JsonService {
 	@Override
 	public ResponseEntity<String> generateJsonForBasket(JsonFilter filter, double currentLatitude, double currentLongitude, double maxDistance, int[] barcodeIds) {
 		try {
-			double[] minMaxLatitudes = DistanceUtil.minMaxLatitudes(currentLatitude, currentLongitude, maxDistance);
-			double[] minMaxLongitudes = DistanceUtil.minMaxLongitudes(currentLatitude, currentLongitude, maxDistance);
-			List<BranchResponse> branchResponses = branchResponseService.findProductBranchWithMinPrice(barcodeIds, minMaxLatitudes[0], minMaxLatitudes[1],
-					minMaxLongitudes[0], minMaxLongitudes[1]);
+			LatLng start = new LatLng(currentLatitude, currentLongitude);
+
+			List<BranchResponse> branchResponses = branchResponseService.findProductBranchWithMinPrice(barcodeIds,
+					LatLngTool.travel(start, LatLngTool.Bearing.SOUTH, maxDistance, LengthUnit.KILOMETER).getLatitude(),
+					LatLngTool.travel(start, LatLngTool.Bearing.WEST, maxDistance, LengthUnit.KILOMETER).getLongitude(),
+					LatLngTool.travel(start, LatLngTool.Bearing.NORTH, maxDistance, LengthUnit.KILOMETER).getLatitude(),
+					LatLngTool.travel(start, LatLngTool.Bearing.EAST, maxDistance, LengthUnit.KILOMETER).getLongitude());
+
 			ObjectWriter writer = getFilteredWriter(filter);
 			String json = writer.writeValueAsString(branchResponses);
 			return new ResponseEntity<String>(json, HttpStatus.OK);

@@ -18,7 +18,7 @@ public class ProductBranchServiceImpl implements ProductBranchService {
 	private ProductBranchDao productBranchDao;
 
 	@Override
-	public List<ProductBranch> findProductBranchWithMinPrice(int barcode, double minLatitude, double maxLatitude, double minLongitude, double maxLongitude) {
-		return productBranchDao.findProductBranchWithMinPrice(barcode, minLatitude, maxLatitude, minLongitude, maxLongitude);
+	public List<ProductBranch> findProductBranchWithMinPrice(int barcode, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude) {
+		return productBranchDao.findProductBranchWithMinPrice(barcode, minLatitude, minLongitude, maxLatitude, maxLongitude);
 	}
 }

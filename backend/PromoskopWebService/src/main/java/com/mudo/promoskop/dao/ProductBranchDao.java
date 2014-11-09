@@ -6,5 +6,5 @@ import com.mudo.promoskop.model.ProductBranch;
 
 public interface ProductBranchDao {
 
-	public List<ProductBranch> findProductBranchWithMinPrice(int barcode, double minLatitude, double maxLatitude, double minLongitude, double maxLongitude);
+	public List<ProductBranch> findProductBranchWithMinPrice(int barcode, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude);
 }
