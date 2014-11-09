@@ -13,4 +13,6 @@ public interface JsonService {
 	public String generateJsonForException(Exception ex);
 
 	public ResponseEntity<String> generateJsonForBasket(JsonFilter filter, double currentLatitude, double currentLongitude, double maxDistance, int[] barcodeIds);
+
+	public ResponseEntity<String> generateJsonForPopularProducts(JsonFilter filter, int count);
 }

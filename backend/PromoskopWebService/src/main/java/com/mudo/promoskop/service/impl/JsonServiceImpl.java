@@ -51,10 +51,10 @@ public class JsonServiceImpl implements JsonService {
 	@Override
 	public ResponseEntity<String> generateJsonForProduct(JsonFilter filter, int id) {
 		try {
-			ProductResponse response = productResponseService.findById(id);
+			ProductResponse product = productResponseService.findById(id);
 
 			ObjectWriter writer = getFilteredWriter(filter);
-			String json = writer.writeValueAsString(response);
+			String json = writer.writeValueAsString(product);
 			return new ResponseEntity<String>(json, HttpStatus.OK);
 		} catch (ResourceNotFoundException e) {
 			String json = generateJsonForException(e);
@@ -69,10 +69,25 @@ public class JsonServiceImpl implements JsonService {
 	@Override
 	public ResponseEntity<String> generateJsonForProducts(JsonFilter filter, String containText) {
 		try {
-			List<ProductResponse> matchingResponses = productResponseService.findBySubString(containText);
+			List<ProductResponse> matchingProducts = productResponseService.findBySubString(containText);
 
 			ObjectWriter writer = getFilteredWriter(filter);
-			String json = writer.writeValueAsString(matchingResponses);
+			String json = writer.writeValueAsString(matchingProducts);
+			return new ResponseEntity<String>(json, HttpStatus.OK);
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			String json = generateJsonForException(new InternalServerErrorException());
+			return new ResponseEntity<String>(json, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Override
+	public ResponseEntity<String> generateJsonForPopularProducts(JsonFilter filter, int count) {
+		try {
+			List<ProductResponse> popularProducts = productResponseService.findMaxQueried(count);
+
+			ObjectWriter writer = getFilteredWriter(filter);
+			String json = writer.writeValueAsString(popularProducts);
 			return new ResponseEntity<String>(json, HttpStatus.OK);
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);

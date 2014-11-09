@@ -34,7 +34,13 @@ public class ProductController {
 		return jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 	}
 
-	@RequestMapping(value = "/basket/calculate", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" })
+	@RequestMapping(value = "/getPopularProducts", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
+	public @ResponseBody
+	ResponseEntity<String> getPopularProductsJSON(@RequestParam(value = "count") int count) {
+		return jsonService.generateJsonForPopularProducts(JsonFilter.POPULAR_PRODUCTS_FILTER, count);
+	}
+
+	@RequestMapping(value = "/basket/calculate", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" }, consumes = { "application/json; charset=UTF-8" })
 	public @ResponseBody
 	ResponseEntity<String> getCheapestPrice(@RequestBody CheapestPriceRequest holder) {
 		return jsonService.generateJsonForBasket(JsonFilter.BASKET_FILTER, holder.getCurrentLatitude(), holder.getCurrentLongitude(), holder.getMaxDistance(),

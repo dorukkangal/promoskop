@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -23,6 +24,9 @@ public class Product implements Serializable {
 	private String name;
 
 	private String url;
+
+	@JsonIgnore
+	private int queryCount;
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 	private Set<ProductBranch> productBranchs = new HashSet<ProductBranch>();
@@ -49,6 +53,14 @@ public class Product implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public int getQueryCount() {
+		return queryCount;
+	}
+
+	public void setQueryCount(int queryCount) {
+		this.queryCount = queryCount;
 	}
 
 	public Set<ProductBranch> getProductBranchs() {

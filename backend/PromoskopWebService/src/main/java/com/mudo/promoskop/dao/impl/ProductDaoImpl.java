@@ -3,6 +3,7 @@ package com.mudo.promoskop.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -26,7 +27,10 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product findById(int id) {
 		LOG.debug("find by id " + id + "from product");
-		return em.find(Product.class, id);
+		Product p = em.find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
+		p.setQueryCount(p.getQueryCount() + 1);
+		em.flush();
+		return p;
 	}
 
 	@Override
@@ -35,10 +39,20 @@ public class ProductDaoImpl implements ProductDao {
 		LOG.debug("find by substring: ".concat(containText).concat("from Product"));
 
 		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
-		Root<Product> root = criteria.from(Product.class);
-		criteria.where(builder.like(root.get("name").as(String.class), containText));
-		List<Product> results = em.createQuery(criteria).setHint(QueryHints.CACHEABLE, true).getResultList();
-		return results;
+		CriteriaQuery<Product> query = builder.createQuery(Product.class);
+		Root<Product> from = query.from(Product.class);
+		query.where(builder.like(from.get("name").as(String.class), containText));
+		return em.createQuery(query).setHint(QueryHints.CACHEABLE, true).getResultList();
+	}
+
+	@Override
+	public List<Product> findMaxQueried(int count) {
+		LOG.debug("find max queried Product");
+
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Product> query = builder.createQuery(Product.class);
+		Root<Product> from = query.from(Product.class);
+		query.orderBy(builder.desc(from.get("queryCount")));
+		return em.createQuery(query).setHint(QueryHints.CACHEABLE, true).setMaxResults(count).getResultList();
 	}
 }

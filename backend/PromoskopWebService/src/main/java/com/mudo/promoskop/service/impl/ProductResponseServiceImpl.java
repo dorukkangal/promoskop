@@ -34,6 +34,12 @@ public class ProductResponseServiceImpl implements ProductResponseService {
 		List<Product> matchingProducts = productService.findBySubString(containText);
 		return convertResponseBeans(matchingProducts);
 	}
+	
+	@Override
+	public List<ProductResponse> findMaxQueried(int count) {
+		List<Product> maxQueriedProducts = productService.findMaxQueried(count);
+		return convertResponseBeans(maxQueriedProducts);
+	}
 
 	private List<ProductResponse> convertResponseBeans(List<Product> products) {
 		List<ProductResponse> responses = new ArrayList<ProductResponse>();
