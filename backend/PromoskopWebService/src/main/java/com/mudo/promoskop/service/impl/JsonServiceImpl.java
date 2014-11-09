@@ -9,12 +9,15 @@ import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.PropertyNamingStrategy;
 import org.codehaus.jackson.map.ser.impl.SimpleBeanPropertyFilter;
 import org.codehaus.jackson.map.ser.impl.SimpleFilterProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
 import com.javadocmd.simplelatlng.util.LengthUnit;
+import com.mudo.promoskop.exception.InternalServerErrorException;
 import com.mudo.promoskop.response.BranchResponse;
 import com.mudo.promoskop.response.ProductResponse;
 import com.mudo.promoskop.service.BranchResponseService;
@@ -24,6 +27,7 @@ import com.mudo.promoskop.util.JsonFilter;
 
 @Service
 public class JsonServiceImpl implements JsonService {
+	private static Logger LOG = LoggerFactory.getLogger(JsonServiceImpl.class);
 
 	private ObjectMapper mapper;
 	private SimpleFilterProvider filters;
@@ -78,6 +82,17 @@ public class JsonServiceImpl implements JsonService {
 
 		ObjectWriter writer = getFilteredWriter(filter);
 		return writer.writeValueAsString(branchResponses);
+	}
+
+	@Override
+	public String generateJsonForException(Exception ex) {
+		try {
+			ObjectWriter writer = getFilteredWriter(JsonFilter.EXCEPTION_FILTER);
+			return writer.writeValueAsString(ex);
+		} catch (Exception e) {
+			LOG.error(e.getMessage(), e);
+			return generateJsonForException(new InternalServerErrorException());
+		}
 	}
 
 	private ObjectWriter getFilteredWriter(JsonFilter filter) {

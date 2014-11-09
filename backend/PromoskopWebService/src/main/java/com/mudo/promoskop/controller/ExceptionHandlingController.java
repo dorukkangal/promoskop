@@ -1,47 +1,48 @@
 package com.mudo.promoskop.controller;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.mudo.promoskop.exception.InternalServerErrorException;
+import com.mudo.promoskop.exception.ResourceNotFoundException;
+import com.mudo.promoskop.service.JsonService;
+
 @ControllerAdvice
 public class ExceptionHandlingController {
 	private static Logger LOG = LoggerFactory.getLogger(ExceptionHandlingController.class);
 
-	private static final String ENTITY_NOT_FOUND_MESSAGE = "Bu barkod numarası ile ürün bulunamadı";
-	public static final String INTERNAL_ERROR_MESSAGE = "Sistemde hata oluştu";
+	@Autowired
+	private JsonService jsonService;
 
+	@ExceptionHandler(ResourceNotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	@ExceptionHandler(EntityNotFoundException.class)
 	public @ResponseBody
-	ErrorInfo handleEntityNotFoundException(HttpServletRequest request, Exception e) {
+	String handleEntityNotFoundException(HttpServletRequest request, Exception e) {
 		LOG.info(request.getRequestURL().toString(), e);
-		return new ErrorInfo(request.getRequestURL(), ENTITY_NOT_FOUND_MESSAGE);
+		return jsonService.generateJsonForException(e);
 	}
 
+	@ExceptionHandler(InternalServerErrorException.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler(Exception.class)
 	public @ResponseBody
-	ErrorInfo handleException(HttpServletRequest request, Exception e) {
-		LOG.error(request.getRequestURL().toString(), e);
-		return new ErrorInfo(request.getRequestURL(), INTERNAL_ERROR_MESSAGE);
+	String handleInternalServerErrorException(HttpServletRequest request, Exception e) {
+		LOG.info(request.getRequestURL().toString(), e);
+		return jsonService.generateJsonForException(new InternalServerErrorException());
 	}
 
-	@SuppressWarnings("unused")
-	private class ErrorInfo {
-		private final String message;
-		private final String url;
-
-		public ErrorInfo(StringBuffer url, String message) {
-			this.url = url.toString();
-			this.message = message;
-		}
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	public @ResponseBody
+	String handleException(HttpServletRequest request, Exception e) {
+		LOG.info(request.getRequestURL().toString(), e);
+		return jsonService.generateJsonForException(e);
 	}
 }

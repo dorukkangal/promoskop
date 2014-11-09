@@ -3,7 +3,6 @@ package com.mudo.promoskop.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -16,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mudo.promoskop.dao.ProductDao;
+import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
 
 @Repository
@@ -30,7 +30,7 @@ public class ProductDaoImpl implements ProductDao {
 		LOG.debug("find by id " + id + "from product");
 		Product p = em.find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
 		if (p == null)
-			throw new EntityNotFoundException();
+			throw new ResourceNotFoundException();
 		p.setQueryCount(p.getQueryCount() + 1);
 		em.flush();
 		return p;

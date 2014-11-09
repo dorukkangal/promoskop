@@ -11,4 +11,6 @@ public interface JsonService {
 	public String generateJsonForBasket(JsonFilter filter, double currentLatitude, double currentLongitude, double maxDistance, int[] barcodeIds) throws Exception;
 
 	public String generateJsonForPopularProducts(JsonFilter filter, int count) throws Exception;
+
+	public String generateJsonForException(Exception ex);
 }
