@@ -89,7 +89,6 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
         return self.products.count + 1;
     }
     else return 0;
-//    return self.products.count == [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket.count ? self.products.count : self.products.count + 1;
 }
 
 - (IBAction)backButtonPressed:(id)sender {
@@ -107,11 +106,6 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
     for (NSDictionary *dic in self.products) {
         [foundProducts addObjectsFromArray:dic[@"products"]];
     }
-//    for(NSDictionary *dic in foundProducts){
-//        if(![[ShoppingCartManager manager] isProductInShoppingCart:[dic[@"product_id"] integerValue]]){
-//            [self.notFoundProducts addObject:dic];
-//        }
-//    }
     [self.notFoundProducts addObjectsFromArray:[ShoppingCartManager manager].productsArrayCurrentInShoppingBasket];
     for (NSDictionary *dic in foundProducts) {
         [self.notFoundProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -120,15 +114,7 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
                 [self.notFoundProducts removeObjectAtIndex:idx];
             }
         }];
-//        [self.notFoundProducts removeObjectAtIndex:index];
-    }
-//    for(NSDictionary *dic in [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket){
-//        if(![foundProducts containsObject:dic]){
-//            [self.notFoundProducts addObject:dic];
-//        }
-//    }
-
-}
+    }}
 
 - (NSInteger)countOfProductsFoundInStore{
     NSInteger count = 0 ;
