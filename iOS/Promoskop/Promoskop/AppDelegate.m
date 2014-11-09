@@ -10,6 +10,7 @@
 #import "DataAccessLayer.h"
 #import "ShoppingCartManager.h"
 #import <Colours.h>
+#import <AFNetworkActivityLogger.h>
 
 @interface AppDelegate ()
 
@@ -21,6 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [[DataAccessLayer database]copyDatabaseIfNeeded];
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    
     [[UINavigationBar appearance]setBarTintColor:[UIColor crimsonColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
     return YES;

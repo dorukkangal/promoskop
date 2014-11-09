@@ -13,6 +13,7 @@ pod 'SDWebImage', '~>3.7.1'
 pod 'MBProgressHUD', '~> 0.8'
 pod 'SWRevealViewController', '~>2.3.0'
 pod 'Colours'
+pod 'AFNetworkActivityLogger'
 
 target 'PromoskopTests' do
 
