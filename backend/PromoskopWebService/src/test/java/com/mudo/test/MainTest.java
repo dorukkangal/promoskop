@@ -3,7 +3,6 @@ package com.mudo.test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,10 +19,10 @@ public class MainTest {
 	private Time elapsedTime;
 
 	@Test
-	public void testFindById() {
+	public void testFindById() throws Exception {
 		elapsedTime = new Time("findById");
 		int productId = 11000036;
-		ResponseEntity<String> json;
+		String json;
 
 		json = jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, productId);
 		System.out.println(json);
@@ -36,10 +35,10 @@ public class MainTest {
 	}
 
 	@Test
-	public void testFindBySubString() {
+	public void testFindBySubString() throws Exception {
 		elapsedTime = new Time("findBySubString");
 		String containText = "YU";
-		ResponseEntity<String> json;
+		String json;
 
 		json = jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 		System.out.println(json);

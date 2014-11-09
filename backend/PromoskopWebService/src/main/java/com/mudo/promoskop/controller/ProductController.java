@@ -1,7 +1,6 @@
 package com.mudo.promoskop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,26 +22,25 @@ public class ProductController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	ResponseEntity<String> getProductByIdInJSON(@PathVariable(value = "id") int id) {
-		ResponseEntity<String> response = jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, id);
-		return response;
+	String getProductByIdInJSON(@PathVariable(value = "id") int id) throws Exception {
+		return jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, id);
 	}
 
 	@RequestMapping(value = "/findBySubString", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	ResponseEntity<String> getProductByNameInJSON(@RequestParam(value = "text") String containText) {
+	String getProductByNameInJSON(@RequestParam(value = "text") String containText) throws Exception {
 		return jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 	}
 
 	@RequestMapping(value = "/getPopularProducts", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	ResponseEntity<String> getPopularProductsJSON(@RequestParam(value = "count") int count) {
+	String getPopularProductsJSON(@RequestParam(value = "count") int count) throws Exception {
 		return jsonService.generateJsonForPopularProducts(JsonFilter.POPULAR_PRODUCTS_FILTER, count);
 	}
 
 	@RequestMapping(value = "/basket/calculate", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" }, consumes = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	ResponseEntity<String> getCheapestPrice(@RequestBody CheapestPriceRequest holder) {
+	String getCheapestPrice(@RequestBody CheapestPriceRequest holder) throws Exception {
 		return jsonService.generateJsonForBasket(JsonFilter.BASKET_FILTER, holder.getCurrentLatitude(), holder.getCurrentLongitude(), holder.getMaxDistance(),
 				holder.getBarcodeIds());
 	}

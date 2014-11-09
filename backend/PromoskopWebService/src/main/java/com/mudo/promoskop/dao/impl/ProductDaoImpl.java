@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mudo.promoskop.dao.ProductDao;
+import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
 
 @Repository
@@ -28,6 +29,8 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findById(int id) {
 		LOG.debug("find by id " + id + "from product");
 		Product p = em.find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
+		if (p == null)
+			throw new ResourceNotFoundException();
 		p.setQueryCount(p.getQueryCount() + 1);
 		em.flush();
 		return p;
