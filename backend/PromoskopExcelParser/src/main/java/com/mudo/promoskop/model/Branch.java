@@ -35,7 +35,7 @@ public class Branch implements Serializable {
 	private Store store;
 
 	@OneToMany(mappedBy = "branch", fetch = FetchType.LAZY)
-	private Set<ProductBranch> productBranchs = new HashSet<ProductBranch>();
+	private Set<ProductBranch> productBranches = new HashSet<ProductBranch>();
 
 	public int getId() {
 		return id;
@@ -85,11 +85,11 @@ public class Branch implements Serializable {
 		this.store = store;
 	}
 
-	public Set<ProductBranch> getProductBranchs() {
-		return productBranchs;
+	public Set<ProductBranch> getProductBranches() {
+		return productBranches;
 	}
 
-	public void setProductBranchs(Set<ProductBranch> productBranchs) {
-		this.productBranchs = productBranchs;
+	public void setProductBranches(Set<ProductBranch> productBranches) {
+		this.productBranches = productBranches;
 	}
 }

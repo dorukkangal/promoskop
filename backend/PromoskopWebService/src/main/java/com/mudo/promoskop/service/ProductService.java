@@ -9,4 +9,6 @@ public interface ProductService {
 	public Product findById(int id);
 
 	public List<Product> findBySubString(String containText);
+
+	public List<Product> findMaxQueried(int count);
 }
