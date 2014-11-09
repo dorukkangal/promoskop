@@ -67,7 +67,37 @@
 }
 
 - (IBAction)clearShoppingList:(id)sender {
-    [[ShoppingCartManager manager] clearShoppingCart];
+
+    
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Sepeti Boşalt"
+                                  message:@"Sepetinizi boşaltmak istediğinize emin misiniz?"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"Evet"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [[ShoppingCartManager manager] clearShoppingCart];
+                             [self.tableView reloadData];
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"İptal"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -135,9 +135,9 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     if(IS_IPHONE_4_OR_LESS || IS_IPHONE_5)
-        return UIEdgeInsetsMake(10, 5, 10, 5);
+        return UIEdgeInsetsMake(6, 6, 6, 6);
     else
-        return UIEdgeInsetsMake(10, 20, 10, 20);
+        return UIEdgeInsetsMake(6, 25, 25, 25);
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
