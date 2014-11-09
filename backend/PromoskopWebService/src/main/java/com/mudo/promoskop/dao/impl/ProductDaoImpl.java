@@ -3,6 +3,7 @@ package com.mudo.promoskop.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -28,6 +29,8 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findById(int id) {
 		LOG.debug("find by id " + id + "from product");
 		Product p = em.find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
+		if (p == null)
+			throw new EntityNotFoundException();
 		p.setQueryCount(p.getQueryCount() + 1);
 		em.flush();
 		return p;

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mudo.promoskop.dao.ProductDao;
-import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
 import com.mudo.promoskop.service.ProductService;
 
@@ -20,10 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product findById(int id) {
-		Product p = productDao.findById(id);
-		if (p == null)
-			throw new ResourceNotFoundException();
-		return p;
+		return productDao.findById(id);
 	}
 
 	@Override
