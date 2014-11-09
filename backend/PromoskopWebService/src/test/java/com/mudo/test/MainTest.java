@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mudo.promoskop.service.JsonService;
+import com.mudo.promoskop.util.JsonFilter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/META-INF/applicationContext.xml" })
@@ -24,12 +25,12 @@ public class MainTest {
 		int productId = 11000036;
 		ResponseEntity<String> json;
 
-		json = jsonService.generateJsonForProduct(JsonService.PRODUCT_BY_ID_FILTER, productId);
+		json = jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, productId);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 		elapsedTime.refreshTime();
 
-		json = jsonService.generateJsonForProduct(JsonService.PRODUCT_BY_ID_FILTER, productId);
+		json = jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, productId);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 	}
@@ -40,12 +41,12 @@ public class MainTest {
 		String containText = "YU";
 		ResponseEntity<String> json;
 
-		json = jsonService.generateJsonForProducts(JsonService.PRODUCT_BY_NAME_FILTER, containText);
+		json = jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 		elapsedTime.refreshTime();
 
-		json = jsonService.generateJsonForProducts(JsonService.PRODUCT_BY_NAME_FILTER, containText);
+		json = jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 		System.out.println(json);
 		elapsedTime.miliseconds(System.out);
 	}

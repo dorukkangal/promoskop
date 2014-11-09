@@ -18,6 +18,16 @@ public class ProductResponse implements Serializable {
 
 	private List<BranchResponse> branches = new ArrayList<BranchResponse>();
 
+	public ProductResponse(int barcodeId, String productName, String productUrl) {
+		super();
+		this.barcodeId = barcodeId;
+		this.productName = productName;
+		this.productUrl = productUrl;
+	}
+
+	public ProductResponse() {
+	}
+
 	public int getBarcodeId() {
 		return barcodeId;
 	}

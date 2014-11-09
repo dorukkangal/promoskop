@@ -1,4 +1,4 @@
-package com.mudo.promoskop.dao;
+package com.mudo.promoskop.dao.impl;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.mudo.promoskop.dao.ProductDao;
 import com.mudo.promoskop.model.Product;
 
 @Repository

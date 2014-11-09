@@ -1,4 +1,4 @@
-package com.mudo.promoskop.service;
+package com.mudo.promoskop.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mudo.promoskop.dao.ProductDao;
 import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
+import com.mudo.promoskop.service.ProductService;
 
 @Service
 @Transactional

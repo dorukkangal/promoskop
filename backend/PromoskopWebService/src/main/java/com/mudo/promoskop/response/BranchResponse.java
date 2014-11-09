@@ -1,6 +1,8 @@
 package com.mudo.promoskop.response;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonFilter;
 
@@ -8,11 +10,13 @@ import org.codehaus.jackson.map.annotate.JsonFilter;
 public class BranchResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private double price;
+	private int branchId;
 
 	private String branchName;
 
 	private String branchAddress;
+
+	private double price;
 
 	private double latitude;
 
@@ -22,12 +26,29 @@ public class BranchResponse implements Serializable {
 
 	private String storeLogo;
 
-	public double getPrice() {
-		return price;
+	private List<ProductResponse> products = new ArrayList<ProductResponse>();
+
+	public BranchResponse(int branchId, String branchName, String branchAddress, double price, double latitude, double longitude, String storeName, String storeLogo) {
+		super();
+		this.branchId = branchId;
+		this.branchName = branchName;
+		this.branchAddress = branchAddress;
+		this.price = price;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.storeName = storeName;
+		this.storeLogo = storeLogo;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public BranchResponse() {
+	}
+
+	public int getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(int branchId) {
+		this.branchId = branchId;
 	}
 
 	public String getBranchName() {
@@ -44,6 +65,14 @@ public class BranchResponse implements Serializable {
 
 	public void setBranchAddress(String branchAddress) {
 		this.branchAddress = branchAddress;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public double getLatitude() {
@@ -76,5 +105,13 @@ public class BranchResponse implements Serializable {
 
 	public void setStoreLogo(String storeLogo) {
 		this.storeLogo = storeLogo;
+	}
+
+	public List<ProductResponse> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductResponse> products) {
+		this.products = products;
 	}
 }

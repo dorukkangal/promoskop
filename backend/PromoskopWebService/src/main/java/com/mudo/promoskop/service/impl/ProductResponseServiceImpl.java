@@ -1,4 +1,4 @@
-package com.mudo.promoskop.service;
+package com.mudo.promoskop.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,8 @@ import com.mudo.promoskop.model.ProductBranch;
 import com.mudo.promoskop.model.Store;
 import com.mudo.promoskop.response.BranchResponse;
 import com.mudo.promoskop.response.ProductResponse;
+import com.mudo.promoskop.service.ProductResponseService;
+import com.mudo.promoskop.service.ProductService;
 
 @Service
 @Transactional
@@ -41,11 +43,7 @@ public class ProductResponseServiceImpl implements ProductResponseService {
 	}
 
 	private ProductResponse convertResponseBean(Product product) {
-		ProductResponse productResponse = new ProductResponse();
-		productResponse.setBarcodeId(product.getId());
-		productResponse.setProductName(product.getName());
-		productResponse.setProductUrl(product.getUrl());
-
+		ProductResponse productResponse = new ProductResponse(product.getId(), product.getName(), product.getUrl());
 		for (ProductBranch productBranch : product.getProductBranchs()) {
 			BranchResponse branchResponse = new BranchResponse();
 			branchResponse.setPrice(productBranch.getPrice());
