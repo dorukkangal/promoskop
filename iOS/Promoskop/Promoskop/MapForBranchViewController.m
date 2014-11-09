@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *storeName;
 @property (weak, nonatomic) IBOutlet UILabel *storeAddress;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property(strong,nonatomic) MKPointAnnotation *point;
+@property (strong,nonatomic) MKPointAnnotation *point;
 
 @end
 

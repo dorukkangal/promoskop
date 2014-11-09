@@ -78,4 +78,8 @@
     return [self.productsMutableArrayCurrentlyInShoppingCart writeToFile:self.pathForShoppingCart atomically:YES];
 }
 
+- (void)clearShoppingCart{
+    [self.productsMutableArrayCurrentlyInShoppingCart removeAllObjects];
+}
+
 @end

@@ -59,11 +59,6 @@
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)cancel:(id)sender {
     if(self.captureSession.isRunning)
         [self.captureSession stopRunning];
@@ -95,8 +90,6 @@
         productWithPriceDetailTableViewController.productID = 11000036;
     }
 }
-
-
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     for(AVMetadataObject *current in metadataObjects) {

@@ -66,7 +66,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 
 - (void)requestPopularProducts{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:[NSString stringWithFormat:@"%@%@YUM",baseURL,findBySubString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@15",baseURL,getPopularProducts] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.productsArray = (NSArray *)responseObject;
         [self.collectionView reloadData];

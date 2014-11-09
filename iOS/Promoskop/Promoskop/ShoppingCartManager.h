@@ -17,5 +17,6 @@
 - (BOOL) isProductInShoppingCart:(NSInteger)productId;
 + (ShoppingCartManager *)manager;
 - (BOOL)saveProductsInShoppingCart;
+- (void)clearShoppingCart;
 
 @end

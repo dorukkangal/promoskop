@@ -92,6 +92,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularProductReusableViewCell" id="dXg-q2-nlK">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bf5-IV-VI7">
@@ -473,6 +474,9 @@
                                 <state key="normal" title="HESAPLA">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="b7D-Cx-CzI" kind="show" identifier="CheapestShoppingListInGivenRadiusViewController" id="4I8-LZ-wLx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-2N-lNM">
                                 <rect key="frame" x="300" y="540" width="300" height="60"/>
@@ -484,6 +488,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="clearShoppingList:" destination="0Pw-wL-BbY" eventType="touchUpInside" id="YZM-Hp-RX8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -522,6 +529,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jPi-MT-Lvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="738" y="-601"/>
+        </scene>
+        <!--Cheapest Shopping List In Given Radius View Controller-->
+        <scene sceneID="zrQ-XA-Ind">
+            <objects>
+                <viewController id="b7D-Cx-CzI" customClass="CheapestShoppingListInGivenRadiusViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b4j-ZR-k4I"/>
+                        <viewControllerLayoutGuide type="bottom" id="WMy-4T-uVr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bPW-Vs-ACp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pNg-6X-JSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1511" y="-601"/>
         </scene>
         <!--Feedback View Controller-->
         <scene sceneID="TTG-HF-3Qf">
@@ -1135,6 +1160,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ndv-2k-XUR"/>
-        <segue reference="vAI-TA-8KI"/>
+        <segue reference="bIR-2y-Zbb"/>
     </inferredMetricsTieBreakers>
 </document>
