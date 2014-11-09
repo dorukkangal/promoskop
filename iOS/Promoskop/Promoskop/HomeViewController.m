@@ -54,7 +54,6 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-
     [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
