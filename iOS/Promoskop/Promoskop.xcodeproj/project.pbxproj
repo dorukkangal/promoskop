@@ -40,6 +40,8 @@
 		9B0A0F6B1A0669D100BD97A8 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6A1A0669D100BD97A8 /* BasicCell.m */; };
 		9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */; };
 		9B14D1131A0FA625007C5101 /* CheapestShoppingListInGivenRadiusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B14D1121A0FA625007C5101 /* CheapestShoppingListInGivenRadiusViewController.m */; };
+		9B14D1161A0FD130007C5101 /* CheapestShoppingListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B14D1151A0FD130007C5101 /* CheapestShoppingListHeaderView.xib */; };
+		9B14D1191A0FD89B007C5101 /* CheapestShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B14D1181A0FD89B007C5101 /* CheapestShoppingListHeaderView.m */; };
 		9B30E19D1A09905300B53EAF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B30E19C1A09905300B53EAF /* FeedbackViewController.m */; };
 		9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B33684519EEE3A30049029E /* SearchedProductsViewController.m */; };
 		9B336B1619EF0DCD0049029E /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B336B1519EF0DCD0049029E /* BarcodeScannerViewController.m */; };
@@ -131,6 +133,9 @@
 		9B0A0F6D1A06704600BD97A8 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
 		9B14D1111A0FA625007C5101 /* CheapestShoppingListInGivenRadiusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapestShoppingListInGivenRadiusViewController.h; sourceTree = "<group>"; };
 		9B14D1121A0FA625007C5101 /* CheapestShoppingListInGivenRadiusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapestShoppingListInGivenRadiusViewController.m; sourceTree = "<group>"; };
+		9B14D1151A0FD130007C5101 /* CheapestShoppingListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheapestShoppingListHeaderView.xib; sourceTree = "<group>"; };
+		9B14D1171A0FD89B007C5101 /* CheapestShoppingListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapestShoppingListHeaderView.h; sourceTree = "<group>"; };
+		9B14D1181A0FD89B007C5101 /* CheapestShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapestShoppingListHeaderView.m; sourceTree = "<group>"; };
 		9B30E19B1A09905300B53EAF /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		9B30E19C1A09905300B53EAF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		9B33684419EEE3A30049029E /* SearchedProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedProductsViewController.h; sourceTree = "<group>"; };
@@ -269,6 +274,16 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		9B14D1141A0FD0EE007C5101 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				9B14D1151A0FD130007C5101 /* CheapestShoppingListHeaderView.xib */,
+				9B14D1171A0FD89B007C5101 /* CheapestShoppingListHeaderView.h */,
+				9B14D1181A0FD89B007C5101 /* CheapestShoppingListHeaderView.m */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
 		9B33684719EEF54C0049029E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +391,7 @@
 		9BAC14CD19ED8BCE00D53D8C /* Promoskop */ = {
 			isa = PBXGroup;
 			children = (
+				9B14D1141A0FD0EE007C5101 /* Xibs */,
 				9B53CCA31A0EC92300208D2C /* Custom Segue */,
 				9B0A0F621A0653E000BD97A8 /* Category */,
 				9B33684C19EEF58B0049029E /* Utility class */,
@@ -518,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B14D1161A0FD130007C5101 /* CheapestShoppingListHeaderView.xib in Resources */,
 				3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */,
 				9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */,
 				3A5C4FCE19FADD470049A805 /* placeholder@2x.png in Resources */,
@@ -579,6 +596,7 @@
 				9BAC14D419ED8BCE00D53D8C /* AppDelegate.m in Sources */,
 				3A93481B19EDC37600AF2665 /* FMDatabasePool.m in Sources */,
 				9BAC14DA19ED8BCE00D53D8C /* HomeViewController.m in Sources */,
+				9B14D1191A0FD89B007C5101 /* CheapestShoppingListHeaderView.m in Sources */,
 				9B33BF801A0EA699003BF64C /* PopularProductCollectionViewCell.m in Sources */,
 				3ADCFD1F19F01EF900743349 /* MapForBranchViewController.m in Sources */,
 				9B14D1131A0FA625007C5101 /* CheapestShoppingListInGivenRadiusViewController.m in Sources */,

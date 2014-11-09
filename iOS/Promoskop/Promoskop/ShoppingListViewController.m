@@ -12,6 +12,7 @@
 #import "ShoppingCartManager.h"
 #import "BasicCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CheapestShoppingListInGivenRadiusViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "INTULocationManager.h"
 #import <AFNetworking.h>
@@ -80,6 +81,9 @@
         operationManager.requestSerializer = [AFJSONRequestSerializer serializer];
         [operationManager POST:[baseURL stringByAppendingString:calculate] parameters:postData success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Reponse Object :%@", responseObject);
+            CheapestShoppingListInGivenRadiusViewController *cheapestShoppingListInGivenRadius = (CheapestShoppingListInGivenRadiusViewController *)segue.destinationViewController;
+            [cheapestShoppingListInGivenRadius setProducts:(NSArray *)responseObject];
+            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"[ShoppingListViewController] Error : %@" , [error description]);
         }];

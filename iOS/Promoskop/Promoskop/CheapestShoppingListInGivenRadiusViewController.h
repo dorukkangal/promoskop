@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CheapestShoppingListInGivenRadiusViewController : UIViewController
-
+@property (nonatomic, strong) NSArray *products;
 @end
