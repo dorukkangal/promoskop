@@ -22,8 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [[DataAccessLayer database]copyDatabaseIfNeeded];
+    
     [[AFNetworkActivityLogger sharedLogger] startLogging];
+    
+    //More detailed logging
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    //Less detailed logging
+//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor crimsonColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
