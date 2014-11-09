@@ -28,7 +28,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pk7-kF-z1H">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="pqQ-9d-p1D">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="6" id="pqQ-9d-p1D">
                                     <size key="itemSize" width="150" height="150"/>
                                     <size key="headerReferenceSize" width="320" height="44"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1226,7 +1226,7 @@
         <image name="shopping_cart_small_gray" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vAI-TA-8KI"/>
         <segue reference="Ndv-2k-XUR"/>
-        <segue reference="bIR-2y-Zbb"/>
     </inferredMetricsTieBreakers>
 </document>
