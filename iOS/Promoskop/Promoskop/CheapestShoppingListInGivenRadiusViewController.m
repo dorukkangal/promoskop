@@ -114,7 +114,7 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
     [self.notFoundProducts addObjectsFromArray:[ShoppingCartManager manager].productsArrayCurrentInShoppingBasket];
     for (NSDictionary *dic in foundProducts) {
         [self.notFoundProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if([obj[@"product_id"] integerValue] == [dic[@"barcode_id"] integerValue]){
+            if([obj[@"barcode_id"] integerValue] == [dic[@"barcode_id"] integerValue]){
                 *stop = YES;
                 [self.notFoundProducts removeObjectAtIndex:idx];
             }

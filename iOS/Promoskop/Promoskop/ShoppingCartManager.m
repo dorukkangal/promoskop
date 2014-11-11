@@ -53,7 +53,7 @@
 
 - (void) removeProductFromShoppingCart:(NSInteger)productId{
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
-        if ([product[@"product_id"] integerValue] == productId) {
+        if ([product[@"barcode_id"] integerValue] == productId) {
             [self.productsMutableArrayCurrentlyInShoppingCart removeObject:product];
             break;
         }
@@ -62,7 +62,7 @@
 
 - (BOOL) isProductInShoppingCart:(NSInteger)productId{
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
-        if ([product[@"product_id"] integerValue] == productId) {
+        if ([product[@"barcode_id"] integerValue] == productId) {
             return YES;
         }
     }

@@ -24,7 +24,7 @@
 static NSString * const popularProductCollectionViewCell = @"PopularProductCollectionViewCell";
 static NSString * const popularProductReusableViewCell = @"PopularProductReusableViewCell";
 
-@interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomCollectionCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *productsArray;
@@ -74,6 +74,18 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
     }];
 }
 
+-(void)addToBasketButtonTappedIn:(PopularProductCollectionViewCell *)cell{
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+    NSDictionary *productDictionary = self.productsArray[indexPath.item];
+    if(![[ShoppingCartManager manager]isProductInShoppingCart:[productDictionary[@"barcode_id"]integerValue]]){
+        [[ShoppingCartManager manager]addProductToShoppingCart:productDictionary];
+    }
+    else {
+        [[ShoppingCartManager manager]removeProductFromShoppingCart:[productDictionary[@"barcode_id"] integerValue]];
+    }
+    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+}
+
 - (void)setupUI{
     [self.searchBar setBarTintColor:[UIColor blueberryColor]];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
@@ -102,6 +114,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PopularProductCollectionViewCell *cell = (PopularProductCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:popularProductCollectionViewCell forIndexPath:indexPath];
+    cell.delegate =self;
     NSDictionary *product = self.productsArray[indexPath.item];
     [cell.productImageView sd_setImageWithURL:[NSURL URLWithString:product[@"product_url"]]];
     [cell.productNameLabel setText:product[@"product_name"]];

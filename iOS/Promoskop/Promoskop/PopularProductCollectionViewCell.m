@@ -10,4 +10,9 @@
 
 @implementation PopularProductCollectionViewCell
 
+- (IBAction)addToBasket:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if([self.delegate respondsToSelector:@selector(addToBasketButtonTappedIn:)])
+       [self.delegate addToBasketButtonTappedIn:self];
+}
 @end

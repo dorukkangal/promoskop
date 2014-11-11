@@ -75,7 +75,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
         NSDictionary *deletedProduct = [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket[indexPath.row];
-        [[ShoppingCartManager manager]removeProductFromShoppingCart:[deletedProduct[@"product_id"] integerValue]];
+        [[ShoppingCartManager manager]removeProductFromShoppingCart:[deletedProduct[@"barcode_id"] integerValue]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -117,7 +117,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"CheapestShoppingListInGivenRadiusViewController"]){
         NSDictionary *postData = @{ @"currentLatitude" : @(self.currentLocation.coordinate.latitude), @"currentLongitude" : @(self.currentLocation.coordinate.longitude) ,
-                                    @"maxDistance" : @5.0f, @"barcodeIds" : [[[ShoppingCartManager manager] productsArrayCurrentInShoppingBasket] valueForKeyPath:@"@distinctUnionOfObjects.product_id"]};
+                                    @"maxDistance" : @5.0f, @"barcodeIds" : [[[ShoppingCartManager manager] productsArrayCurrentInShoppingBasket] valueForKeyPath:@"@distinctUnionOfObjects.barcode_id"]};
         AFSecurityPolicy *policy = [[AFSecurityPolicy alloc] init];
         [policy setAllowInvalidCertificates:YES];
         AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];

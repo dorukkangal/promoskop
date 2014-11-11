@@ -398,7 +398,7 @@
         [[ShoppingCartManager  manager]removeProductFromShoppingCart:self.productID];
     }
     else{
-        NSDictionary* product = @{@"product_id":[NSNumber numberWithInteger:self.productID],
+        NSDictionary* product = @{@"barcode_id":[NSNumber numberWithInteger:self.productID],
                                   @"product_name":self.responseDict[@"product_name"],
                                   @"product_url":self.responseDict[@"product_url"]};
         [[ShoppingCartManager  manager]addProductToShoppingCart:product];
