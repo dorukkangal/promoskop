@@ -11,7 +11,7 @@
 @implementation CustomNavigationController
 
 - (void) awakeFromNib{
-
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{

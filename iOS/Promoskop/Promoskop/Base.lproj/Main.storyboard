@@ -530,7 +530,7 @@
             </objects>
             <point key="canvasLocation" x="738" y="-601"/>
         </scene>
-        <!--Bulunan Ürünler-->
+        <!--Cheapest Shopping List In Given Radius View Controller-->
         <scene sceneID="zrQ-XA-Ind">
             <objects>
                 <viewController id="b7D-Cx-CzI" customClass="CheapestShoppingListInGivenRadiusViewController" sceneMemberID="viewController">
@@ -599,14 +599,6 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Bulunan Ürünler" id="qWG-SK-Hfu">
-                        <barButtonItem key="leftBarButtonItem" image="left-25" id="fLH-M2-DFX">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="b7D-Cx-CzI" id="v8s-QH-t82"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Aph-mh-zdN" id="yi3-CU-1FU"/>
                     </connections>
@@ -858,12 +850,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="G6k-yh-zmW">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="left-25" id="iXr-bs-g9h">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="GrC-45-Clv" id="5Y0-uU-Sew"/>
-                            </connections>
-                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="MRy-Ag-hFd">
                             <rect key="frame" x="243" y="7" width="114" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -970,14 +956,7 @@
                             <constraint firstItem="wpJ-KU-vgq" firstAttribute="top" secondItem="aXE-0J-Feg" secondAttribute="bottom" constant="8" id="uTx-sm-Msn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yol tarifi" id="Z7G-VH-SYg">
-                        <barButtonItem key="leftBarButtonItem" image="left-25" id="Q5V-1a-Wr9">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="ZvM-WK-ULV" id="9Kt-u9-e3B"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Yol tarifi" id="Z7G-VH-SYg"/>
                     <connections>
                         <outlet property="mapView" destination="Rkn-m9-pbg" id="hvo-4M-xvu"/>
                         <outlet property="storeAddress" destination="ret-Ln-ZbV" id="1c8-RR-yEN"/>
@@ -1143,14 +1122,7 @@
                             <outlet property="delegate" destination="ACp-WA-bDi" id="AU1-7W-FKZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Market" id="Baq-dV-eD5">
-                        <barButtonItem key="leftBarButtonItem" image="left-25" id="sgq-mA-eCo">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="ACp-WA-bDi" id="z7m-zc-8JN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Market" id="Baq-dV-eD5"/>
                     <connections>
                         <outlet property="addressLabel" destination="3oD-Ia-Ldx" id="a7N-B0-w5d"/>
                         <outlet property="branchImageView" destination="97f-ew-xya" id="gEr-yW-mtN"/>
@@ -1220,7 +1192,6 @@
     </scenes>
     <resources>
         <image name="barcode_scanner-50" width="25" height="25"/>
-        <image name="left-25" width="25" height="25"/>
         <image name="menu" width="16" height="16"/>
         <image name="shopping_cart" width="25" height="25"/>
         <image name="shopping_cart_small_gray" width="26" height="26"/>

@@ -86,6 +86,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
     if(revealViewController){
         [self.revealButtonItem setTarget:self.revealViewController];
         [self.revealButtonItem setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
         [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
 }
@@ -159,9 +160,11 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position{
     if(position == FrontViewPositionRight){
+        self.collectionView.userInteractionEnabled = NO;
         self.searchBar.userInteractionEnabled = NO;
     }
     else if(position == FrontViewPositionLeft){
+        self.collectionView.userInteractionEnabled = YES;
         self.searchBar.userInteractionEnabled = YES;
     }
 }

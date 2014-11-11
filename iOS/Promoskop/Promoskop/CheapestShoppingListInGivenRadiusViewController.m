@@ -11,6 +11,7 @@
 #import "ShoppingCartManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BasicCell.h"
+#import <SWRevealViewController.h>
 
 @interface CheapestShoppingListInGivenRadiusViewController()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,6 +26,10 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
 - (void)viewDidLoad{
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
     [self.tableView setTableFooterView:[UIView.alloc initWithFrame:CGRectZero]];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.revealViewController.view removeGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

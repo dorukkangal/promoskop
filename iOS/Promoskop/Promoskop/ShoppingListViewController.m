@@ -26,12 +26,26 @@
 @implementation ShoppingListViewController
 
 - (void)viewDidLoad{
-    [self setupUI];
+//    [self setupUI];
     [self getUserLocation];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self setupUI];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+}
+
 - (void)setupUI{
-    [self.revealButtonItem setAction:@selector(revealToggle:)];
+//    [self.revealButtonItem setAction:@selector(revealToggle:)];
+    SWRevealViewController *revealViewController = self.revealViewController;
+//    revealViewController.delegate = self;
+    if(revealViewController){
+        [self.revealButtonItem setTarget:self.revealViewController];
+        [self.revealButtonItem setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
+        [self.revealViewController.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
 }
 
 - (void)getUserLocation{
