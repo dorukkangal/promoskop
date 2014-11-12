@@ -610,6 +610,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="tableView" destination="Aph-mh-zdN" id="yi3-CU-1FU"/>
+                        <segue destination="ACp-WA-bDi" kind="show" identifier="BranchDetailTableViewController" id="cIF-l9-Jn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNg-6X-JSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1142,7 +1143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk8-tc-Ivk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="868"/>
+            <point key="canvasLocation" x="1511" y="874"/>
         </scene>
         <!--Custom Navigation Controller-->
         <scene sceneID="LyG-BZ-IIZ">
@@ -1207,6 +1208,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ndv-2k-XUR"/>
+        <segue reference="cIF-l9-Jn2"/>
         <segue reference="vAI-TA-8KI"/>
     </inferredMetricsTieBreakers>
 </document>

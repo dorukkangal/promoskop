@@ -7,6 +7,7 @@
 //
 
 #import "CheapestShoppingListInGivenRadiusViewController.h"
+#import "BranchDetailTableViewController.h"
 #import "CheapestShoppingListHeaderView.h"
 #import "ShoppingCartManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -20,6 +21,8 @@
 
 static NSString * const cellIdentifier = @"CheapestShoppingListTableViewCell";
 static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
+
+static const NSUInteger kHeaderViewStartingTag = 1000;
 
 @implementation CheapestShoppingListInGivenRadiusViewController
 
@@ -65,6 +68,7 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     CheapestShoppingListHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
     if(section < self.products.count){
+        [headerView setTag:kHeaderViewStartingTag + section];
         headerView.storeLogoImageView.hidden = NO;
         headerView.subTotalPrice.hidden = NO;
         NSDictionary *dic = self.products[section];
@@ -72,6 +76,9 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
         NSNumber *price = dic[@"price"];
         [headerView.subTotalPrice setText:[NSString stringWithFormat:@"%.2f", [price floatValue]] ];
         [headerView.storeWithBranchNameLabel setText:dic[@"branch_name"]];
+        
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headerViewForSectionTapped:)];
+        [headerView addGestureRecognizer:tapGestureRecognizer];
     }
     else if(section == self.products.count){
         headerView.storeLogoImageView.hidden = YES;
@@ -81,6 +88,11 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
     return headerView;
 }
 
+- (void)headerViewForSectionTapped:(UITapGestureRecognizer *)recognizer{
+    CheapestShoppingListHeaderView *headerView = (CheapestShoppingListHeaderView *)[recognizer view];
+    NSLog(@"Selected Index : %zd",index);
+    [self performSegueWithIdentifier:@"BranchDetailTableViewController" sender:headerView];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 60.f;
@@ -94,10 +106,6 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
         return self.products.count + 1;
     }
     else return 0;
-}
-
-- (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setProducts:(NSArray *)products{
@@ -134,6 +142,15 @@ static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
         _notFoundProducts = [NSMutableArray array];
     }
     return _notFoundProducts;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"BranchDetailTableViewController"]){
+        CheapestShoppingListHeaderView *headerView = (CheapestShoppingListHeaderView *)sender;
+        NSInteger index = headerView.tag - kHeaderViewStartingTag;
+        BranchDetailTableViewController *branchDetailViewController = segue.destinationViewController;
+        branchDetailViewController.branchDetails = self.products[index];
+    }
 }
 
 @end
