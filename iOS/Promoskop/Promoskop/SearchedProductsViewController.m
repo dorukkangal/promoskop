@@ -50,13 +50,13 @@
 }
 
 -(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSLog(@"Search Text : %@", [searchBar.text stringByReplacingCharactersInRange:range withString:text]);
     NSString *searchText =[searchBar.text stringByReplacingCharactersInRange:range withString:text];
-    
+    NSString *encodedString = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if(![text isEqualToString:@"\n"]){
         if(searchText.length >=  2){
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            [manager GET:[baseURL stringByAppendingFormat:@"%@%@",findBySubString,searchText] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+            [manager GET:[baseURL stringByAppendingFormat:@"%@%@",findBySubString,encodedString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 self.foundProducts = (NSArray *)responseObject;
                 self.productsTableView.hidden = NO;
                 [self.productsTableView reloadData];
