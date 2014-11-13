@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BasicCell.h"
 #import <SWRevealViewController.h>
+#import "CheapestShoppingListFooterView.h"
 
 @interface CheapestShoppingListInGivenRadiusViewController()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +22,7 @@
 
 static NSString * const cellIdentifier = @"CheapestShoppingListTableViewCell";
 static NSString * const headerIdentifier = @"CheapestShoppingListHeaderView";
+static NSString * const footerIdentifier = @"CheapestShoppingListFooterView";
 
 static const NSUInteger kHeaderViewStartingTag = 1000;
 
@@ -28,6 +30,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
 
 - (void)viewDidLoad{
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:footerIdentifier];
     [self.tableView setTableFooterView:[UIView.alloc initWithFrame:CGRectZero]];
 }
 
@@ -106,6 +109,23 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
         return self.products.count + 1;
     }
     else return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section == self.products.count){
+        return 124;
+    }
+    return 0;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+
+    if(section == self.products.count){
+        CheapestShoppingListFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerIdentifier];
+        return footerView;
+    }
+    return nil;
+
 }
 
 - (void)setProducts:(NSArray *)products{

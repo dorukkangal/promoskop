@@ -31,6 +31,8 @@
 		3A93482719EDCE6700AF2665 /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93482619EDCE6700AF2665 /* DataAccessLayer.m */; };
 		3AB28E711A14EC33002CE0AF /* ShoppingListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28E701A14EC33002CE0AF /* ShoppingListHeaderView.m */; };
 		3AB28E731A14EC3F002CE0AF /* ShoppingListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28E721A14EC3F002CE0AF /* ShoppingListHeaderView.xib */; };
+		3AB28E751A1506F0002CE0AF /* CheapestShoppingListFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AB28E741A1506F0002CE0AF /* CheapestShoppingListFooterView.xib */; };
+		3AB28E781A1506FE002CE0AF /* CheapestShoppingListFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB28E771A1506FE002CE0AF /* CheapestShoppingListFooterView.m */; };
 		3AC9401E19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.m */; };
 		3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1419F0165500743349 /* INTULocationManager.m */; };
 		3ADCFD1919F0165500743349 /* INTULocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCFD1619F0165500743349 /* INTULocationRequest.m */; };
@@ -115,6 +117,9 @@
 		3AB28E6F1A14EC33002CE0AF /* ShoppingListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListHeaderView.h; sourceTree = "<group>"; };
 		3AB28E701A14EC33002CE0AF /* ShoppingListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListHeaderView.m; sourceTree = "<group>"; };
 		3AB28E721A14EC3F002CE0AF /* ShoppingListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListHeaderView.xib; sourceTree = "<group>"; };
+		3AB28E741A1506F0002CE0AF /* CheapestShoppingListFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheapestShoppingListFooterView.xib; sourceTree = "<group>"; };
+		3AB28E761A1506FE002CE0AF /* CheapestShoppingListFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapestShoppingListFooterView.h; sourceTree = "<group>"; };
+		3AB28E771A1506FE002CE0AF /* CheapestShoppingListFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapestShoppingListFooterView.m; sourceTree = "<group>"; };
 		3AC9401C19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductWithPriceDetailViewController.h; sourceTree = "<group>"; };
 		3AC9401D19EDE4A1007DAB52 /* ProductWithPriceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductWithPriceDetailViewController.m; sourceTree = "<group>"; };
 		3ADCFD1319F0165500743349 /* INTULocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationManager.h; sourceTree = "<group>"; };
@@ -288,6 +293,9 @@
 				3AB28E721A14EC3F002CE0AF /* ShoppingListHeaderView.xib */,
 				3AB28E6F1A14EC33002CE0AF /* ShoppingListHeaderView.h */,
 				3AB28E701A14EC33002CE0AF /* ShoppingListHeaderView.m */,
+				3AB28E741A1506F0002CE0AF /* CheapestShoppingListFooterView.xib */,
+				3AB28E761A1506FE002CE0AF /* CheapestShoppingListFooterView.h */,
+				3AB28E771A1506FE002CE0AF /* CheapestShoppingListFooterView.m */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -543,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB28E731A14EC3F002CE0AF /* ShoppingListHeaderView.xib in Resources */,
+				3AB28E751A1506F0002CE0AF /* CheapestShoppingListFooterView.xib in Resources */,
 				9B14D1161A0FD130007C5101 /* CheapestShoppingListHeaderView.xib in Resources */,
 				3A32873019EEBA4E00E3278D /* Promoskop.sqlite in Resources */,
 				9BAC14DD19ED8BCE00D53D8C /* Main.storyboard in Resources */,
@@ -626,6 +635,7 @@
 				9B33684619EEE3A30049029E /* SearchedProductsViewController.m in Sources */,
 				9B0A0F6E1A06704600BD97A8 /* UIImage+Utility.m in Sources */,
 				3A5A7FCB19FAF4F7005F1059 /* ASImageScrollView.m in Sources */,
+				3AB28E781A1506FE002CE0AF /* CheapestShoppingListFooterView.m in Sources */,
 				9B53CCA61A0EC93D00208D2C /* PushSegueWithoutAnimation.m in Sources */,
 				3ADCFD1819F0165500743349 /* INTULocationManager.m in Sources */,
 				9BAC14D119ED8BCE00D53D8C /* main.m in Sources */,

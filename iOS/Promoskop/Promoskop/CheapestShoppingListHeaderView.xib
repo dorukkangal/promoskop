@@ -21,14 +21,14 @@
                                 <constraint firstAttribute="width" constant="40" id="sHc-zj-Sgl"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-Pd-X3G">
-                            <rect key="frame" x="58" y="22" width="32" height="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Carrefour Express Istanbul Findikzade" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-Pd-X3G">
+                            <rect key="frame" x="58" y="22" width="481" height="15"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sZ-Dx-a9I">
-                            <rect key="frame" x="549" y="21" width="43" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="88.43" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sZ-Dx-a9I">
+                            <rect key="frame" x="547" y="21" width="45" height="18"/>
                             <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -38,10 +38,11 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="6sZ-Dx-a9I" secondAttribute="trailing" constant="8" id="6dA-ZX-f8r"/>
                         <constraint firstItem="6sZ-Dx-a9I" firstAttribute="top" secondItem="Iqz-wQ-oCD" secondAttribute="top" constant="21" id="8TC-bS-gHi"/>
+                        <constraint firstAttribute="centerY" secondItem="zcu-Pd-X3G" secondAttribute="centerY" constant="0.5" id="DDa-gX-ge7"/>
                         <constraint firstItem="Hlh-Bj-1dl" firstAttribute="top" secondItem="Iqz-wQ-oCD" secondAttribute="top" constant="10" id="Jl9-W2-IIg"/>
+                        <constraint firstItem="6sZ-Dx-a9I" firstAttribute="leading" secondItem="zcu-Pd-X3G" secondAttribute="trailing" constant="8" id="Ssk-Q5-FQ3"/>
                         <constraint firstItem="zcu-Pd-X3G" firstAttribute="leading" secondItem="Hlh-Bj-1dl" secondAttribute="trailing" constant="8" id="Ucc-IN-QRT"/>
                         <constraint firstItem="Hlh-Bj-1dl" firstAttribute="leading" secondItem="Iqz-wQ-oCD" secondAttribute="leading" constant="10" id="kBG-9o-hdz"/>
-                        <constraint firstItem="zcu-Pd-X3G" firstAttribute="top" secondItem="Iqz-wQ-oCD" secondAttribute="top" constant="22" id="uUT-QV-aIu"/>
                     </constraints>
                 </view>
             </subviews>

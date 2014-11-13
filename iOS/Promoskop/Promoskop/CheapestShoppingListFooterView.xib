@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0b6-7v-K8h" customClass="CheapestShoppingListFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7X-5H-wgL">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam tutar: 146 TL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuU-XZ-TyP">
+                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="p1B-kS-hNy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tüm ürünler Migros'tan alınır ise: 180 TL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meO-Sg-E9R">
+                            <rect key="frame" x="8" y="37" width="584" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="KMb-us-Dh5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tüm ürünler Carrefour'dan alınır ise: 170 TL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiE-hl-ake">
+                            <rect key="frame" x="8" y="66" width="584" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="uUO-vX-csf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kazancınız: 14-24 TL arası" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvI-I8-wUd">
+                            <rect key="frame" x="8" y="95" width="584" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="0QO-MT-4xg"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="TiE-hl-ake" firstAttribute="leading" secondItem="C7X-5H-wgL" secondAttribute="leading" constant="8" id="6I4-Cc-epX"/>
+                        <constraint firstAttribute="trailing" secondItem="cuU-XZ-TyP" secondAttribute="trailing" constant="8" id="AE0-Pu-7YA"/>
+                        <constraint firstItem="meO-Sg-E9R" firstAttribute="leading" secondItem="C7X-5H-wgL" secondAttribute="leading" constant="8" id="Dgy-XN-cgx"/>
+                        <constraint firstAttribute="trailing" secondItem="TiE-hl-ake" secondAttribute="trailing" constant="8" id="Dh0-bw-KW0"/>
+                        <constraint firstAttribute="trailing" secondItem="meO-Sg-E9R" secondAttribute="trailing" constant="8" id="I2v-uS-JlJ"/>
+                        <constraint firstItem="TiE-hl-ake" firstAttribute="top" secondItem="meO-Sg-E9R" secondAttribute="bottom" constant="8" id="MfD-Vg-szc"/>
+                        <constraint firstItem="meO-Sg-E9R" firstAttribute="top" secondItem="cuU-XZ-TyP" secondAttribute="bottom" constant="8" id="Mpf-Kx-G08"/>
+                        <constraint firstAttribute="trailing" secondItem="uvI-I8-wUd" secondAttribute="trailing" constant="8" id="QkD-Sy-oVh"/>
+                        <constraint firstAttribute="bottom" secondItem="uvI-I8-wUd" secondAttribute="bottom" constant="8" id="ZtO-SN-L9m"/>
+                        <constraint firstItem="cuU-XZ-TyP" firstAttribute="leading" secondItem="C7X-5H-wgL" secondAttribute="leading" constant="8" id="acc-oa-B11"/>
+                        <constraint firstItem="cuU-XZ-TyP" firstAttribute="top" secondItem="C7X-5H-wgL" secondAttribute="top" constant="8" id="cMH-ai-sfc"/>
+                        <constraint firstItem="uvI-I8-wUd" firstAttribute="leading" secondItem="C7X-5H-wgL" secondAttribute="leading" constant="8" id="cXX-Fm-1iU"/>
+                        <constraint firstItem="meO-Sg-E9R" firstAttribute="top" secondItem="cuU-XZ-TyP" secondAttribute="bottom" constant="8" id="ljO-y8-ws9"/>
+                        <constraint firstItem="TiE-hl-ake" firstAttribute="top" secondItem="meO-Sg-E9R" secondAttribute="bottom" constant="8" id="q37-XQ-bFN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="C7X-5H-wgL" firstAttribute="leading" secondItem="0b6-7v-K8h" secondAttribute="leading" id="8rV-Ze-tN0"/>
+                <constraint firstAttribute="bottom" secondItem="C7X-5H-wgL" secondAttribute="bottom" id="AKm-z3-a4h"/>
+                <constraint firstAttribute="trailing" secondItem="C7X-5H-wgL" secondAttribute="trailing" id="W7T-P7-pmj"/>
+                <constraint firstItem="C7X-5H-wgL" firstAttribute="top" secondItem="0b6-7v-K8h" secondAttribute="top" id="dcU-EB-wkE"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="totalGain" destination="uvI-I8-wUd" id="0et-vo-cN8"/>
+                <outlet property="totalOnlyCarrrefourPrice" destination="TiE-hl-ake" id="aiw-Mn-Ucg"/>
+                <outlet property="totalOnlyMigrosPrice" destination="meO-Sg-E9R" id="wjB-c5-dgA"/>
+                <outlet property="totalPrice" destination="cuU-XZ-TyP" id="r3j-Q4-OP2"/>
+            </connections>
+            <point key="canvasLocation" x="248" y="215"/>
+        </view>
+    </objects>
+</document>
