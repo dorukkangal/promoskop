@@ -26,7 +26,7 @@
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     
     //More detailed logging
-    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
     //Less detailed logging
 //    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
     

@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BasicCell.h"
 #import <SWRevealViewController.h>
+#import <MBProgressHUD.h>
 #import "CheapestShoppingListFooterView.h"
 
 @interface CheapestShoppingListInGivenRadiusViewController()<UITableViewDataSource, UITableViewDelegate>
@@ -32,6 +33,10 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:footerIdentifier];
     [self.tableView setTableFooterView:[UIView.alloc initWithFrame:CGRectZero]];
+    
+    MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [progressHUD setMode:MBProgressHUDModeIndeterminate];
+    [progressHUD setLabelText:@"Ürünler getiriliyor"];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -47,7 +52,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
         [cell.leftImageView sd_setImageWithURL:[NSURL URLWithString:productDic[@"product_url"]]];
         [cell.descriptionLabel setText:productDic[@"product_name"]];
     }
-    else if(self.products.count > 0){
+    else if(self.products.count >  0 || self.notFoundProducts.count > 0){
         NSDictionary *dictionary = self.notFoundProducts[indexPath.row];
         [cell.descriptionLabel setText:dictionary[@"product_name"]];
         [cell.leftImageView sd_setImageWithURL:[NSURL URLWithString:dictionary[@"product_url"]]];
@@ -65,7 +70,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
         return [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket.count - [self countOfProductsFoundInStore];
     }
     else
-        return 0;
+        return [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -108,7 +113,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
     else if(self.products.count > 0){
         return self.products.count + 1;
     }
-    else return 0;
+    else return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -130,24 +135,33 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
 
 - (void)setProducts:(NSArray *)products{
     _products = products;
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self prepareNotFoundProductArray];
     [self.tableView reloadData];
 }
 
 - (void)prepareNotFoundProductArray{
-    NSMutableArray *foundProducts = [NSMutableArray array];
-    for (NSDictionary *dic in self.products) {
-        [foundProducts addObjectsFromArray:dic[@"products"]];
+    if(self.products.count > 0){
+        NSMutableArray *foundProducts = [NSMutableArray array];
+        for (NSDictionary *dic in self.products) {
+            [foundProducts addObjectsFromArray:dic[@"products"]];
+        }
+        [self.notFoundProducts addObjectsFromArray:[ShoppingCartManager manager].productsArrayCurrentInShoppingBasket];
+        for (NSDictionary *dic in foundProducts) {
+            [self.notFoundProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                if([obj[@"barcode_id"] integerValue] == [dic[@"barcode_id"] integerValue]){
+                    *stop = YES;
+                    [self.notFoundProducts removeObjectAtIndex:idx];
+                }
+            }];
+        }
     }
-    [self.notFoundProducts addObjectsFromArray:[ShoppingCartManager manager].productsArrayCurrentInShoppingBasket];
-    for (NSDictionary *dic in foundProducts) {
-        [self.notFoundProducts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if([obj[@"barcode_id"] integerValue] == [dic[@"barcode_id"] integerValue]){
-                *stop = YES;
-                [self.notFoundProducts removeObjectAtIndex:idx];
-            }
-        }];
-    }}
+    else{
+        [self.notFoundProducts addObjectsFromArray:[ShoppingCartManager manager].productsArrayCurrentInShoppingBasket];
+    }
+}
+
+
 
 - (NSInteger)countOfProductsFoundInStore{
     NSInteger count = 0 ;

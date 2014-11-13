@@ -50,24 +50,46 @@
 }
 
 -(BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSString *searchText =[searchBar.text stringByReplacingCharactersInRange:range withString:text];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString *searchText =[text isEqualToString:@"\n"] ? searchBar.text : [searchBar.text stringByReplacingCharactersInRange:range withString:text];
     NSString *encodedString = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if(![text isEqualToString:@"\n"]){
         if(searchText.length >=  2){
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            
             manager.requestSerializer = [AFHTTPRequestSerializer serializer];
             [manager GET:[baseURL stringByAppendingFormat:@"%@%@",findBySubString,encodedString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                self.foundProducts = (NSArray *)responseObject;
-                self.productsTableView.hidden = NO;
-                [self.productsTableView reloadData];
+                NSString *absoluteString =operation.request.URL.absoluteString;
+                NSRange range = [absoluteString rangeOfString:@"="];
+                NSString *textFromResponse =[absoluteString substringWithRange:NSMakeRange(range.location + 1, absoluteString.length - range.location - 1)];
+                if([[textFromResponse stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] isEqualToString:searchBar.text]){
+                    self.foundProducts = (NSArray *)responseObject;
+                    self.productsTableView.hidden = NO;
+                    [self.productsTableView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"[SearchedProductsViewController]Error : %@",[error description]);
             }];
+
         }
         else {
             self.foundProducts = [NSArray array];
             [self.productsTableView reloadData];
         }
+    }
+    else {
+        [searchBar resignFirstResponder];
+        NSLog(@"Operation Count :%zd",[manager.operationQueue operations].count );
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [manager GET:[baseURL stringByAppendingFormat:@"%@%@",findBySubString,encodedString] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            self.foundProducts = (NSArray *)responseObject;
+            self.productsTableView.hidden = NO;
+            [self.productsTableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"[SearchedProductsViewController]Error : %@",[error description]);
+        }];
     }
 
     return YES;
