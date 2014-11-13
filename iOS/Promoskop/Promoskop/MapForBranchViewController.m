@@ -42,7 +42,7 @@
     self.point.coordinate = branchCoordinate;
     self.point.title = [NSString stringWithFormat:@"%@ TL",self.selectedBranch[@"price"]];
     double distance = [self.selectedBranch[@"distance"] floatValue];
-    self.point.subtitle = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+    self.point.subtitle = [NSString stringWithFormat:@"Uzaklık - %.2f km", distance ];
     [self.mapView addAnnotation:self.point];
     [self.mapView selectAnnotation:[[self.mapView annotations] lastObject] animated:NO];
     

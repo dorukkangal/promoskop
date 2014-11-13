@@ -335,7 +335,7 @@
                     </view>
                     <connections>
                         <segue destination="4C7-3v-Ud2" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="pgf-I3-7gl"/>
-                        <segue destination="ddl-Ek-obr" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="h5l-IB-OuU"/>
+                        <segue destination="P8m-WF-uhg" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="xDJ-sO-gYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyV-EU-kmm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -806,7 +806,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appro. 99 Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qs-xW-6V8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uzaklık - 99 Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qs-xW-6V8">
                                                     <rect key="frame" x="392" y="93" width="160" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="QSw-01-vtJ"/>
@@ -864,8 +864,8 @@
                             <rect key="frame" x="243" y="7" width="114" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="List"/>
-                                <segment title="Map"/>
+                                <segment title="Liste"/>
+                                <segment title="Harita"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -883,7 +883,7 @@
             </objects>
             <point key="canvasLocation" x="755" y="868"/>
         </scene>
-        <!--Yol tarifi-->
+        <!--Adres-->
         <scene sceneID="fg2-bf-m26">
             <objects>
                 <viewController id="ZvM-WK-ULV" customClass="MapForBranchViewController" sceneMemberID="viewController">
@@ -940,11 +940,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="350"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXE-0J-Feg">
-                                <rect key="frame" x="240" y="518" width="121" height="30"/>
+                                <rect key="frame" x="262" y="518" width="77" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4br-A9-raa"/>
                                 </constraints>
-                                <state key="normal" title="Directions to here">
+                                <state key="normal" title="Yolu tarif et">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -966,7 +966,7 @@
                             <constraint firstItem="wpJ-KU-vgq" firstAttribute="top" secondItem="aXE-0J-Feg" secondAttribute="bottom" constant="8" id="uTx-sm-Msn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yol tarifi" id="Z7G-VH-SYg"/>
+                    <navigationItem key="navigationItem" title="Adres" id="Z7G-VH-SYg"/>
                     <connections>
                         <outlet property="mapView" destination="Rkn-m9-pbg" id="hvo-4M-xvu"/>
                         <outlet property="storeAddress" destination="ret-Ln-ZbV" id="1c8-RR-yEN"/>
@@ -993,7 +993,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FHS-bT-H9s" id="Qwt-Q7-TaU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97f-ew-xya">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97f-ew-xya">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="199"/>
                                                 </imageView>
                                             </subviews>
@@ -1207,8 +1207,8 @@
         <image name="shopping_cart_small_gray" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ndv-2k-XUR"/>
-        <segue reference="cIF-l9-Jn2"/>
+        <segue reference="kiM-mW-VuF"/>
         <segue reference="vAI-TA-8KI"/>
+        <segue reference="xDJ-sO-gYd"/>
     </inferredMetricsTieBreakers>
 </document>

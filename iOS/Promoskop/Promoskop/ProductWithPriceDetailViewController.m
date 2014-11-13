@@ -223,7 +223,7 @@
             cell.branchAddressLabel.text = resultDict[@"branch_address"];
             cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
             double distance = [resultDict[@"distance"] floatValue];
-            cell.distanceLabel.text = [NSString stringWithFormat:@"Appro. %.2f km", distance ];
+            cell.distanceLabel.text = [NSString stringWithFormat:@"Uzaklık - %.2f km", distance ];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.userInteractionEnabled = YES;
         }

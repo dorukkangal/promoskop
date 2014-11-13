@@ -16,6 +16,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "INTULocationManager.h"
 #import <AFNetworking.h>
+#import "ShoppingListHeaderView.h"
 
 @interface ShoppingListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
@@ -23,11 +24,16 @@
 @property (nonatomic, strong) CLLocation *currentLocation;
 @end
 
+static NSString * const headerIdentifier = @"ShoppingListHeaderView";
+NSArray * kilometerIndexArray;
+
 @implementation ShoppingListViewController
 
 - (void)viewDidLoad{
 //    [self setupUI];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
     [self getUserLocation];
+    kilometerIndexArray = @[@2.0,@5.0,@10.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -55,6 +61,8 @@
     }];
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BasicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasicCell" forIndexPath:indexPath];
     NSDictionary *product = [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket[indexPath.row];
@@ -78,6 +86,20 @@
         [[ShoppingCartManager manager]removeProductFromShoppingCart:[deletedProduct[@"barcode_id"] integerValue]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    ShoppingListHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerIdentifier];
+    return headerView;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 81.f;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 - (IBAction)clearShoppingList:(id)sender {
@@ -116,8 +138,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"CheapestShoppingListInGivenRadiusViewController"]){
+        
+        ShoppingListHeaderView* header = (ShoppingListHeaderView*)[self.tableView headerViewForSection:0];
+        NSNumber* distance = (NSNumber*) kilometerIndexArray[header.segmentedControl.selectedSegmentIndex];
         NSDictionary *postData = @{ @"currentLatitude" : @(self.currentLocation.coordinate.latitude), @"currentLongitude" : @(self.currentLocation.coordinate.longitude) ,
-                                    @"maxDistance" : @5.0f, @"barcodeIds" : [[[ShoppingCartManager manager] productsArrayCurrentInShoppingBasket] valueForKeyPath:@"@distinctUnionOfObjects.barcode_id"]};
+                                    @"maxDistance" : distance, @"barcodeIds" : [[[ShoppingCartManager manager] productsArrayCurrentInShoppingBasket] valueForKeyPath:@"@distinctUnionOfObjects.barcode_id"]};
         AFSecurityPolicy *policy = [[AFSecurityPolicy alloc] init];
         [policy setAllowInvalidCertificates:YES];
         AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
