@@ -39,18 +39,27 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self requestPopularProducts];
-
-//    MBProgressHUD *progressHud = [[MBProgressHUD alloc]init];
-//    [progressHud setMode:MBProgressHUDModeIndeterminate];
-//    [progressHud setLabelText:@"Ürünler getiriliyor"];
-//    [progressHud show:YES];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"Ürünler getiriliyor";
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    
+    
+    NSDictionary *popularProductsContent = [NSDictionary dictionaryWithContentsOfFile:[self path]];
+    NSDate *createdDate = popularProductsContent[@"createdAt"];
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:createdDate];
+    if(timeInterval >= 15 * 60){
+        [self requestPopularProducts];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"Ürünler getiriliyor";
+    }
+    else {
+        self.productsArray = popularProductsContent[@"products"];
+    }
     [self setupUI];
+}
+
+- (NSString *)path{
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [searchPaths[0] stringByAppendingPathComponent:@"PopularProducts.plist"];
+    return path;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -68,6 +77,9 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
     [manager GET:[NSString stringWithFormat:@"%@%@15",baseURL,getPopularProducts] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.productsArray = (NSArray *)responseObject;
+        NSDictionary *dic = @{ @"createdAt" : [NSDate date] , @"products" : self.productsArray  };
+        [dic writeToFile:[self path] atomically:YES];
+        
         [self.collectionView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HomeViewController]Error :%@",[error description]);
