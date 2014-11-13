@@ -44,7 +44,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
     NSDictionary *popularProductsContent = [NSDictionary dictionaryWithContentsOfFile:[self path]];
     NSDate *createdDate = popularProductsContent[@"createdAt"];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:createdDate];
-    if(timeInterval >= 15 * 60){
+    if(timeInterval >= 15 * 60 || !popularProductsContent){
         [self requestPopularProducts];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeIndeterminate;
