@@ -21,13 +21,13 @@
                                 <constraint firstAttribute="width" constant="40" id="sHc-zj-Sgl"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Carrefour Express Istanbul Findikzade" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-Pd-X3G">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Carrefour Express Istanbul Findikzade" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" preferredMaxLayoutWidth="481" translatesAutoresizingMaskIntoConstraints="NO" id="zcu-Pd-X3G">
                             <rect key="frame" x="58" y="22" width="481" height="15"/>
                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="88.43" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sZ-Dx-a9I">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="88.43" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="45" translatesAutoresizingMaskIntoConstraints="NO" id="6sZ-Dx-a9I">
                             <rect key="frame" x="547" y="21" width="45" height="18"/>
                             <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
