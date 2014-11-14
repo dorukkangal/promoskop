@@ -26,9 +26,9 @@
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     
     //More detailed logging
-    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
+//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     //Less detailed logging
-//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor crimsonColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
