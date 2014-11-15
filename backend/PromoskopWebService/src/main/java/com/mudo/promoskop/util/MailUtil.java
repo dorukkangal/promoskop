@@ -11,11 +11,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MailUtil {
-	public static final String[] EMAIL_GROUP_LIST = new String[] { "dorukkangal@gmail.com"};//, "mustafabesnili@hotmail.com", "ceyhunozugur@gmail.com" };
 	private static final String USER_NAME = "infopromoskop@gmail.com";
 	private static final String PASSWORD = "gsustartup0493;";
 	private static final String SUBJECT = "Promoskop Feedback";
 	private static final String BODY = "Email : {0}<br>Feedback : {1}"; 
+	public static final String[] EMAIL_GROUP_LIST = new String[] { USER_NAME };//"dorukkangal@gmail.com"};//, "mustafabesnili@hotmail.com", "ceyhunozugur@gmail.com" };
 
 	public static void sendMail(String to, String email, String feedback) throws Exception {
 
