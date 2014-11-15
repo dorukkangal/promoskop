@@ -10,5 +10,5 @@ public interface ProductService {
 
 	public List<Product> findBySubString(String containText);
 
-	public List<Product> findMaxQueried(int count);
+	public List<Product> findMaxGapped(int count);
 }

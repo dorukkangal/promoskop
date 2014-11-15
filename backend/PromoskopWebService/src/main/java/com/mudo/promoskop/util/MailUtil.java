@@ -1,6 +1,6 @@
 package com.mudo.promoskop.util;
 
-import java.util.List;
+import java.text.MessageFormat;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,31 +11,30 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MailUtil {
-
+	public static final String[] EMAIL_GROUP_LIST = new String[] { "dorukkangal@gmail.com"};//, "mustafabesnili@hotmail.com", "ceyhunozugur@gmail.com" };
 	private static final String USER_NAME = "infopromoskop@gmail.com";
 	private static final String PASSWORD = "gsustartup0493;";
+	private static final String SUBJECT = "Promoskop Feedback";
+	private static final String BODY = "Email : {0}<br>Feedback : {1}"; 
 
-	public static void sendMail(String to, String subject, String body)
-			throws Exception {
+	public static void sendMail(String to, String email, String feedback) throws Exception {
 
 		MimeMessage message = new MimeMessage(openSession(USER_NAME, PASSWORD));
 		message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 		message.setFrom(new InternetAddress(USER_NAME));
-		message.setSubject(subject, "UTF-8");
-		message.setContent(body, "text/html; charset=utf-8");
+		message.setSubject(SUBJECT, "UTF-8");
+		message.setContent(MessageFormat.format(BODY, email, feedback), "text/html; charset=utf-8");
 		Transport.send(message);
 	}
 
-	public static void sendGroupMail(List<String> addresses, String subject,
-			String body) throws Exception {
+	public static void sendGroupMail(String[] addresses, String email, String feedback) throws Exception {
 
 		MimeMessage message = new MimeMessage(openSession(USER_NAME, PASSWORD));
 		for (String address : addresses) {
-			message.addRecipient(Message.RecipientType.BCC,
-					new InternetAddress(address));
+			message.addRecipient(Message.RecipientType.BCC, new InternetAddress(address));
 		}
-		message.setSubject(subject, "UTF-8");
-		message.setContent(body, "text/html; charset=utf-8");
+		message.setSubject(SUBJECT, "UTF-8");
+		message.setContent(MessageFormat.format(BODY, email, feedback), "text/html; charset=utf-8");
 
 		Transport.send(message);
 	}

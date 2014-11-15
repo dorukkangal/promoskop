@@ -1,13 +1,10 @@
 package com.mudo.promoskop.service.impl;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 import org.codehaus.jackson.annotate.JsonMethod;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.PropertyNamingStrategy;
@@ -28,7 +25,6 @@ import com.mudo.promoskop.service.BranchResponseService;
 import com.mudo.promoskop.service.JsonService;
 import com.mudo.promoskop.service.ProductResponseService;
 import com.mudo.promoskop.util.JsonFilter;
-import com.mudo.promoskop.util.MailUtil;
 
 @Service
 public class JsonServiceImpl implements JsonService {
@@ -69,7 +65,7 @@ public class JsonServiceImpl implements JsonService {
 
 	@Override
 	public String generateJsonForPopularProducts(JsonFilter filter, int count) throws Exception {
-		List<ProductResponse> popularProducts = productResponseService.findMaxQueried(count);
+		List<ProductResponse> popularProducts = productResponseService.findMaxGapped(count);
 
 		ObjectWriter writer = getFilteredWriter(filter);
 		return writer.writeValueAsString(popularProducts);
@@ -99,36 +95,14 @@ public class JsonServiceImpl implements JsonService {
 			return generateJsonForException(new InternalServerErrorException());
 		}
 	}
-	
+
 	@Override
-	public String generateJsonForAppConfiguration(HashMap<String, Object> conf)
-			throws Exception {
+	public String generateJsonForAppConfiguration(HashMap<String, Object> conf) throws Exception {
 		return mapper.writeValueAsString(conf);
 	}
-	
 
 	private ObjectWriter getFilteredWriter(JsonFilter filter) {
 		filters.addFilter("filterResponseBean", SimpleBeanPropertyFilter.serializeAllExcept(filter.getFilteredFields()));
 		return mapper.writer(filters);
-	}
-	
-	@Override
-	public String generateJsonForFeedback(String email, String feedback) throws JsonGenerationException, JsonMappingException, IOException {
-		System.out.println("");
-		HashMap<String, Object>feedbackResponse = new HashMap<>();
-		try {
-			if(feedback != null){
-				MailUtil.sendMail("mustafabesnili@hotmail.com", "Promoskop Feedback", "Email : " + email + "\nFeedback : "+ feedback);
-				feedbackResponse.put("error", 0);
-				feedbackResponse.put("message", "Geri bildiriminiz için teşekkür ederiz");
-			}
-			else {
-				feedbackResponse.put("error", 1);
-				feedbackResponse.put("message", "Geri bildirim alanı boş bırakılamaz");
-			}
-		} catch (Exception e) {
-			return generateJsonForException(e);
-		}
-		return mapper.writeValueAsString(feedbackResponse);
 	}
 }

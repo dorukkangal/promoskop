@@ -17,6 +17,4 @@ public interface JsonService {
 	public String generateJsonForAppConfiguration(HashMap<String, Object> conf) throws Exception;
 	
 	public String generateJsonForException(Exception ex);
-	
-	public String generateJsonForFeedback(String email, String feedback) throws Exception;
 }
