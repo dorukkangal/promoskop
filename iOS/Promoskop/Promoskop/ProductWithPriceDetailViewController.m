@@ -219,7 +219,7 @@
         productNameLabel.text = self.responseDict[@"product_name"];
         
         UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:100];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.responseDict[@"product_url"]]];
 //        imageView.contentMode = UIViewContentModeScaleAspectFit;
 
         self.btnAddRemoveShoppingCart = (UIButton*)[cell.contentView viewWithTag:102];
