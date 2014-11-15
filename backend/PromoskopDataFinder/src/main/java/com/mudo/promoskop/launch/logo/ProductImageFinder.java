@@ -1,4 +1,4 @@
-package com.mudo.promoskop.launch;
+package com.mudo.promoskop.launch.logo;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;

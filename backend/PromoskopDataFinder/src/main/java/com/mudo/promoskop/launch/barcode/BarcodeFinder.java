@@ -1,4 +1,4 @@
-package com.mudo.promoskop.launch;
+package com.mudo.promoskop.launch.barcode;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import org.jsoup.select.Elements;
 public class BarcodeFinder {
 
 	private static final String BARCODE_SITE = "http://shop.netbilgi.com.tr/?p=productsList&iPage=";
-	private static final int START_PAGE_INDEX = 401;
+	private static final int START_PAGE_INDEX = 1;
 	private static final int STOP_PAGE_INDEX = 401;
 
 	private static final String OUT_FILE_NAME = "barkode/netbilgi.csv";
@@ -27,7 +27,7 @@ public class BarcodeFinder {
 			openOutFile();
 			for (int i = START_PAGE_INDEX; i <= STOP_PAGE_INDEX; i++) {
 				writeProductsToFile(getProductsFromHtmlPage(i));
-				delay();
+				delay(20);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -92,9 +92,9 @@ public class BarcodeFinder {
 		writer.close();
 	}
 
-	private static void delay() {
+	private static void delay(int time) {
 		try {
-			TimeUnit.SECONDS.sleep(20);
+			TimeUnit.SECONDS.sleep(time);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

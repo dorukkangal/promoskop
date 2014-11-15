@@ -1,4 +1,4 @@
-package com.mudo.promoskop.launch;
+package com.mudo.promoskop.launch.json;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,9 +17,9 @@ import org.apache.commons.io.Charsets;
 
 public class BrandListPreparer {
 
-	private static final String JSON_FILE_NAME = "migros_all.json";
+	private static final String JSON_FILE_NAME = "json/migros_all.json";
 
-	private static final String OUT_FILE_NAME = "marka-listesi.csv";
+	private static final String OUT_FILE_NAME = "json/marka-listesi.csv";
 
 	private static final String BRAND_TAG = "\"nm\": ";
 
