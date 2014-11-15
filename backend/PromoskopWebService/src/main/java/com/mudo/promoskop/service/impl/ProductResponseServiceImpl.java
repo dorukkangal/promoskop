@@ -36,8 +36,8 @@ public class ProductResponseServiceImpl implements ProductResponseService {
 	}
 	
 	@Override
-	public List<ProductResponse> findMaxQueried(int count) {
-		List<Product> maxQueriedProducts = productService.findMaxQueried(count);
+	public List<ProductResponse> findMaxGapped(int count) {
+		List<Product> maxQueriedProducts = productService.findMaxGapped(count);
 		return convertResponseBeans(maxQueriedProducts);
 	}
 

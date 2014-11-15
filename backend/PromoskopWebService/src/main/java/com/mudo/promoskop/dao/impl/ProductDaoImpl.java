@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> findBySubString(String containText) {
 		containText = "%".concat(containText).concat("%");
-		LOG.debug("find by substring: ".concat(containText).concat("from Product"));
+		LOG.debug("find by substring: ? from Product", containText);
 
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Product> query = builder.createQuery(Product.class);
@@ -49,7 +49,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> findMaxQueried(int count) {
+	public List<Product> findMaxGapped(int count) {
 		LOG.debug("find max queried Product");
 
 		CriteriaBuilder builder = em.getCriteriaBuilder();

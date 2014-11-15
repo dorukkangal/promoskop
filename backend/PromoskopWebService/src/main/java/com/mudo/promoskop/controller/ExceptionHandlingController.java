@@ -34,15 +34,15 @@ public class ExceptionHandlingController {
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public @ResponseBody
 	String handleInternalServerErrorException(HttpServletRequest request, Exception e) {
-		LOG.info(request.getRequestURL().toString(), e);
-		return jsonService.generateJsonForException(new InternalServerErrorException());
+		LOG.error(request.getRequestURL().toString(), e);
+		return jsonService.generateJsonForException(e);
 	}
 
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public @ResponseBody
 	String handleException(HttpServletRequest request, Exception e) {
-		LOG.info(request.getRequestURL().toString(), e);
-		return jsonService.generateJsonForException(e);
+		LOG.error(request.getRequestURL().toString(), e);
+		return jsonService.generateJsonForException(new InternalServerErrorException());
 	}
 }

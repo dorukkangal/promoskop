@@ -39,7 +39,7 @@
 @property (nonatomic) BOOL statusBarHidden;
 @property (nonatomic) BOOL isProductInShoppingCart;
 @property (nonatomic, strong) UIButton *btnAddRemoveShoppingCart;
-
+@property (nonatomic) BOOL isProcessingLocationRequest;
 
 @property (strong,nonatomic) NSDictionary* selectedBranch;
 
@@ -92,6 +92,30 @@
     
 }
 
+-(void)calculateDistancesOfBranchesForCurrentLocation:(CLLocation *)currentLocation{
+
+    self.currentLocation = currentLocation;
+    for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
+        NSMutableDictionary* currentDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
+        double lat =  [currentDict[@"latitude"] floatValue];
+        double lon =  [currentDict[@"longitude"] floatValue];
+        
+        CLLocation* branchLocation = [[CLLocation alloc] initWithLatitude:lat  longitude:lon];
+        CLLocationDistance distanceInMeters = [branchLocation distanceFromLocation:currentLocation];
+        double distanceInKilometers = distanceInMeters / 1000.0;
+        
+        [currentDict setObject:[NSNumber numberWithDouble:distanceInKilometers] forKey:@"distance"];
+        
+        [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[currentDict copy]];
+    }
+    //Sorting the array according to a key in the inner dictionary
+    NSSortDescriptor* distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
+    NSArray* sortDescriptors = [NSArray arrayWithObject:distanceDescriptor];
+    self.sortableBranchesAndPricesArray = [[self.sortableBranchesAndPricesArray sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+    [self.tableView reloadData];
+    
+}
+
 - (void)startLocationRequest{
     
     __weak __typeof(self) weakSelf = self;
@@ -102,37 +126,32 @@
                                                    delayUntilAuthorized:YES
       block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status){
           __typeof(weakSelf) strongSelf = weakSelf;
-          
+          NSLog(@"Location accuracy: %ld", achievedAccuracy);
           if (status == INTULocationStatusSuccess) {
               // achievedAccuracy is at least the desired accuracy (potentially better)
-              NSLog(@"Location request successful! Current Location:\n%@", currentLocation);
-              self.currentLocation = currentLocation;
-              for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
-                  NSMutableDictionary* currentDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
-                  double lat =  [currentDict[@"latitude"] floatValue];
-                  double lon =  [currentDict[@"longitude"] floatValue];
-                  
-                  CLLocation* branchLocation = [[CLLocation alloc] initWithLatitude:lat  longitude:lon];
-                  CLLocationDistance distanceInMeters = [branchLocation distanceFromLocation:currentLocation];
-                  double distanceInKilometers = distanceInMeters / 1000.0;
-                  
-                  [currentDict setObject:[NSNumber numberWithDouble:distanceInKilometers] forKey:@"distance"];
-                  
-                  [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[currentDict copy]];
-              }
-              //Sorting the array according to a key in the inner dictionary
-              NSSortDescriptor* distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-              NSArray* sortDescriptors = [NSArray arrayWithObject:distanceDescriptor];
-              self.sortableBranchesAndPricesArray = [[self.sortableBranchesAndPricesArray sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+              NSLog(@"Location request successful! Current Location Altta \n%@", currentLocation);
+              [self calculateDistancesOfBranchesForCurrentLocation:currentLocation];
           }
           else if (status == INTULocationStatusTimedOut) {
               // You may wish to inspect achievedAccuracy here to see if it is acceptable, if you plan to use currentLocation
-              UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Timeout"
-                                                                 message:[NSString stringWithFormat:@"Location request timed out. Current Location:\n%@", currentLocation]
+              if (achievedAccuracy > INTULocationAccuracyNone) {
+                  UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Zaman Aşımı"
+                                                                     message:[NSString stringWithFormat:@"Konumunuz belirlenen sürede gerektiği kadar iyi saptanamadı. Bilinen en son konumunuz kullanılacak."]
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Tamam"
+                                                           otherButtonTitles:nil];
+                  [theAlert show];
+                  [self calculateDistancesOfBranchesForCurrentLocation:currentLocation];
+              }
+              else{
+                  UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Zaman Aşımı"
+                                                                 message:[NSString stringWithFormat:@"Konumunuz belirlenen sürede saptanamadı. Daha iyi bir saptama için lütfen bir kablosuz ağa bağlanın."]
                                                                 delegate:self
-                                                       cancelButtonTitle:@"OK"
+                                                       cancelButtonTitle:@"Tamam"
                                                        otherButtonTitles:nil];
-              [theAlert show];
+                  [theAlert show];
+                  [self calculateDistancesOfBranchesForCurrentLocation:currentLocation];
+              }
           }
           else {
               // An error occurred
@@ -173,7 +192,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if (self.sortableBranchesAndPricesArray.count == 0) {
+    if ( (self.sortableBranchesAndPricesArray.count == 0) || self.isProcessingLocationRequest) {
         return 2;
     }
     return self.sortableBranchesAndPricesArray.count + 1;
@@ -216,25 +235,35 @@
         
         static NSString *CellIdentifier = @"ReusableCell";
         BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-        if (self.sortableBranchesAndPricesArray.count > 0) {
-            NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
-            cell.storeLabel.text = resultDict[@"store_name"];
-            cell.branchAddressLabel.text = resultDict[@"branch_address"];
-            cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
-            double distance = [resultDict[@"distance"] floatValue];
-            cell.distanceLabel.text = [NSString stringWithFormat:@"Uzaklık - %.2f km", distance ];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.userInteractionEnabled = YES;
-        }
-        else{
+        if (self.isProcessingLocationRequest) {
             cell.storeLabel.text = @"";
-            cell.branchAddressLabel.text = @"Product is not being sold in any store.";
+            cell.branchAddressLabel.text = @"Konumunuz saptanıyor...";
             cell.priceLabel.text = @"";
             cell.distanceLabel.text = @"";
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.userInteractionEnabled = NO;
         }
+        else{
+            if (self.sortableBranchesAndPricesArray.count > 0) {
+                NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
+                cell.storeLabel.text = resultDict[@"store_name"];
+                cell.branchAddressLabel.text = resultDict[@"branch_address"];
+                cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
+                double distance = [resultDict[@"distance"] floatValue];
+                cell.distanceLabel.text = [NSString stringWithFormat:@"Uzaklık - %.2f km", distance ];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                cell.userInteractionEnabled = YES;
+            }
+            else{
+                cell.storeLabel.text = @"";
+                cell.branchAddressLabel.text = @"Bu ürün hiç bir markette satılmıyor.";
+                cell.priceLabel.text = @"";
+                cell.distanceLabel.text = @"";
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.userInteractionEnabled = NO;
+            }
+        }
+
         
         return cell;
     }
@@ -346,7 +375,7 @@
 {
     _locationRequestID = locationRequestID;
     
-    BOOL isProcessingLocationRequest = (locationRequestID != NSNotFound);
+    self.isProcessingLocationRequest = (locationRequestID != NSNotFound);
     
     //    self.desiredAccuracyControl.enabled = !isProcessingLocationRequest;
     //    self.timeoutSlider.enabled = !isProcessingLocationRequest;
@@ -354,7 +383,7 @@
     //    self.forceCompleteRequestButton.enabled = isProcessingLocationRequest;
     //    self.cancelRequestButton.enabled = isProcessingLocationRequest;
     
-    if (isProcessingLocationRequest) {
+    if (self.isProcessingLocationRequest) {
         //        [self.activityIndicator startAnimating];
         NSLog(@"Location request in progress...");
     } else {
@@ -507,6 +536,9 @@
         self.responseDict = (NSDictionary *)responseObject;
         [self prepareArray];
         [self startLocationRequest];
+        [self.tableView reloadData];
+
+        
         [UIView animateWithDuration:.5f animations:^{
             self.tableView.hidden = NO;
             dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{

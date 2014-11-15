@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findMaxQueried(int count) {
-		return productDao.findMaxQueried(count);
+	public List<Product> findMaxGapped(int count) {
+		return productDao.findMaxGapped(count);
 	}
 }
