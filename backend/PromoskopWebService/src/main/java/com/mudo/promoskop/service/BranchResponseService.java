@@ -6,5 +6,5 @@ import com.mudo.promoskop.response.BranchResponse;
 
 public interface BranchResponseService {
 
-	List<BranchResponse> findProductBranchWithMinPrice(int[] barcodeIds, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude);
+	List<BranchResponse> findProductBranchWithMinPrice(String[] barcodeIds, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude);
 }

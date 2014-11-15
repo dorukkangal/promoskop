@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -21,6 +22,9 @@ public class Product implements Serializable {
 	@Id
 	private int id;
 
+	@Column(unique=true)
+	private String barcode;
+
 	private String name;
 
 	private String url;
@@ -37,6 +41,14 @@ public class Product implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getBarcode() {
+		return barcode;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
 	}
 
 	public String getName() {

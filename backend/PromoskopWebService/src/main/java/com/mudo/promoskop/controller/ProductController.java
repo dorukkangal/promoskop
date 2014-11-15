@@ -20,10 +20,10 @@ public class ProductController {
 	@Autowired
 	private JsonService jsonService;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
+	@RequestMapping(value = "/{barcode}", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	String getProductByIdInJSON(@PathVariable(value = "id") int id) throws Exception {
-		return jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, id);
+	String getProductByIdInJSON(@PathVariable String barcode) throws Exception {
+		return jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, barcode);
 	}
 
 	@RequestMapping(value = "/findBySubString", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })

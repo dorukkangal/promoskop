@@ -24,8 +24,8 @@ public class ProductResponseServiceImpl implements ProductResponseService {
 	private ProductService productService;
 
 	@Override
-	public ProductResponse findById(int id) {
-		Product p = productService.findById(id);
+	public ProductResponse findByBarcode(String barcode) {
+		Product p = productService.findByBarcode(barcode);
 		return convertResponseBean(p);
 	}
 
@@ -49,7 +49,7 @@ public class ProductResponseServiceImpl implements ProductResponseService {
 	}
 
 	private ProductResponse convertResponseBean(Product product) {
-		ProductResponse productResponse = new ProductResponse(product.getId(), product.getName(), product.getUrl());
+		ProductResponse productResponse = new ProductResponse(product.getBarcode(), product.getName(), product.getUrl());
 		for (ProductBranch productBranch : product.getProductBranchs()) {
 			BranchResponse branchResponse = new BranchResponse();
 			branchResponse.setPrice(productBranch.getPrice());

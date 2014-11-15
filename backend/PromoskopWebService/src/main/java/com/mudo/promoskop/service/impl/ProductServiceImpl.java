@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public Product findById(int id) {
-		return productDao.findById(id);
+	public Product findByBarcode(String barcode) {
+		return productDao.findByBarcode(barcode);
 	}
 
 	@Override

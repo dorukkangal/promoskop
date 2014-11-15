@@ -48,8 +48,8 @@ public class JsonServiceImpl implements JsonService {
 	}
 
 	@Override
-	public String generateJsonForProduct(JsonFilter filter, int id) throws Exception {
-		ProductResponse product = productResponseService.findById(id);
+	public String generateJsonForProduct(JsonFilter filter, String barcode) throws Exception {
+		ProductResponse product = productResponseService.findByBarcode(barcode);
 
 		ObjectWriter writer = getFilteredWriter(filter);
 		return writer.writeValueAsString(product);
@@ -72,7 +72,7 @@ public class JsonServiceImpl implements JsonService {
 	}
 
 	@Override
-	public String generateJsonForBasket(JsonFilter filter, double currentLatitude, double currentLongitude, double maxDistance, int[] barcodeIds) throws Exception {
+	public String generateJsonForBasket(JsonFilter filter, double currentLatitude, double currentLongitude, double maxDistance, String[] barcodeIds) throws Exception {
 		LatLng start = new LatLng(currentLatitude, currentLongitude);
 
 		List<BranchResponse> branchResponses = branchResponseService.findProductBranchWithMinPrice(barcodeIds,
