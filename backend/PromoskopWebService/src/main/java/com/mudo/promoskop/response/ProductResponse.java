@@ -10,7 +10,7 @@ import org.codehaus.jackson.map.annotate.JsonFilter;
 public class ProductResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int barcodeId;
+	private String barcodeId;
 
 	private String productName;
 
@@ -18,7 +18,7 @@ public class ProductResponse implements Serializable {
 
 	private List<BranchResponse> branches = new ArrayList<BranchResponse>();
 
-	public ProductResponse(int barcodeId, String productName, String productUrl) {
+	public ProductResponse(String barcodeId, String productName, String productUrl) {
 		super();
 		this.barcodeId = barcodeId;
 		this.productName = productName;
@@ -28,11 +28,11 @@ public class ProductResponse implements Serializable {
 	public ProductResponse() {
 	}
 
-	public int getBarcodeId() {
+	public String getBarcodeId() {
 		return barcodeId;
 	}
 
-	public void setBarcodeId(int barcodeId) {
+	public void setBarcodeId(String barcodeId) {
 		this.barcodeId = barcodeId;
 	}
 

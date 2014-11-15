@@ -3,7 +3,6 @@ package com.mudo.promoskop.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -26,9 +25,13 @@ public class ProductDaoImpl implements ProductDao {
 	private EntityManager em;
 
 	@Override
-	public Product findById(int id) {
-		LOG.debug("find by id " + id + "from product");
-		Product p = em.find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
+	public Product findByBarcode(String barcode) {
+		LOG.debug("find by barcode: {} from product", barcode);
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Product> query = builder.createQuery(Product.class);
+		Root<Product> from = query.from(Product.class);
+		query.where(builder.equal(from.get("barcode").as(String.class), barcode));
+		Product p = em.createQuery(query).setHint(QueryHints.CACHEABLE, true).getSingleResult();
 		if (p == null)
 			throw new ResourceNotFoundException();
 		p.setQueryCount(p.getQueryCount() + 1);
@@ -39,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> findBySubString(String containText) {
 		containText = "%".concat(containText).concat("%");
-		LOG.debug("find by substring: ? from Product", containText);
+		LOG.debug("find by substring: {} from Product", containText);
 
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Product> query = builder.createQuery(Product.class);

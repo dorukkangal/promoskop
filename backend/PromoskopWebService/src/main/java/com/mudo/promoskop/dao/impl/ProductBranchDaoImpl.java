@@ -24,8 +24,8 @@ public class ProductBranchDaoImpl implements ProductBranchDao {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ProductBranch> findProductBranchWithMinPrice(int barcode, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude) {
-		LOG.debug("find with minPrice: " + barcode + " from ProductBranch");
+	public List<ProductBranch> findProductBranchWithMinPrice(String barcode, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude) {
+		LOG.debug("find with minPrice: {} from ProductBranch", barcode);
 
 		Query query = em.createNativeQuery("select * from product_branch where (product_id, price) = "
 				+ "(select product_id, MIN(price) from product_branch as p where p.product_id=:productId and p.branch_id in"

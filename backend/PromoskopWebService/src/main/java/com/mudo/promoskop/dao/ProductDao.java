@@ -6,7 +6,7 @@ import com.mudo.promoskop.model.Product;
 
 public interface ProductDao {
 
-	public Product findById(int id);
+	public Product findByBarcode(String barcode);
 
 	public List<Product> findBySubString(String containText);
 

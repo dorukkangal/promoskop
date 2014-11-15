@@ -11,7 +11,7 @@ public class CheapestPriceRequest implements Serializable {
 
 	private double maxDistance;
 
-	private int[] barcodeIds;
+	private String[] barcodeIds;
 
 	public double getCurrentLatitude() {
 		return currentLatitude;
@@ -37,11 +37,11 @@ public class CheapestPriceRequest implements Serializable {
 		this.maxDistance = maxDistance;
 	}
 
-	public int[] getBarcodeIds() {
+	public String[] getBarcodeIds() {
 		return barcodeIds;
 	}
 
-	public void setBarcodeIds(int[] barcodeIds) {
+	public void setBarcodeIds(String[] barcodeIds) {
 		this.barcodeIds = barcodeIds;
 	}
 }

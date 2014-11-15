@@ -6,7 +6,7 @@ import com.mudo.promoskop.response.ProductResponse;
 
 public interface ProductResponseService {
 
-	public ProductResponse findById(int id);
+	public ProductResponse findByBarcode(String barcode);
 
 	public List<ProductResponse> findBySubString(String containText);
 
