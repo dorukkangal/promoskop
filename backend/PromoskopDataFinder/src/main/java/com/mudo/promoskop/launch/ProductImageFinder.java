@@ -30,9 +30,9 @@ public class ProductImageFinder {
 		}
 	}
 
-	public static void saveProductImage(BufferedImage uniImage, String uniName) throws Exception {
-		File outputfile = new File("logo/" + uniName + ".png");
-		ImageIO.write(uniImage, "png", outputfile);
+	public static void saveProductImage(BufferedImage productImage, String productName) throws Exception {
+		File outputfile = new File("logo/" + productName + ".png");
+		ImageIO.write(productImage, "png", outputfile);
 	}
 
 	public static BufferedImage findProductImageFromGoogle(String productName) throws Exception {
@@ -43,8 +43,8 @@ public class ProductImageFinder {
 		return image;
 	}
 
-	private static String getSearchKey(String uniName) {
-		return (uniName.contains("(") ? uniName.substring(0, (uniName.indexOf("(") - 1)) : uniName) + " logo";
+	private static String getSearchKey(String productName) {
+		return (productName.contains("(") ? productName.substring(0, (productName.indexOf("(") - 1)) : productName) + " logo";
 	}
 
 	private static JSONObject getJsonObject(URLConnection connection) throws Exception {

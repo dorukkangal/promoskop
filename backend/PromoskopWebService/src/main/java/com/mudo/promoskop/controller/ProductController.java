@@ -32,7 +32,7 @@ public class ProductController {
 		return jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
 	}
 
-	@RequestMapping(value = "/getPopularProducts", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
+	@RequestMapping(value = "/popular", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
 	String getPopularProductsJSON(@RequestParam(value = "count") int count) throws Exception {
 		return jsonService.generateJsonForPopularProducts(JsonFilter.POPULAR_PRODUCTS_FILTER, count);
