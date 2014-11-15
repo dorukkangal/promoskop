@@ -896,7 +896,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkz-Wr-H3Y">
-                                <rect key="frame" x="0.0" y="422" width="600" height="88"/>
+                                <rect key="frame" x="0.0" y="466" width="600" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADRES " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="584" translatesAutoresizingMaskIntoConstraints="NO" id="ret-Ln-ZbV">
                                         <rect key="frame" x="8" y="36" width="584" height="51"/>
@@ -937,10 +937,10 @@
                                 </variation>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-m9-pbg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="350"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="394"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXE-0J-Feg">
-                                <rect key="frame" x="262" y="518" width="77" height="30"/>
+                                <rect key="frame" x="262" y="562" width="77" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4br-A9-raa"/>
                                 </constraints>
