@@ -143,10 +143,7 @@ NSArray * kilometerIndexArray;
         NSNumber* distance = (NSNumber*) kilometerIndexArray[header.segmentedControl.selectedSegmentIndex];
         NSDictionary *postData = @{ @"currentLatitude" : @(self.currentLocation.coordinate.latitude), @"currentLongitude" : @(self.currentLocation.coordinate.longitude) ,
                                     @"maxDistance" : distance, @"barcodeIds" : [[[ShoppingCartManager manager] productsArrayCurrentInShoppingBasket] valueForKeyPath:@"@distinctUnionOfObjects.barcode_id"]};
-        AFSecurityPolicy *policy = [[AFSecurityPolicy alloc] init];
-        [policy setAllowInvalidCertificates:YES];
         AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
-        [operationManager setSecurityPolicy:policy];
         operationManager.requestSerializer = [AFJSONRequestSerializer serializer];
         [operationManager POST:[baseURL stringByAppendingString:calculate] parameters:postData success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"Reponse Object :%@", responseObject);

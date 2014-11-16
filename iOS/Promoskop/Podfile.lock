@@ -24,6 +24,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Colours (5.5.0)
+  - iRate (1.11.3)
   - MBProgressHUD (0.9)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking (~> 2.0)
   - Colours
+  - iRate
   - MBProgressHUD (~> 0.8)
   - SDWebImage (~> 3.7.1)
   - SWRevealViewController (~> 2.3.0)
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Colours: 7abeb0fdebe2da3d8bd7305aee0798375f51f5d8
+  iRate: 5e1978bac8b3f3f0296dbeccc0dd7b50e6e50657
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77

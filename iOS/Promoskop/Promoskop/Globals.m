@@ -18,5 +18,5 @@ NSString *findByID = @"product/";
 NSString *getPopularProducts = @"product/popular?count=";
 NSString *calculate = @"basket/calculate";
 NSString *config = @"config";
-
+NSString *feedback = @"feedback";
 @end

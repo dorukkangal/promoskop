@@ -11,6 +11,7 @@
 #import "ShoppingCartManager.h"
 #import <Colours.h>
 #import <AFNetworkActivityLogger.h>
+#import <iRate.h>
 
 @interface AppDelegate ()
 
@@ -29,6 +30,8 @@
 //    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     //Less detailed logging
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelInfo];
+    [iRate sharedInstance].usesUntilPrompt = 10;
+    [iRate sharedInstance].daysUntilPrompt = 10;
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor crimsonColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];

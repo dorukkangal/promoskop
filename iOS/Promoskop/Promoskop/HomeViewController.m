@@ -24,7 +24,7 @@
 static NSString * const popularProductCollectionViewCell = @"PopularProductCollectionViewCell";
 static NSString * const popularProductReusableViewCell = @"PopularProductReusableViewCell";
 
-@interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomCollectionCellDelegate>
+@interface HomeViewController ()<UISearchBarDelegate, SWRevealViewControllerDelegate, UIGestureRecognizerDelegate , UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CustomCollectionCellDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) NSArray *productsArray;
@@ -39,8 +39,18 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
+    [operationManager GET:[baseURL stringByAppendingString:config] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
+        NSString *serverAppVersion = responseObject[@"app_version"];
+        if(![currentVersion isEqualToString:serverAppVersion]){
+            [self warnUserToUpdate];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HomeViewController] Error : %@" , [error description]);
+    }];
     
-    
+
     NSDictionary *popularProductsContent = [NSDictionary dictionaryWithContentsOfFile:[self path]];
     NSDate *createdDate = popularProductsContent[@"createdAt"];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:createdDate];
@@ -54,6 +64,11 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
         self.productsArray = popularProductsContent[@"products"];
     }
     [self setupUI];
+}
+
+-(void)warnUserToUpdate{
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Info" message:@"Yeni sürümde güzel güzel değişiklikler yaptık. Update pls." delegate:self cancelButtonTitle:@"Daha Sonra :-(" otherButtonTitles:@"Tamam", nil];
+    [alertView show];
 }
 
 - (NSString *)path{
@@ -200,6 +215,17 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
     return [gestureRecognizer isKindOfClass:UIScreenEdgePanGestureRecognizer.class];
+}
+
+#pragma mark UIAlertView delegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+
+    }
+    else if(buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms://itunes.com/apps/tercihrehberi"]];
+    }
 }
 
 @end

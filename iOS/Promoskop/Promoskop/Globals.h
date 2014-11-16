@@ -15,6 +15,7 @@ extern NSString *findByID;
 extern NSString *getPopularProducts;
 extern NSString *calculate;
 extern NSString *config;
+extern NSString *feedback;
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
