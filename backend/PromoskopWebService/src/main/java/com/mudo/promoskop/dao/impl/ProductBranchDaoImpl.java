@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.mudo.promoskop.dao.ProductBranchDao;
 import com.mudo.promoskop.dao.ProductDao;
 import com.mudo.promoskop.model.ProductBranch;
+import com.mudo.promoskop.util.CacheUtil;
 
 @Repository
 public class ProductBranchDaoImpl implements ProductBranchDao {
@@ -33,6 +34,8 @@ public class ProductBranchDaoImpl implements ProductBranchDao {
 				ProductBranch.class);
 		List<ProductBranch> results = query.setParameter("productId", barcode).setParameter("minLatitude", minLatitude).setParameter("maxLatitude", maxLatitude)
 				.setParameter("minLongitude", minLongitude).setParameter("maxLongitude", maxLongitude).setHint(QueryHints.CACHEABLE, true).getResultList();
+		
+		CacheUtil.displayStatistics(em);
 		return results;
 	}
 }

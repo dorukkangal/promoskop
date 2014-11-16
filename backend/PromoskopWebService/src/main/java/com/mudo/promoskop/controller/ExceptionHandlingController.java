@@ -1,5 +1,6 @@
 package com.mudo.promoskop.controller;
 
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -22,12 +23,12 @@ public class ExceptionHandlingController {
 	@Autowired
 	private JsonService jsonService;
 
-	@ExceptionHandler(ResourceNotFoundException.class)
+	@ExceptionHandler(NoResultException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public @ResponseBody
 	String handleEntityNotFoundException(HttpServletRequest request, Exception e) {
 		LOG.info(request.getRequestURL().toString(), e);
-		return jsonService.generateJsonForException(e);
+		return jsonService.generateJsonForException(new ResourceNotFoundException());
 	}
 
 	@ExceptionHandler(InternalServerErrorException.class)
