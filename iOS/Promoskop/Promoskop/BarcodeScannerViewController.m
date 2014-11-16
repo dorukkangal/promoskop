@@ -87,15 +87,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
         ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        productWithPriceDetailTableViewController.productID = 11000036;
+        productWithPriceDetailTableViewController.productID = [self.scannedBarcode integerValue];
     }
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     for(AVMetadataObject *current in metadataObjects) {
         if([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]) {
-            NSString *scannedValue = [((AVMetadataMachineReadableCodeObject *) current) stringValue];
-            NSLog(@"Scanned Value : %@", scannedValue);
+            self.scannedBarcode = [((AVMetadataMachineReadableCodeObject *) current) stringValue];
+            NSLog(@"Scanned Value : %@", self.scannedBarcode);
             if(self.captureSession.isRunning)
                [self.captureSession stopRunning];
             [self performSegueWithIdentifier:@"ProductWithPriceDetailTableViewController" sender:nil];

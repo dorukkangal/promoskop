@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *telephoneNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *branchNameLabel;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labelCollections;
 @end
 
 @implementation BranchDetailTableViewController
@@ -29,11 +30,10 @@
     [self.workingHoursLabel setText:@"Mon - Sun : 10:00 AM - 10:00 PM"];
     [self.telephoneNumberLabel setText:@"(0532) 412 3387"];
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    for (UILabel *label in self.labelCollections) {
+        [label setAttributedText:[[NSAttributedString alloc] initWithString:label.text attributes:@{NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}]];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -181,6 +181,10 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
         return UIEdgeInsetsMake(6, 25, 25, 25);
 }
 
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     [self.searchBar resignFirstResponder];
 }

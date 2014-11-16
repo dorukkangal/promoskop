@@ -31,6 +31,7 @@ NSArray * kilometerIndexArray;
 
 - (void)viewDidLoad{
 //    [self setupUI];
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self.tableView registerNib:[UINib nibWithNibName:@"ShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
     [self getUserLocation];
     kilometerIndexArray = @[@2.0,@5.0,@10.0];

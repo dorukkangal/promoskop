@@ -15,6 +15,7 @@ pod 'SWRevealViewController', '~>2.3.0'
 pod 'Colours'
 pod 'AFNetworkActivityLogger'
 pod 'iRate'
+pod 'pop'
 
 target 'PromoskopTests' do
 

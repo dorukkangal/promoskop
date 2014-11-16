@@ -20,6 +20,7 @@
 #import <MBProgressHUD.h>
 #import "ASMediaFocusManager.h"
 #import "ShoppingCartManager.h"
+#import <POP.h>
 
 #define TABLEVIEW_FIRST_CELL_HEIGHT 122
 #define TABLEVIEW_CELL_HEIGHT 130
@@ -51,6 +52,7 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self.navigationItem.backBarButtonItem setTintColor:[UIColor whiteColor]];
+    self.tableView.hidden = YES;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -84,9 +86,11 @@
 - (void)setBtnAddRemoveShoppingCart{
     
     if(self.isProductInShoppingCart){
+        [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"unbuy"] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listemden Cikar" forState:UIControlStateNormal];
     }
     else{
+        [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"buy"] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listeme Ekle" forState:UIControlStateNormal];
     }
     
@@ -232,7 +236,10 @@
         return cell;
         
     } else {
-        
+        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+        [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [numberFormatter setDecimalSeparator:@","];
         static NSString *CellIdentifier = @"ReusableCell";
         BranchWithProductPriceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         if (self.isProcessingLocationRequest) {
@@ -246,11 +253,14 @@
         else{
             if (self.sortableBranchesAndPricesArray.count > 0) {
                 NSDictionary *resultDict = self.sortableBranchesAndPricesArray[indexPath.row-1];
-                cell.storeLabel.text = resultDict[@"store_name"];
+                NSDictionary *dic = @{NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)};
+
+                [cell.storeLabel setAttributedText:[[NSAttributedString alloc]initWithString:resultDict[@"store_name"] attributes:dic]];
                 cell.branchAddressLabel.text = resultDict[@"branch_address"];
-                cell.priceLabel.text = [NSString stringWithFormat:@"%@ TL", resultDict[@"price"]];
+                NSLog(@"String from number :%@", [numberFormatter stringFromNumber:resultDict[@"price"]]);
+                cell.priceLabel.text = [NSString stringWithFormat:@"%@ ₺",[numberFormatter stringFromNumber:resultDict[@"price"]] ];
                 double distance = [resultDict[@"distance"] floatValue];
-                cell.distanceLabel.text = [NSString stringWithFormat:@"Uzaklık - %.2f km", distance ];
+                cell.distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance ];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.userInteractionEnabled = YES;
             }
@@ -422,7 +432,7 @@
 }
 
 - (IBAction)addRemoveFromShoppingCartPressed:(id)sender {
-    
+    [self shakeButton];
     if (self.isProductInShoppingCart) {
         [[ShoppingCartManager  manager]removeProductFromShoppingCart:self.productID];
     }
@@ -571,7 +581,14 @@
     
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)shakeButton
+{
+    POPSpringAnimation *positionAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
+    positionAnimation.velocity = @2000;
+    positionAnimation.springBounciness = 20;
+    [positionAnimation setCompletionBlock:^(POPAnimation *animation, BOOL finished) {
+        self.btnAddRemoveShoppingCart.userInteractionEnabled = YES;
+    }];
+    [self.btnAddRemoveShoppingCart.layer pop_addAnimation:positionAnimation forKey:@"positionAnimation"];
 }
 @end

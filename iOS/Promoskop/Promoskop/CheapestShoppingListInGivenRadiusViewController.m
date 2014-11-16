@@ -32,6 +32,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
 - (void)viewDidLoad{
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:headerIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"CheapestShoppingListFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:footerIdentifier];
+    self.tableView.hidden = YES;
     [self.tableView setTableFooterView:[UIView.alloc initWithFrame:CGRectZero]];
     
     MBProgressHUD *progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
