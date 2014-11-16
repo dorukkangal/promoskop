@@ -137,6 +137,7 @@ static const NSUInteger kHeaderViewStartingTag = 1000;
 - (void)setProducts:(NSArray *)products{
     _products = products;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.tableView.hidden = NO;
     [self prepareNotFoundProductArray];
     [self.tableView reloadData];
 }
