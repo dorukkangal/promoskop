@@ -32,8 +32,7 @@ public class ProductDaoImpl implements ProductDao {
 		Root<Product> from = query.from(Product.class);
 		query.where(builder.equal(from.get("barcode").as(String.class), barcode));
 		Product p = em.createQuery(query).setHint(QueryHints.CACHEABLE, true).getSingleResult();
-		p.setQueryCount(p.getQueryCount() + 1);
-		em.flush();
+		updateQueryCount(p);
 		CacheUtil.displayStatistics(em);
 		return p;
 	}
@@ -61,5 +60,14 @@ public class ProductDaoImpl implements ProductDao {
 		query.orderBy(builder.desc(from.get("queryCount")));
 		CacheUtil.displayStatistics(em);
 		return em.createQuery(query).setHint(QueryHints.CACHEABLE, true).setMaxResults(count).getResultList();
+	}
+
+	public void updateQueryCount(Product p) {
+		p.setQueryCount(p.getQueryCount() + 1);
+		update(p);
+	}
+
+	public void update(Product p) {
+		em.merge(p);
 	}
 }
