@@ -21,7 +21,7 @@ public class MainTest {
 	@Test
 	public void testFindById() throws Exception {
 		elapsedTime = new Time("findById");
-		String productId = "11000036";
+		String productId = "8696368099002";
 		String json;
 
 		json = jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, productId);
