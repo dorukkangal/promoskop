@@ -29,10 +29,10 @@ public class ProductBranchDaoImpl implements ProductBranchDao {
 		LOG.debug("find with minPrice: {} from ProductBranch", barcode);
 
 		Query query = em.createNativeQuery("select * from product_branch where (product_id, price) = "
-				+ "(select product_id, MIN(price) from product_branch as p where p.product_id=:productId and p.branch_id in"
-				+ "(select id from branch as b where latitude>:minLatitude and latitude<:maxLatitude and longitude>:minLongitude and longitude<:maxLongitude))",
+				+ "(select product_id, MIN(price) from product_branch as pb where pb.product_id=(select id from product as p where p.barcode=:barcode) and pb.branch_id in"
+				+ "(select b.id from branch as b where b.latitude>:minLatitude and b.latitude<:maxLatitude and b.longitude>:minLongitude and b.longitude<:maxLongitude))",
 				ProductBranch.class);
-		List<ProductBranch> results = query.setParameter("productId", barcode).setParameter("minLatitude", minLatitude).setParameter("maxLatitude", maxLatitude)
+		List<ProductBranch> results = query.setParameter("barcode", barcode).setParameter("minLatitude", minLatitude).setParameter("maxLatitude", maxLatitude)
 				.setParameter("minLongitude", minLongitude).setParameter("maxLongitude", maxLongitude).setHint(QueryHints.CACHEABLE, true).getResultList();
 		
 		CacheUtil.displayStatistics(em);
