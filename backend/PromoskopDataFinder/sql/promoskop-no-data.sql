@@ -45,8 +45,8 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `barcode` varchar(20) COLLATE utf8_turkish_ci DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `barcode` varchar(20) UNIQUE COLLATE utf8_turkish_ci DEFAULT NULL,
   `name` varchar(300) COLLATE utf8_turkish_ci DEFAULT NULL,
   `url` varchar(300) COLLATE utf8_turkish_ci DEFAULT NULL,
   `query_count` int(11) DEFAULT '0',
