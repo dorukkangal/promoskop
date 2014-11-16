@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mudo.promoskop.dao.ProductDao;
-import com.mudo.promoskop.exception.ResourceNotFoundException;
 import com.mudo.promoskop.model.Product;
+import com.mudo.promoskop.util.CacheUtil;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -32,10 +32,9 @@ public class ProductDaoImpl implements ProductDao {
 		Root<Product> from = query.from(Product.class);
 		query.where(builder.equal(from.get("barcode").as(String.class), barcode));
 		Product p = em.createQuery(query).setHint(QueryHints.CACHEABLE, true).getSingleResult();
-		if (p == null)
-			throw new ResourceNotFoundException();
 		p.setQueryCount(p.getQueryCount() + 1);
 		em.flush();
+		CacheUtil.displayStatistics(em);
 		return p;
 	}
 
@@ -48,6 +47,7 @@ public class ProductDaoImpl implements ProductDao {
 		CriteriaQuery<Product> query = builder.createQuery(Product.class);
 		Root<Product> from = query.from(Product.class);
 		query.where(builder.like(from.get("name").as(String.class), containText));
+		CacheUtil.displayStatistics(em);
 		return em.createQuery(query).setHint(QueryHints.CACHEABLE, true).getResultList();
 	}
 
@@ -59,6 +59,7 @@ public class ProductDaoImpl implements ProductDao {
 		CriteriaQuery<Product> query = builder.createQuery(Product.class);
 		Root<Product> from = query.from(Product.class);
 		query.orderBy(builder.desc(from.get("queryCount")));
+		CacheUtil.displayStatistics(em);
 		return em.createQuery(query).setHint(QueryHints.CACHEABLE, true).setMaxResults(count).getResultList();
 	}
 }
