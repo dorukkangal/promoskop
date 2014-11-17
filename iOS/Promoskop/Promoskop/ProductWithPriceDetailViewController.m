@@ -564,6 +564,33 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"Error : %@", [error description]);
+        AFHTTPRequestOperation *opp = operation;
+        id responseObject = opp.responseObject;
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if (responseObject) {
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Hata"
+                                          message:(NSString*) responseObject[@"message"]
+                                          preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"Tamam"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     [self.navigationController popToRootViewControllerAnimated:YES];
+                                 }];
+
+            
+            [alert addAction:ok];
+
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+
     }];
 
 }
