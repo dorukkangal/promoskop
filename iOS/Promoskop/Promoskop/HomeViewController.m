@@ -104,11 +104,11 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
 -(void)addToBasketButtonTappedIn:(PopularProductCollectionViewCell *)cell{
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     NSDictionary *productDictionary = self.productsArray[indexPath.item];
-    if(![[ShoppingCartManager manager]isProductInShoppingCart:[productDictionary[@"barcode_id"]integerValue]]){
+    if(![[ShoppingCartManager manager]isProductInShoppingCart:productDictionary[@"barcode_id"]]){
         [[ShoppingCartManager manager]addProductToShoppingCart:productDictionary];
     }
     else {
-        [[ShoppingCartManager manager]removeProductFromShoppingCart:[productDictionary[@"barcode_id"] integerValue]];
+        [[ShoppingCartManager manager]removeProductFromShoppingCart:productDictionary[@"barcode_id"] ];
     }
     [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }
@@ -146,7 +146,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
     [cell.productImageView sd_setImageWithURL:[NSURL URLWithString:product[@"product_url"]]];
     [cell.productNameLabel setText:product[@"product_name"]];
     [cell.productNameLabel setPreferredMaxLayoutWidth:134.f];
-    if([[ShoppingCartManager manager]isProductInShoppingCart:[product[@"barcode_id"] integerValue]])
+    if([[ShoppingCartManager manager]isProductInShoppingCart:product[@"barcode_id"] ])
        [cell.shoppingBasketButton setSelected:YES];
     else
         [cell.shoppingBasketButton setSelected:NO];

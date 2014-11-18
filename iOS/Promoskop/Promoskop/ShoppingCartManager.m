@@ -51,19 +51,33 @@
     [self.productsMutableArrayCurrentlyInShoppingCart addObject:product];
 }
 
-- (void) removeProductFromShoppingCart:(NSInteger)productId{
+- (void) removeProductFromShoppingCart:(NSString *)productId{
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
-        if ([product[@"barcode_id"] integerValue] == productId) {
-            [self.productsMutableArrayCurrentlyInShoppingCart removeObject:product];
-            break;
+        if([product[@"barcode_id"] respondsToSelector:@selector(isEqualToString:)]){
+            if ([product[@"barcode_id"]  isEqualToString:productId]) {
+                [self.productsMutableArrayCurrentlyInShoppingCart removeObject:product];
+                break;
+            }
+        }
+        else{
+            if ([[product[@"barcode_id"] stringValue] isEqualToString:productId]) {
+                [self.productsMutableArrayCurrentlyInShoppingCart removeObject:product];
+                break;
+            }
         }
     }
 }
 
-- (BOOL) isProductInShoppingCart:(NSInteger)productId{
+- (BOOL) isProductInShoppingCart:(NSString *)productId{
     for (NSDictionary* product in self.productsMutableArrayCurrentlyInShoppingCart) {
-        if ([product[@"barcode_id"] integerValue] == productId) {
-            return YES;
+        if([product[@"barcode_id"] isKindOfClass:[NSString class]]){
+            if([product[@"barcode_id"] isEqualToString:productId]){
+                return YES;
+            }
+        }
+        else if([product[@"barcode_id"] isKindOfClass:[NSNumber class]]){
+            if([[product[@"barcode_id"]  stringValue] isEqualToString:productId])
+                return YES;
         }
     }
     return NO;

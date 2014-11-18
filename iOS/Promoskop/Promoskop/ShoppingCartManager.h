@@ -13,8 +13,8 @@
 @property (nonatomic, strong, readonly) NSArray *productsArrayCurrentInShoppingBasket;
 
 - (void) addProductToShoppingCart:(NSDictionary*)product;
-- (void) removeProductFromShoppingCart:(NSInteger)productId;
-- (BOOL) isProductInShoppingCart:(NSInteger)productId;
+- (void) removeProductFromShoppingCart:(NSString *)productId;
+- (BOOL) isProductInShoppingCart:(NSString *)productId;
 + (ShoppingCartManager *)manager;
 - (BOOL)saveProductsInShoppingCart;
 - (void)clearShoppingCart;

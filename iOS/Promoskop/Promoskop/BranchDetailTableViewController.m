@@ -43,8 +43,10 @@
     }
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0 && (indexPath.row == 1 || indexPath.row == 3)){
+        [self performSegueWithIdentifier:@"MapForBranchViewController" sender:nil];
+    }
 }
 
 @end

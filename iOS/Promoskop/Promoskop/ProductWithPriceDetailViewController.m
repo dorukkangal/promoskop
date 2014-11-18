@@ -86,11 +86,16 @@
 
 - (void)setBtnAddRemoveShoppingCart{
     if(self.isProductInShoppingCart){
+        self.btnAddRemoveShoppingCart.imageView.hidden = YES;
+        [self.btnAddRemoveShoppingCart setImage:nil forState:UIControlStateNormal];
+        [self.btnAddRemoveShoppingCart.titleLabel setFont:[UIFont fontWithName:@"Verdana-Bold" size:12.f]];
         [self.btnAddRemoveShoppingCart setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"unbuy"] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Listemden Çıkar" forState:UIControlStateNormal];
     }
     else{
+        [self.btnAddRemoveShoppingCart.titleLabel setFont:[UIFont fontWithName:@"Verdana-Bold" size:14.f]];
+        self.btnAddRemoveShoppingCart.imageView.hidden = NO;
+        [self.btnAddRemoveShoppingCart setTitleColor:[UIColor colorWithRed:84. / 255.f green:123.f / 255.f blue:194.f / 255.f alpha:1.0f] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"buy"] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Listeme Ekle" forState:UIControlStateNormal];
     }
@@ -182,11 +187,6 @@
                                                                   }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -257,7 +257,7 @@
 
                 [cell.storeLabel setAttributedText:[[NSAttributedString alloc]initWithString:resultDict[@"store_name"] attributes:dic]];
                 cell.branchAddressLabel.text = resultDict[@"branch_address"];
-                NSLog(@"String from number :%@", [numberFormatter stringFromNumber:resultDict[@"price"]]);
+//                NSLog(@"String from number :%@", [numberFormatter stringFromNumber:resultDict[@"price"]]);
                 cell.priceLabel.text = [NSString stringWithFormat:@"%@ ₺",[numberFormatter stringFromNumber:resultDict[@"price"]] ];
                 double distance = [resultDict[@"distance"] floatValue];
                 cell.distanceLabel.text = [NSString stringWithFormat:@"%.2f km", distance ];
@@ -277,9 +277,6 @@
         
         return cell;
     }
-    
-    
-    
 }
 
 #pragma mark -
@@ -437,7 +434,7 @@
         [[ShoppingCartManager  manager]removeProductFromShoppingCart:self.productID];
     }
     else{
-        NSDictionary* product = @{@"barcode_id":[NSNumber numberWithInteger:self.productID],
+        NSDictionary* product = @{@"barcode_id":self.productID,
                                   @"product_name":self.responseDict[@"product_name"],
                                   @"product_url":self.responseDict[@"product_url"]};
         [[ShoppingCartManager  manager]addProductToShoppingCart:product];
@@ -598,14 +595,14 @@
 
 - (void)prepareArray{
     self.sortableBranchesAndPricesArray = [self.responseDict[@"branches"] mutableCopy];
-    //    self.sortableBranchesAndPricesArray = [[[DataAccessLayer database] getBranchAndPriceDetailForProductWithId:2] mutableCopy];
     for (int i = 0; i < [self.sortableBranchesAndPricesArray count]; i++){
-        
         NSMutableDictionary* mDict = [self.sortableBranchesAndPricesArray[i] mutableCopy];
         [mDict setObject:[NSNumber numberWithDouble:0.0] forKey:@"distance"];
         [self.sortableBranchesAndPricesArray replaceObjectAtIndex:i withObject:[mDict copy]];
     }
-    
+    [self.sortableBranchesAndPricesArray sortUsingComparator:^NSComparisonResult(NSDictionary  *obj1, NSDictionary *obj2) {
+        return [obj1[@"price"] doubleValue] > [obj2[@"price"] doubleValue];
+    }];
 }
 
 - (void)shakeButton

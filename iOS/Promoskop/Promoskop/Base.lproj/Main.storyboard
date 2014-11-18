@@ -758,14 +758,15 @@
                                                         <constraint firstAttribute="height" constant="100" id="CdP-M7-vaY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vux-va-1fp">
+                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vux-va-1fp">
                                                     <rect key="frame" x="392" y="71" width="200" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="Jv3-tL-kPb"/>
                                                         <constraint firstAttribute="width" constant="200" id="lWw-Go-sye"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
-                                                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                                     <state key="normal" title="Listeme Ekle" image="buy">
                                                         <color key="titleColor" red="0.31764705879999999" green="0.4823529412" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
@@ -997,7 +998,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSO-lI-MZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2248" y="868"/>
+            <point key="canvasLocation" x="2252" y="874"/>
         </scene>
         <!--Market-->
         <scene sceneID="Csa-gh-wa9">
@@ -1027,13 +1028,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="cRW-Az-7D5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="cRW-Az-7D5">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cRW-Az-7D5" id="dad-4a-5cQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAM-vU-Jak">
-                                                    <rect key="frame" x="15" y="8" width="577" height="43"/>
+                                                    <rect key="frame" x="15" y="8" width="544" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.31764705879999999" green="0.4823529412" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1117,9 +1118,6 @@
                                                 <constraint firstItem="bLc-Fl-p6m" firstAttribute="leading" secondItem="9VG-OQ-tfa" secondAttribute="leading" constant="15" id="lgh-Z7-yh6"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="ZvM-WK-ULV" kind="show" identifier="MapForBranchViewController" id="Mzj-ih-Ydt"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="l8F-Vs-8qv">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1171,6 +1169,7 @@
                         <outletCollection property="labelCollections" destination="5ZV-6j-faW" id="Rv7-Fq-qtX"/>
                         <outletCollection property="labelCollections" destination="bLc-Fl-p6m" id="aEc-G0-qee"/>
                         <outletCollection property="labelCollections" destination="IkZ-Bi-hts" id="Z04-rc-alH"/>
+                        <segue destination="ZvM-WK-ULV" kind="show" identifier="MapForBranchViewController" id="rsg-fz-XHo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk8-tc-Ivk" userLabel="First Responder" sceneMemberID="firstResponder"/>

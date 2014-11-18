@@ -60,12 +60,9 @@
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
     mapItem.name = [NSString stringWithFormat:@"%@-%@",self.selectedBranch[@"store_name"],self.selectedBranch[@"branch_name"]] ;
     [mapItem openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking}];
-    
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 /*
 #pragma mark - Navigation

@@ -84,7 +84,7 @@ NSArray * kilometerIndexArray;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(editingStyle == UITableViewCellEditingStyleDelete){
         NSDictionary *deletedProduct = [ShoppingCartManager manager].productsArrayCurrentInShoppingBasket[indexPath.row];
-        [[ShoppingCartManager manager]removeProductFromShoppingCart:[deletedProduct[@"barcode_id"] integerValue]];
+        [[ShoppingCartManager manager]removeProductFromShoppingCart:deletedProduct[@"barcode_id"] ];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
