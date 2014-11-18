@@ -24,6 +24,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Colours (5.5.0)
+  - CrittercismSDK (5.0.7)
   - iRate (1.11.3)
   - MBProgressHUD (0.9)
   - pop (1.0.7)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - AFNetworkActivityLogger
   - AFNetworking (~> 2.0)
   - Colours
+  - CrittercismSDK
   - iRate
   - MBProgressHUD (~> 0.8)
   - pop
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   Colours: 7abeb0fdebe2da3d8bd7305aee0798375f51f5d8
+  CrittercismSDK: 1f1a91c7a51ca8044e675765bde5d2aa97295b1d
   iRate: 5e1978bac8b3f3f0296dbeccc0dd7b50e6e50657
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
