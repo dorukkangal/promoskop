@@ -744,56 +744,45 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="524" translatesAutoresizingMaskIntoConstraints="NO" id="h80-zH-9iT">
-                                                    <rect key="frame" x="76" y="10" width="516" height="53"/>
+                                                    <rect key="frame" x="123" y="10" width="469" height="63"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="63" id="6Bf-7P-MpT"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vux-va-1fp">
-                                                    <rect key="frame" x="158" y="70" width="285" height="45"/>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puO-KH-Gb9">
+                                                    <rect key="frame" x="15" y="10" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="285" id="4HA-zG-omZ"/>
-                                                        <constraint firstAttribute="height" constant="45" id="Jv3-tL-kPb"/>
-                                                        <constraint firstAttribute="width" constant="261" id="PCr-Tu-th8"/>
+                                                        <constraint firstAttribute="width" constant="100" id="C9p-WX-J5r"/>
+                                                        <constraint firstAttribute="height" constant="100" id="CdP-M7-vaY"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Alisveris Listeme Ekle" image="buy">
+                                                </imageView>
+                                                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vux-va-1fp">
+                                                    <rect key="frame" x="392" y="71" width="200" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="Jv3-tL-kPb"/>
+                                                        <constraint firstAttribute="width" constant="200" id="lWw-Go-sye"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
+                                                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Listeme Ekle" image="buy">
                                                         <color key="titleColor" red="0.31764705879999999" green="0.4823529412" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="PCr-Tu-th8"/>
-                                                        </mask>
-                                                    </variation>
                                                     <connections>
                                                         <action selector="addRemoveFromShoppingCartPressed:" destination="GrC-45-Clv" eventType="touchUpInside" id="pWZ-0C-xxq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="puO-KH-Gb9">
-                                                    <rect key="frame" x="15" y="10" width="53" height="53"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="53" id="Afw-AE-1xf"/>
-                                                        <constraint firstAttribute="height" constant="53" id="YlP-g7-Ibe"/>
-                                                        <constraint firstAttribute="width" constant="53" id="rmB-fV-Xoi"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Vux-va-1fp" secondAttribute="trailing" constant="8" id="5fA-Ma-K63"/>
+                                                <constraint firstItem="puO-KH-Gb9" firstAttribute="top" secondItem="ehS-GT-aQp" secondAttribute="top" constant="10" id="53h-PD-nl0"/>
                                                 <constraint firstItem="h80-zH-9iT" firstAttribute="leading" secondItem="puO-KH-Gb9" secondAttribute="trailing" constant="8" id="GUE-Ia-1Ai"/>
                                                 <constraint firstItem="puO-KH-Gb9" firstAttribute="leading" secondItem="ehS-GT-aQp" secondAttribute="leading" constant="15" id="IO6-b1-sNh"/>
-                                                <constraint firstAttribute="centerX" secondItem="Vux-va-1fp" secondAttribute="centerX" id="LpS-M0-Dmj"/>
+                                                <constraint firstItem="Vux-va-1fp" firstAttribute="top" secondItem="h80-zH-9iT" secondAttribute="bottom" constant="-2" id="VXt-CB-tIv"/>
                                                 <constraint firstItem="h80-zH-9iT" firstAttribute="top" secondItem="ehS-GT-aQp" secondAttribute="top" constant="10" id="aHl-gO-rr4"/>
                                                 <constraint firstAttribute="trailing" secondItem="h80-zH-9iT" secondAttribute="trailing" constant="8" id="ayb-qA-vYN"/>
-                                                <constraint firstItem="puO-KH-Gb9" firstAttribute="top" secondItem="ehS-GT-aQp" secondAttribute="top" constant="10" id="bd7-2y-G0u"/>
-                                                <constraint firstItem="Vux-va-1fp" firstAttribute="top" secondItem="h80-zH-9iT" secondAttribute="bottom" constant="7" id="eE5-Sb-DfA"/>
-                                                <constraint firstItem="puO-KH-Gb9" firstAttribute="height" secondItem="h80-zH-9iT" secondAttribute="height" id="ovh-yE-eft"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vux-va-1fp" secondAttribute="trailing" constant="8" id="wnA-rb-rsl"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="5fA-Ma-K63"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="130" id="5XM-x6-wqm" customClass="BranchWithProductPriceTableViewCell">
@@ -914,7 +903,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aml-jg-b5y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="863"/>
+            <point key="canvasLocation" x="734" y="864"/>
         </scene>
         <!--Adres-->
         <scene sceneID="fg2-bf-m26">

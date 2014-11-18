@@ -13,6 +13,7 @@
 #import "INTULocationManager.h"
 #import <AFNetworking.h>
 #import "Globals.h"
+#import <Colours.h>
 #import "MapForBranchViewController.h"
 #import <MapKit/MapKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -86,12 +87,13 @@
 - (void)setBtnAddRemoveShoppingCart{
     
     if(self.isProductInShoppingCart){
+        [self.btnAddRemoveShoppingCart setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"unbuy"] forState:UIControlStateNormal];
-        [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listemden Cikar" forState:UIControlStateNormal];
+        [self.btnAddRemoveShoppingCart setTitle:@"Listemden Cikar" forState:UIControlStateNormal];
     }
     else{
         [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"buy"] forState:UIControlStateNormal];
-        [self.btnAddRemoveShoppingCart setTitle:@"Alisveris Listeme Ekle" forState:UIControlStateNormal];
+        [self.btnAddRemoveShoppingCart setTitle:@"Listeme Ekle" forState:UIControlStateNormal];
     }
     
 }
