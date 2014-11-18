@@ -1242,8 +1242,8 @@
         <image name="shopping_cart_small_gray" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vAI-TA-8KI"/>
         <segue reference="Vbr-jr-L6B"/>
+        <segue reference="vAI-TA-8KI"/>
         <segue reference="kiM-mW-VuF"/>
     </inferredMetricsTieBreakers>
 </document>
