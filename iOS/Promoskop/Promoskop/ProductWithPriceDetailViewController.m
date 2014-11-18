@@ -539,10 +539,10 @@
     }
 }
 
-- (void)setProductID:(NSInteger)productID{
+- (void)setProductID:(NSString *)productID{
     _productID = productID;
     AFHTTPRequestOperationManager *operationManager = [AFHTTPRequestOperationManager manager];
-    [operationManager GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%zd",findByID,productID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [operationManager GET:[baseURL stringByAppendingString:[NSString stringWithFormat:@"%@%@",findByID,productID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.responseDict = (NSDictionary *)responseObject;
         [self prepareArray];
         [self startLocationRequest];

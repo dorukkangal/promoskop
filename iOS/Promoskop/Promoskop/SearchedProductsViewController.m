@@ -108,7 +108,7 @@
         NSIndexPath *indexPath = [self.productsTableView indexPathForCell:cell];
         NSDictionary *dict = self.foundProducts[indexPath.row];
         ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        [productWithPriceDetailTableViewController setProductID:[dict[@"barcode_id"] integerValue]];
+        [productWithPriceDetailTableViewController setProductID:dict[@"barcode_id"] ];
     }
 }
 - (void)setFoundProducts:(NSArray *)foundProducts{

@@ -195,7 +195,7 @@ static NSString * const popularProductReusableViewCell = @"PopularProductReusabl
         PopularProductCollectionViewCell *popularProductCollectionViewCell = (PopularProductCollectionViewCell *)sender;
         NSIndexPath *itemIndexPath = [self.collectionView indexPathForCell:popularProductCollectionViewCell];
         ProductWithPriceDetailViewController *productWithPriceDetailViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        [productWithPriceDetailViewController setProductID:[self.productsArray[itemIndexPath.item][@"barcode_id"] integerValue]];
+        [productWithPriceDetailViewController setProductID:self.productsArray[itemIndexPath.item][@"barcode_id"]];
     }
 }
 

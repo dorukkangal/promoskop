@@ -87,7 +87,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ProductWithPriceDetailTableViewController"]){
         ProductWithPriceDetailViewController *productWithPriceDetailTableViewController = (ProductWithPriceDetailViewController *)segue.destinationViewController;
-        productWithPriceDetailTableViewController.productID = [self.scannedBarcode integerValue];
+        productWithPriceDetailTableViewController.productID = self.scannedBarcode;
     }
 }
 
