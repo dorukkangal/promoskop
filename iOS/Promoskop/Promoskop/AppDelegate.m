@@ -12,6 +12,7 @@
 #import <Colours.h>
 #import <AFNetworkActivityLogger.h>
 #import <iRate.h>
+#import "Crittercism.h"
 
 @interface AppDelegate ()
 
@@ -35,6 +36,8 @@
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor crimsonColor]];
     [[UINavigationBar appearance]setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    
+    [Crittercism enableWithAppID:@"546b9198b573f1783b00000b"];
     return YES;
 }
 
