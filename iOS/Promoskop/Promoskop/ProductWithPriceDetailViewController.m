@@ -85,17 +85,15 @@
 }
 
 - (void)setBtnAddRemoveShoppingCart{
-    
     if(self.isProductInShoppingCart){
         [self.btnAddRemoveShoppingCart setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"unbuy"] forState:UIControlStateNormal];
-        [self.btnAddRemoveShoppingCart setTitle:@"Listemden Cikar" forState:UIControlStateNormal];
+        [self.btnAddRemoveShoppingCart setTitle:@"Listemden Çıkar" forState:UIControlStateNormal];
     }
     else{
         [self.btnAddRemoveShoppingCart setImage:[UIImage imageNamed:@"buy"] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Listeme Ekle" forState:UIControlStateNormal];
     }
-    
 }
 
 -(void)calculateDistancesOfBranchesForCurrentLocation:(CLLocation *)currentLocation{
