@@ -89,7 +89,7 @@
         self.btnAddRemoveShoppingCart.imageView.hidden = YES;
         [self.btnAddRemoveShoppingCart setImage:nil forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart.titleLabel setFont:[UIFont fontWithName:@"Verdana-Bold" size:12.f]];
-        [self.btnAddRemoveShoppingCart setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [self.btnAddRemoveShoppingCart setTitleColor:[UIColor crimsonColor] forState:UIControlStateNormal];
         [self.btnAddRemoveShoppingCart setTitle:@"Listemden Çıkar" forState:UIControlStateNormal];
     }
     else{
