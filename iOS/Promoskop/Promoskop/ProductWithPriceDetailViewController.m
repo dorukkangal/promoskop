@@ -135,7 +135,7 @@
                                                    delayUntilAuthorized:YES
       block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status){
           __typeof(weakSelf) strongSelf = weakSelf;
-          NSLog(@"Location accuracy: %ld", achievedAccuracy);
+          NSLog(@"Location accuracy: %d", achievedAccuracy);
           if (status == INTULocationStatusSuccess) {
               // achievedAccuracy is at least the desired accuracy (potentially better)
               NSLog(@"Location request successful! Current Location Altta \n%@", currentLocation);
