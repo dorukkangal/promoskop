@@ -9,6 +9,7 @@
 #import "LeftMenuViewController.h"
 #import "BasicCell.h"
 #import "UIImage+Utility.h"
+#import <Colours.h>
 static NSString * const BasicCellIdentifier = @"BasicCell";
 
 @interface LeftMenuViewController ()
@@ -22,8 +23,8 @@ static NSString * const BasicCellIdentifier = @"BasicCell";
 @implementation LeftMenuViewController
 
 - (void)viewDidLoad{
-
-    
+    [[UINavigationBar appearance]setBackgroundColor:[UIColor brickRedColor]];
+    [self setTitle:@"Menu"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
