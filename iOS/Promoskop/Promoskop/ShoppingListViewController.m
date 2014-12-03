@@ -18,7 +18,7 @@
 #import <AFNetworking.h>
 #import "ShoppingListHeaderView.h"
 
-@interface ShoppingListViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ShoppingListViewController ()<UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CLLocation *currentLocation;
@@ -105,36 +105,27 @@ NSArray * kilometerIndexArray;
 
 - (IBAction)clearShoppingList:(id)sender {
 
-    
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Sepeti Boşalt"
-                                  message:@"Sepetinizi boşaltmak istediğinize emin misiniz?"
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"Evet"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [[ShoppingCartManager manager] clearShoppingCart];
-                             [self.tableView reloadData];
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    UIAlertAction* cancel = [UIAlertAction
-                             actionWithTitle:@"İptal"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-    
-    [alert addAction:ok];
-    [alert addAction:cancel];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Sepeti Boşalt"
+                                                    message:@"Sepetinizi boşaltmak istediğinize emin misiniz?"
+                                                    delegate:self
+                                                    cancelButtonTitle:@"İptal"
+                                                    otherButtonTitles:@"Evet", nil];
+    [alert show];
+}
 
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button Index =%ld",(long)buttonIndex);
+    if (buttonIndex == 0) 
+    {
+        NSLog(@"You have clicked İptal");
+    }
+    else if(buttonIndex == 1)
+    {
+        NSLog(@"You have clicked Evet");
+        [[ShoppingCartManager manager] clearShoppingCart];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

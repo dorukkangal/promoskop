@@ -27,7 +27,7 @@
 #define TABLEVIEW_CELL_HEIGHT 130
 #define MKPINANNOTATION_CALLOUT_CONTENT_VIEW_SIZE 120
 
-@interface ProductWithPriceDetailViewController ()<MKMapViewDelegate,SMCalloutViewDelegate,ASMediasFocusDelegate>
+@interface ProductWithPriceDetailViewController ()<MKMapViewDelegate,SMCalloutViewDelegate,ASMediasFocusDelegate,UIAlertViewDelegate>
 
 
 @property (nonatomic, strong) NSMutableArray *sortableBranchesAndPricesArray;
@@ -567,30 +567,24 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (responseObject) {
-            UIAlertController * alert=   [UIAlertController
-                                          alertControllerWithTitle:@"Hata"
-                                          message:(NSString*) responseObject[@"message"]
-                                          preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* ok = [UIAlertAction
-                                 actionWithTitle:@"Tamam"
-                                 style:UIAlertActionStyleDefault
-                                 handler:^(UIAlertAction * action)
-                                 {
-                                     [alert dismissViewControllerAnimated:YES completion:nil];
-                                     [self.navigationController popToRootViewControllerAnimated:YES];
-                                 }];
 
-            
-            [alert addAction:ok];
-
-            
-            [self presentViewController:alert animated:YES completion:nil];
+            UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Hata"
+                                                            message:(NSString*) responseObject[@"message"]
+                                                            delegate:self
+                                                            cancelButtonTitle:@"Tamam"
+                                                            otherButtonTitles: nil];
+            [alert show];
         }
 
     }];
 
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 
 - (void)prepareArray{
