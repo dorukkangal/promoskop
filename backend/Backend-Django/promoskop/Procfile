@@ -1,1 +1,0 @@
-web: gunicorn promoskop.wsgi --log-file -
