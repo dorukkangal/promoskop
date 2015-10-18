@@ -5,13 +5,21 @@ import java.io.Serializable;
 public class CheapestPriceRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private String[] barcodes;
+
 	private double currentLatitude;
 
 	private double currentLongitude;
 
 	private double maxDistance;
 
-	private String[] barcodeIds;
+	public String[] getBarcodes() {
+		return barcodes;
+	}
+
+	public void setBarcodes(String[] barcodes) {
+		this.barcodes = barcodes;
+	}
 
 	public double getCurrentLatitude() {
 		return currentLatitude;
@@ -35,13 +43,5 @@ public class CheapestPriceRequest implements Serializable {
 
 	public void setMaxDistance(double maxDistance) {
 		this.maxDistance = maxDistance;
-	}
-
-	public String[] getBarcodeIds() {
-		return barcodeIds;
-	}
-
-	public void setBarcodeIds(String[] barcodeIds) {
-		this.barcodeIds = barcodeIds;
 	}
 }

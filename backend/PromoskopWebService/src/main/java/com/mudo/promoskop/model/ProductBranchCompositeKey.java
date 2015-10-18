@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 @Embeddable
 public class ProductBranchCompositeKey implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -11,22 +13,6 @@ public class ProductBranchCompositeKey implements Serializable {
 	private Product product;
 
 	private Branch branch;
-
-	private transient int productId;
-	private transient int branchId;
-
-	public ProductBranchCompositeKey() {
-	}
-
-	public ProductBranchCompositeKey(Product product, Branch branch) {
-		this.product = product;
-		if (product != null)
-			this.productId = product.getId();
-
-		this.branch = branch;
-		if (branch != null)
-			this.branchId = branch.getId();
-	}
 
 	public Product getProduct() {
 		return product;
@@ -44,22 +30,6 @@ public class ProductBranchCompositeKey implements Serializable {
 		this.branch = branch;
 	}
 
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
-	public int getBranchId() {
-		return branchId;
-	}
-
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -71,11 +41,11 @@ public class ProductBranchCompositeKey implements Serializable {
 		ProductBranchCompositeKey compositeKey = (ProductBranchCompositeKey) obj;
 		Product product = compositeKey.getProduct();
 		Branch branch = compositeKey.getBranch();
-		return ((product != null && this.productId == product.getId()) && (branch != null && this.branchId == branch.getId()));
+		return ((product != null && this.product.getId() == product.getId()) && (branch != null && this.branch.getId() == branch.getId()));
 	}
 
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return new HashCodeBuilder().append(product.getId()).append(branch.getId()).toHashCode();
 	}
 }

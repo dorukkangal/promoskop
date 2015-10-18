@@ -12,8 +12,7 @@ public class PropertyUtil {
 		HashMap<String, Object> configProperties = new HashMap<>();
 		ResourceBundle configBundle = ResourceBundle.getBundle("config");
 		String appVersion = configBundle.getString(APP_VERSION);
-		Boolean flag = Boolean.parseBoolean(configBundle.getObject(
-				FLAG_SHOW_HIGHEST_GAP_PRODUCT).toString());
+		Boolean flag = Boolean.parseBoolean(configBundle.getObject(FLAG_SHOW_HIGHEST_GAP_PRODUCT).toString());
 		configProperties.put("app_version", appVersion);
 		configProperties.put("flag", flag);
 		return configProperties;

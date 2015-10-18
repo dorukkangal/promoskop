@@ -4,17 +4,20 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
+@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +25,7 @@ public class Product implements Serializable {
 	@Id
 	private int id;
 
-	@Column(unique=true)
+	@Column(unique = true)
 	private String barcode;
 
 	private String name;
@@ -32,8 +35,9 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private int queryCount;
 
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-	private Set<ProductBranch> productBranchs = new HashSet<ProductBranch>();
+	@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Set<ProductBranch> productBranches = new HashSet<ProductBranch>();
 
 	public int getId() {
 		return id;
@@ -75,11 +79,11 @@ public class Product implements Serializable {
 		this.queryCount = queryCount;
 	}
 
-	public Set<ProductBranch> getProductBranchs() {
-		return productBranchs;
+	public Set<ProductBranch> getProductBranches() {
+		return productBranches;
 	}
 
-	public void setProductBranchs(Set<ProductBranch> productBranchs) {
-		this.productBranchs = productBranchs;
+	public void setProductBranches(Set<ProductBranch> productBranches) {
+		this.productBranches = productBranches;
 	}
 }

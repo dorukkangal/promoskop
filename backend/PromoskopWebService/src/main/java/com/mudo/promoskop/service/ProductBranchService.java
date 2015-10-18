@@ -6,5 +6,7 @@ import com.mudo.promoskop.model.ProductBranch;
 
 public interface ProductBranchService {
 
-	public List<ProductBranch> findProductBranchWithMinPrice(String barcode, double minLatitude, double minLongitude, double maxLatitude, double maxLongitude);
+	public List<ProductBranch> findCheapestAndClosest(String barcode, double currentLatitude, double currentLongitude);
+
+	public List<ProductBranch> findCheapestInRadius(String[] barcodes, double currentLatitude, double currentLongitude, double radius);
 }

@@ -1,8 +1,5 @@
 package com.mudo.promoskop.exception;
 
-import org.codehaus.jackson.map.annotate.JsonFilter;
-
-@JsonFilter("filterResponseBean")
 public class ResourceNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

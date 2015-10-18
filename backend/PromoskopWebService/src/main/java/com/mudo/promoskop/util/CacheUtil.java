@@ -2,21 +2,25 @@ package com.mudo.promoskop.util;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.jpa.internal.EntityManagerFactoryImpl;
+import org.hibernate.SessionFactory;
+import org.hibernate.jpa.HibernateEntityManagerFactory;
 import org.hibernate.stat.Statistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.orm.jpa.EntityManagerFactoryInfo;
 
 public class CacheUtil {
 	private static Logger LOG = LoggerFactory.getLogger("cache");
 
 	public static void displayStatistics(EntityManager em) {
-		EntityManagerFactoryInfo emfi = (EntityManagerFactoryInfo) em.getEntityManagerFactory();
-		EntityManagerFactoryImpl empImpl = (EntityManagerFactoryImpl) emfi.getNativeEntityManagerFactory();
-		Statistics statistics = empImpl.getSessionFactory().getStatistics();
-		LOG.debug("\n" + statistics.toString().replaceAll(",", ",\n   "));
-		statistics.clear();
+		try {
+			SessionFactory sf = ((HibernateEntityManagerFactory) em.getEntityManagerFactory()).getSessionFactory();
+			Statistics statistics = sf.getStatistics();
+			LOG.debug("\n" + statistics.toString().replaceAll(",", ",\n   "));
+			System.out.println("\n" + statistics.toString().replaceAll(",", ",\n   "));
+			// statistics.clear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void isCached(EntityManager em, Class<?> clazz, Object id) {

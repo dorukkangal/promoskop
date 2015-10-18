@@ -10,12 +10,22 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mudo.promoskop.controller.FeedbackController;
+
 public class MailUtil {
+	private static Logger LOG = LoggerFactory.getLogger(FeedbackController.class);
+
 	private static final String USER_NAME = "infopromoskop@gmail.com";
 	private static final String PASSWORD = "gsustartup0493;";
 	private static final String SUBJECT = "Promoskop Feedback";
-	private static final String BODY = "Email : {0}<br>Feedback : {1}"; 
-	public static final String[] EMAIL_GROUP_LIST = new String[] { USER_NAME };//"dorukkangal@gmail.com"};//, "mustafabesnili@hotmail.com", "ceyhunozugur@gmail.com" };
+	private static final String BODY = "Email : {0}<br>Feedback : {1}";
+	public static final String[] EMAIL_GROUP_LIST = new String[] { USER_NAME };// "dorukkangal@gmail.com"};//,
+																				// "mustafabesnili@hotmail.com",
+																				// "ceyhunozugur@gmail.com"
+																				// };
 
 	public static void sendMail(String to, String email, String feedback) throws Exception {
 
@@ -28,6 +38,7 @@ public class MailUtil {
 	}
 
 	public static void sendGroupMail(String[] addresses, String email, String feedback) throws Exception {
+		LOG.debug("Feedback request--> Email: {} Body: {}", email, feedback);
 
 		MimeMessage message = new MimeMessage(openSession(USER_NAME, PASSWORD));
 		for (String address : addresses) {

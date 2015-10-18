@@ -1,16 +1,16 @@
-package com.mudo.promoskop.util;
+package com.mudo.promoskop.jackson;
 
-public enum JsonFilter {
+public enum PredefinedFilterSet {
 
 	PRODUCT_BY_ID_FILTER(new String[] { "branch_id" }),
 	PRODUCT_BY_NAME_FILTER(new String[] { "branches" }),
 	POPULAR_PRODUCTS_FILTER(new String[] { "branches" }),
-	BASKET_FILTER(new String[] { "branch_id", "branches" }),
+	BASKET_FILTER(new String[] { "product.product_branches", "branch.product_branches" }),
 	EXCEPTION_FILTER(new String[] { "detail_message", "cause", "stack_trace", "suppressed_exceptions", "localized_message", "suppressed" });
 
 	private String[] ignoredFields;
 
-	private JsonFilter(String[] ignoredFields) {
+	private PredefinedFilterSet(String[] ignoredFields) {
 		this.ignoredFields = ignoredFields;
 	}
 

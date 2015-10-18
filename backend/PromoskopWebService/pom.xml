@@ -20,7 +20,7 @@
 		<mysql.version>5.1.33</mysql.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<javax.servlet.version>3.1.0</javax.servlet.version>
-		<jackson.version>1.9.13</jackson.version>
+		<jackson.version>2.2.2</jackson.version>
 		<gps.util.version>1.3.0</gps.util.version>
 		<junit.version>4.11</junit.version>
 		<jpa.api.version>1.0.0.Final</jpa.api.version>
@@ -34,8 +34,8 @@
 			<version>${spring.version}</version>
 			<exclusions>
 				<exclusion>
-					<artifactId>commons-logging</artifactId>
 					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -70,6 +70,11 @@
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>${jpa.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jmx</artifactId>
+			<version>3.5.6-Final</version>
 		</dependency>
 
 		<!-- Connection Pooling -->
@@ -110,26 +115,19 @@
 			<version>1.2.17</version>
 		</dependency>
 
-
 		<!--Jackson for JSON -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- Javax Servlet Dependencies -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -141,6 +139,20 @@
 			<groupId>com.javadocmd</groupId>
 			<artifactId>simplelatlng</artifactId>
 			<version>${gps.util.version}</version>
+		</dependency>
+
+		<!-- Java Mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<!-- Apache Commons -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
 		</dependency>
 
 		<!-- Testing -->
@@ -155,12 +167,6 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
 		</dependency>
 	</dependencies>
 

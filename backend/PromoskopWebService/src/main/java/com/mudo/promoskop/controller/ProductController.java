@@ -1,7 +1,8 @@
 package com.mudo.promoskop.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,39 +10,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mudo.promoskop.exception.InvalidRequestException;
+import com.mudo.promoskop.jackson.JacksonFilter;
+import com.mudo.promoskop.model.Branch;
+import com.mudo.promoskop.model.Product;
+import com.mudo.promoskop.model.ProductBranch;
 import com.mudo.promoskop.request.CheapestPriceRequest;
-import com.mudo.promoskop.service.JsonService;
-import com.mudo.promoskop.util.JsonFilter;
+import com.mudo.promoskop.service.BranchService;
+import com.mudo.promoskop.service.ProductService;
 
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
 
 	@Autowired
-	private JsonService jsonService;
+	private ProductService productService;
 
-	@RequestMapping(value = "/{barcode}", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
+	@Autowired
+	private BranchService branchService;
+
+	@JacksonFilter(excludePaths = { "product.product_branches", "branch.product_branches" })
+	@RequestMapping(value = "/barcode", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" }, consumes = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	String getProductByIdInJSON(@PathVariable String barcode) throws Exception {
-		return jsonService.generateJsonForProduct(JsonFilter.PRODUCT_BY_ID_FILTER, barcode);
+	List<ProductBranch> getProductByIdInJSON(@RequestBody CheapestPriceRequest holder) throws Exception {
+		if (holder.getBarcodes().length != 1)
+			throw new InvalidRequestException();
+		List<ProductBranch> branches = productService.findByBarcodeInRadius(holder.getBarcodes()[0], holder.getCurrentLatitude(), holder.getCurrentLongitude(),
+				holder.getMaxDistance());
+		return branches;
 	}
 
 	@RequestMapping(value = "/findBySubString", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	String getProductByNameInJSON(@RequestParam(value = "text") String containText) throws Exception {
-		return jsonService.generateJsonForProducts(JsonFilter.PRODUCT_BY_NAME_FILTER, containText);
+	List<Product> getProductByNameInJSON(@RequestParam(value = "text") String containText) throws Exception {
+		List<Product> matchingProducts = productService.findBySubString(containText);
+		return matchingProducts;
 	}
 
 	@RequestMapping(value = "/popular", method = RequestMethod.GET, produces = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	String getPopularProductsJSON(@RequestParam(value = "count") int count) throws Exception {
-		return jsonService.generateJsonForPopularProducts(JsonFilter.POPULAR_PRODUCTS_FILTER, count);
+	List<Product> getPopularProductsJSON(@RequestParam(value = "count") int count) throws Exception {
+		List<Product> popularProducts = productService.findMaxGapped(count);
+		return popularProducts;
 	}
 
+	@JacksonFilter(excludePaths = { "product.product_branches"})
 	@RequestMapping(value = "/basket/calculate", method = RequestMethod.POST, produces = { "application/json; charset=UTF-8" }, consumes = { "application/json; charset=UTF-8" })
 	public @ResponseBody
-	String getCheapestPrice(@RequestBody CheapestPriceRequest holder) throws Exception {
-		return jsonService.generateJsonForBasket(JsonFilter.BASKET_FILTER, holder.getCurrentLatitude(), holder.getCurrentLongitude(), holder.getMaxDistance(),
-				holder.getBarcodeIds());
+	List<Branch> getCheapestPrice(@RequestBody CheapestPriceRequest holder) throws Exception {
+		List<Branch> branches = branchService.find(holder.getBarcodes(), holder.getCurrentLatitude(), holder.getCurrentLongitude(),
+				holder.getMaxDistance());
+		return branches;
 	}
 }
